@@ -1,0 +1,51 @@
+/* ======================== Breadcrumb Three Section Css Start ===================== */
+.breadcrumb-three {
+    padding-top: 120px;
+    @include msm-screen {
+        padding-top: 100px;
+    }
+}
+
+.breadcrumb-three-content {
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    z-index: 1;
+    &::before {
+        position: absolute;
+        content: "";
+        width: calc(100% + 104px);
+        height: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0;
+        background-color: hsl(var(--white));
+        z-index: -1;
+    }
+}
+
+.author-profile {
+    &__thumb {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: var(--main-gradient);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+        margin-top: -60px;
+        &::before {
+            position: absolute;
+            content: "";
+            width: calc(100% - 2px);
+            height: calc(100% - 2px);
+            background-color: hsl(var(--white));
+            left: 1px;
+            top: 1px;
+            border-radius: inherit;
+            z-index: -1;
+        }
+    }
+}
+/* ======================== Breadcrumb Three Section Css End ===================== */

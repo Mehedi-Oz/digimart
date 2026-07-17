@@ -1,0 +1,75 @@
+/* ========================= Cart Thank You Section Css Start ======================= */
+.cart-thank {
+    &__box {
+        border-radius: 24px;
+        background-color: hsl(var(--section-bg));
+        padding: clampCal(16, 48, 991, 1399);
+        background-color: hsl(var(--white)/.45);
+        backdrop-filter: blur(12px);
+        box-shadow: var(--box-shadow);
+        @include msm-screen {
+            padding: 0px;
+            background-color: transparent;
+        }
+    }
+    &__img img {
+        max-width: 56%;
+    }
+}
+
+/* thank card */
+.thank-card {
+    padding: clampCal(16, 40, 991, 1399);
+    border-radius: 24px;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    transition: .2s linear;
+    background: transparent;
+    &:hover {
+        box-shadow: 0px 20px 30px 0px rgba(197, 196, 201, 0.25);
+        background: var(--main-gradient);
+    }
+    &::before {
+        position: absolute;
+        content: "";
+        width: calc(100% - 2px);
+        height: calc(100% - 2px);
+        background: hsl(var(--white));
+        left: 1px;
+        top: 1px;
+        border-radius: inherit;
+        z-index: -1;
+        transition: .2s linear;
+    }
+}
+
+/* List Text Start */
+.list-text {
+    border: 1px solid hsl(var(--gray-five));
+    border-radius: 16px;
+    &__item {
+        border-bottom: 1px solid hsl(var(--gray-five));
+        .text {
+            padding: 16px 24px;
+            border-right: 1px solid hsl(var(--gray-five));
+            @include lg-screen {
+                padding: 16px;
+            }
+            @include xsm-screen {
+                padding: 16px 8px;
+            }
+            &:first-child {
+                width: 60%;
+            }
+            &:last-child {
+                border-right: 0;
+            }
+        }
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+}
+/* List Text End */
+/* ========================= Cart Thank You Section Css End ======================= */

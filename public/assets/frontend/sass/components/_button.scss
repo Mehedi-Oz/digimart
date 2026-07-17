@@ -1,0 +1,220 @@
+/* ================================= Button Css Start =========================== */
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
+    color: none;
+    background-color: none;
+    border-color: none;
+}
+
+.btn {
+    position: relative;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    font-weight: 400;
+    font-family: var(--body-font);
+    color: hsl(var(--static-white)) !important;
+    z-index: 1;
+    @include font-14; 
+    line-height: 1;
+    text-transform: capitalize;
+    padding: 14px 16px;
+    &:hover, &:focus, &:focus-visible {
+        box-shadow: none !important;
+    }
+    @include md-screen {
+        padding: 12px 16px;
+    }
+    &-sm {
+        padding: 11px 16px !important;
+        @include font-14;
+        @include xsm-screen {
+            padding: 10px !important;
+            font-size: 12px;
+        }
+    }
+    &-md {
+        padding: 17px 16px;
+        @include xsm-screen {
+            padding: 10px;
+            font-size: 12px;
+        }
+    }
+    &-lg {
+        padding: 22px 40px;
+        @include font-16; 
+        @include md-screen {
+            padding: 17px 32px;
+        }
+    }
+    &-lg-icon {
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include md-screen {
+            height: 50px;
+        }
+    }
+    &-xl {
+        padding: 20px 64px;
+        @include font-16; 
+        @include md-screen {
+            padding: 15px 36px;
+        }
+    }
+    &-icon {
+        width: 56px;
+        height: 56px;
+        background-color: hsl(var(--white)) !important;
+        padding: 0;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: .2s linear;
+        @include font-20; 
+        @include sm-screen {
+            width: 44px;
+            height: 44px;
+        }
+        &--sm {
+            width: 44px;
+            height: 44px;
+            @include sm-screen {
+                width: 40px;
+                height: 40px;
+            }
+        }
+        &:hover {
+            transform: scale(1.04);
+        }
+    }
+    .icon-right {
+        margin-left: 8px;
+        @include font-16; 
+    }
+    .icon-left {
+        margin-right: 8px;
+        @include font-16; 
+    }
+    &:active {
+        transform: scale(1.01);
+    }
+    // ============= Different Color Button Start ==================
+    &-main {
+        background-color: hsl(var(--main)) !important;
+        border: transparent !important;
+        z-index: 1;
+        &::before, &::after {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            border-radius: inherit;
+            background: var(--main-gradient);
+            z-index: -1;
+            transition: .2s linear;
+        }
+        &::after {
+            background: var(--main-gradient-rev);
+            visibility: hidden;
+            opacity: 0;
+        }
+        &:hover {
+            &::after {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+    }
+    &-outline-main {
+        background-color: transparent!important;
+        border-color: hsl(var(--main)) !important;
+        color: hsl(var(--main)) !important;
+        &:hover {
+            background-color: hsl(var(--main)/.15) !important;
+            border-color: hsl(var(--main)/.4) !important;
+        }
+    }
+    &-white {
+        background-color: hsl(var(--white)) !important;
+        border-color: hsl(var(--white)) !important;
+        color: hsl(var(--black)) !important;
+        &:hover {
+            background-color: hsl(var(--main)) !important;
+            border-color: hsl(var(--main)) !important;
+            color: hsl(var(--static-white)) !important;
+        }
+    }
+    &-light {
+        background-color: hsl(var(--white-one)) !important;
+        border-color: hsl(var(--white-one)) !important;
+        color: hsl(var(--black)) !important;
+        &:hover {
+            background-color: hsl(var(--main)) !important;
+            border-color: hsl(var(--main)) !important;
+            color: hsl(var(--white)) !important;
+        }
+    }
+    &-outline-light {
+        background-color: transparent !important;
+        border-color: hsl(var(--white-one)) !important;
+        color: hsl(var(--black)) !important;
+        font-weight: 500;
+        &:hover {
+            background-color: hsl(var(--black)) !important;
+            border-color: hsl(var(--black)) !important;
+            color: hsl(var(--white)) !important;
+        }
+    }
+    &-black {
+        background-color: hsl(var(--black)) !important;
+        border-color: hsl(var(--black)) !important;
+        border-width: 2px;
+        color: hsl(var(--white)) !important;
+        &:hover {
+            background-color: transparent !important;
+            border-color: hsl(var(--black)) !important;
+            color: hsl(var(--black)) !important;
+        }
+    }
+    &-outline-black {
+        background-color: transparent !important;
+        border-color: hsl(var(--black)) !important;
+        border-width: 2px;
+        color: hsl(var(--black)) !important;
+        font-weight: 600;
+        &:hover {
+            background-color: hsl(var(--black)) !important;
+            border-color: hsl(var(--black)) !important;
+            color: hsl(var(--white)) !important;
+        }
+    }
+    &-static-black {
+        background-color: hsl(var(--static-black)) !important;
+        border-color: hsl(var(--static-black)) !important;
+        border-width: 2px;
+        color: hsl(var(--static-white)) !important;
+        &:hover {
+            background-color: transparent !important;
+            border-color: hsl(var(--static-black)) !important;
+            color: hsl(var(--static-black)) !important;
+            font-weight: 600 !important;
+        }
+    }
+    &-static-outline-black {
+        background-color: transparent !important;
+        border-color: hsl(var(--static-black)) !important;
+        border-width: 2px;
+        color: hsl(var(--static-black)) !important;
+        font-weight: 600;
+        &:hover {
+            background-color: hsl(var(--static-black)) !important;
+            border-color: hsl(var(--static-black)) !important;
+            color: hsl(var(--static-white)) !important;
+        }
+    }
+}
+
+/* ================================= Button Css End =========================== */

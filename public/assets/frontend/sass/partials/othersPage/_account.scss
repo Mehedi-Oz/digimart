@@ -1,0 +1,69 @@
+/* ========================== Account Page Css Start ============================= */
+.dark-light-mode {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+}
+
+.account {
+    position: relative;
+    &__img {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        @include md-screen {
+            display: none;
+        }
+    }
+    &__left {
+        width: 43%;
+        padding: 32px;
+        position: relative;
+        @include md-screen {
+            width: 60%;
+        }
+        &::before {
+            position: absolute;
+            content: "";
+            width: 675px;
+            height: 552px;
+            background: linear-gradient(152deg, rgba(246, 246, 246, 0.30) 17.12%, rgba(94, 53, 242, 0.30) 105.91%);
+            filter: blur(100px);
+            left: -290px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: -1;
+        }
+    }
+    &__right {
+        flex-grow: 1;
+        padding-left: 32px;
+        padding-right: 32px;
+        padding-bottom: 300px;
+        position: relative;
+        @include md-screen {
+            padding-bottom: 80px;
+        }
+        @include msm-screen {
+            padding-bottom: 60px;
+        }
+        @include msm-screen {
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+    }
+}
+
+
+.account-thumb {
+    max-width: 572px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.account-content{
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* ========================== Account Page Css End ============================= */

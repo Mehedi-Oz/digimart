@@ -1,0 +1,49 @@
+/* ============================= Working Process Section Css Start ============================ */
+.working-process-wrapper {
+    background-color: hsl(var(--static-black));
+    border-radius: 48px;
+    div[class*="col"] {
+        &:last-child {
+            .working-process-item {
+                &__arrow {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.working-process-item {
+    position: relative;
+    &:hover {
+        .working-process-item {
+            &__number {
+                background-color: hsl(var(--static-white)/.1);
+            }
+        }
+    }
+    &__arrow {
+        position: absolute;
+        left: calc(100% + 10px);
+        transform: translateX(-50%);
+        top: 65px;
+        @include lg-screen {
+            display: none;
+        }
+    }
+    &__number {
+        width: clampCal(60, 130, 992, 1299);
+        height: clampCal(60, 130, 992, 1299);
+        border-radius: 50%;
+        border: 1px solid hsl(var(--static-white)/.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: hsl(var(--static-white)/.7);
+        margin-left: auto;
+        margin-right: auto;
+        font-size: clamp(1.75rem, -0.8115rem + 5.3364vw, 3.1875rem); // Min: 28px - Max: 51px;
+        transition: .2s linear;
+    }
+}
+/* ============================= Working Process Section Css End ============================ */

@@ -1,0 +1,104 @@
+/* ============ Search box ============= */
+.search-box {
+    position: relative;
+    input {
+        background-color: hsl(var(--white)) !important;
+        border: 0;
+        padding-right: 70px;
+        @include sm-screen {
+            padding-right: 56px;
+        }
+        &::placeholder {
+            color: hsl(var(--black-three));
+        }
+    }
+    .icon {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: hsl(var(--body-color)); 
+        @include sm-screen {
+            right: 5px;
+        }
+    }
+
+    /* Style Two */
+    &.style-two {
+        max-width: 636px;
+        margin: 0 auto;
+        input {
+            padding-left: 170px;
+            @include msm-screen {
+                padding-left: 128px;
+            }
+        }
+        .search-box {
+            &__select {
+                position: absolute;
+                left: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+                @include msm-screen {
+                    left: 0;
+                }
+                &.select-has-icon {
+                    &::before {
+                        right: 0;
+                    }
+                    &::after {
+                        position: absolute;
+                        content: "";
+                        width: 1px;
+                        height: 100%;
+                        right: -8px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        background: hsl(var(--border-color));
+                    }
+                    select {
+                        padding-right: 19px;
+                        padding-left: 12px;
+                        color: hsl(var(--black-three));
+                        @include msm-screen {
+                            @include font-12; 
+                        }
+                        &:focus {
+                            box-shadow: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* style Three */
+    &.style-three {
+        max-width: 274px;
+        .icon {
+            width: 48px;
+            height: 48px;
+            right: 4px;
+            @include md-screen {
+                width: 36px;
+                height: 36px;
+            }
+        }
+        input {
+            background-color: hsl(var(--section-bg)) !important;
+            border: 1px solid hsl(var(--white-one));
+        }
+    }
+
+    .rounded-icon {
+        width: 40px;
+        height: 40px;
+        border: 1px solid hsl(var(--white-one));
+        border-radius: 50%;
+        transition: .2s linear;
+        &:hover {
+            background-color: hsl(var(--white-one)) !important;
+        }
+    }
+}
+/* ================== Search Box =================== */ 

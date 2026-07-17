@@ -1,0 +1,113 @@
+/* =======================-three Services Section Css Start ===================== */
+.service-three-item-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.service-three-item {
+    background-color: hsl(var(--white));
+    padding: 32px;
+    border-radius: 16px;
+    transition: .2s linear;
+    flex-grow: 1;
+    @include xl-screen {
+        padding: 24px;
+    }
+    @include xsm-screen {
+        flex-direction: column;
+    }
+    &.active {
+        .ser-list {
+            display: flex !important;
+        }
+        .service-three-item { 
+            &__button {
+                background-color: hsl(var(--main));
+                border-color: hsl(var(--main)) !important;
+                color: hsl(var(--white));
+                i::before {
+                    content: "\f068";
+                }
+            }
+        }
+    }
+    &:hover, &.active {
+        background-color: hsl(var(--black));   
+        .ser-list {
+            &__item {
+                color: hsl(var(--white)) !important;
+            }
+        }
+        .service-three-item {
+            &__title {
+                color: hsl(var(--white));
+            }
+            &__desc {
+                color: hsl(var(--white-one));
+            }
+            &__button {
+                border-color: hsl(var(--white-one));
+                color: hsl(var(--white));
+            }
+            &__bg {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+    }
+    &__bg {
+        visibility: hidden;
+        opacity: 0;
+        transition: .2s linear;
+    }
+    &__icon {
+        width: 80px;
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: hsl(var(--section-bg));
+        border-radius: 50%;
+    }
+    &__title {
+        transition: .2s linear;
+    }
+    &__desc {
+        transition: .2s linear;
+    }
+    &__button {
+        width: 32px;
+        height: 32px;
+        border: 1px solid hsl(var(--white-one));
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: hsl(var(--heading-color));
+        margin-top: 20px;
+        transition: .2s linear;
+        &:hover {
+            background-color: hsl(var(--main));
+            border-color: hsl(var(--main)) !important;
+            color: hsl(var(--white));
+        }
+    }
+}
+
+.ser-list {
+    display: none !important;
+    &__item {
+        @include xl-screen {
+            font-size: 1rem !important;
+        }
+        @include md-screen {
+            font-size: 1rem !important;
+        }
+    }
+}
+.right-bottom {
+    top: auto;
+    bottom: 175px;
+}
+/* =======================-three Services Section Css End ===================== */

@@ -1,5 +1,9 @@
 @extends('admin.layouts.master')
 
+@section('title')
+    {{ __('Admin Dashboard') }}
+@endsection
+
 @section('content')
     <div class="page-wrapper">
         <!-- Page header -->
@@ -9,10 +13,10 @@
                     <div class="col">
                         <!-- Page pre-title -->
                         <div class="page-pretitle">
-                            Overview
+                            {{ __('Overview') }}
                         </div>
                         <h2 class="page-title">
-                            Vertical layout
+                            {{ __('Vertical layout') }}
                         </h2>
                     </div>
                     <!-- Page title actions -->
@@ -20,7 +24,7 @@
                         <div class="btn-list">
                             <span class="d-none d-sm-inline">
                                 <a href="#" class="btn">
-                                    New view
+                                    {{ __('New view') }}
                                 </a>
                             </span>
                             <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal"
@@ -33,7 +37,7 @@
                                     <path d="M12 5l0 14" />
                                     <path d="M5 12l14 0" />
                                 </svg>
-                                Create new report
+                                {{ __('Create new report') }}
                             </a>
                             <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
                                 data-bs-target="#modal-report" aria-label="Create new report">
@@ -77,10 +81,10 @@
                                             </div>
                                             <div class="col">
                                                 <div class="font-weight-medium">
-                                                    132 Sales
+                                                    {{ __('132 Sales') }}
                                                 </div>
                                                 <div class="text-secondary">
-                                                    12 waiting payments
+                                                    {{ __('12 waiting payments') }}
                                                 </div>
                                             </div>
                                         </div>
@@ -108,10 +112,10 @@
                                             </div>
                                             <div class="col">
                                                 <div class="font-weight-medium">
-                                                    78 Orders
+                                                    {{ __('78 Orders') }}
                                                 </div>
                                                 <div class="text-secondary">
-                                                    32 shipped
+                                                    {{ __('32 shipped') }}
                                                 </div>
                                             </div>
                                         </div>
@@ -137,10 +141,10 @@
                                             </div>
                                             <div class="col">
                                                 <div class="font-weight-medium">
-                                                    623 Shares
+                                                    {{ __('623 Shares') }}
                                                 </div>
                                                 <div class="text-secondary">
-                                                    16 today
+                                                    {{ __('16 today') }}
                                                 </div>
                                             </div>
                                         </div>
@@ -166,10 +170,10 @@
                                             </div>
                                             <div class="col">
                                                 <div class="font-weight-medium">
-                                                    132 Likes
+                                                    {{ __('132 Likes') }}
                                                 </div>
                                                 <div class="text-secondary">
-                                                    21 today
+                                                    {{ __('21 today') }}
                                                 </div>
                                             </div>
                                         </div>

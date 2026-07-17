@@ -1,0 +1,113 @@
+/* ======================= Testimonial Section Css Start ============================ */
+.testimonial {
+    .slick-arrow {
+        top: 48%;
+        margin-top: -2px;
+        @include lg-screen {
+            top: 52%;
+        }
+        @include md-screen {
+            top: 45%;
+        }
+        @include sm-screen {
+            top: 50%;
+        }
+        @include xsm-screen {
+            top: 53%; 
+        }
+    }
+}
+
+.testimonial-item {
+    padding: 40px 32px;
+    background-color: hsl(var(--white));
+    border-radius: 16px;
+    transition: .2s linear;
+    @include lg-screen {
+        padding: 32px;
+    }
+    @include md-screen {
+        padding: 24px;
+    }
+    @include msm-screen {
+        padding: 24px 16px;
+    }
+    &:hover {
+        background-color: hsl(var(--black));
+        .testimonial-item {
+            &__desc {
+                color: hsl(var(--static-white));
+            }
+        }
+        .quote-white {
+            visibility: visible;
+            opacity: 1;
+        }
+        .quote-dark {
+            visibility: hidden;
+            opacity: 0;
+        }
+        .client-info {
+            &__name {
+                color: hsl(var(--static-white));
+            }
+            &__designation {
+                color: hsl(var(--static-white)) !important;
+                font-weight: 400 !important;
+            }
+        }
+    }
+    &__desc {
+        font-size: clampCal(15, 20);
+        margin-bottom: clampCal(24, 40);
+    }
+    &__quote {
+        text-align: end;
+        position: relative;
+        z-index: 1;
+        height: 25px;
+        margin-bottom: clampCal(24, 40);
+        &::before {
+            position: absolute;
+            content: "";
+            width: calc(100% - 40px);
+            height: 1px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: hsl(var(--gray-five));
+            left: -32px;
+            z-index: -1;
+            @include md-screen {
+                left: -24px;
+            }
+        }
+        .quote {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            &-white {
+                visibility: hidden;
+                opacity: 0;
+            }
+        }
+    }
+}
+
+/* Client Info */
+.client-info {
+    &__thumb {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    &__name {
+        transition: .2s linear;
+    }
+    &__designation {
+        transition: .2s linear;
+    }
+}
+
+/* ======================= Testimonial Section Css End ============================ */

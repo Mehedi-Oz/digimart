@@ -1,0 +1,97 @@
+/* ========================= Latest Project Section Css Start ======================= */
+.latest-project-wrapper {
+    width: 100vw;
+    @include lg-screen {
+        width: unset;
+    }
+    .slick-next {
+        right: 330px;
+        @media (max-width: 1600px) {
+            right: 176px;
+        }
+        @media (max-width: 1500px) {
+            right: 110px;
+        }
+        @media (max-width: 1400px) {
+            right: 64px;
+        }
+        @media (max-width: 1300px) {
+            right: 20px;
+        }
+        @include lg-screen {
+            right: -18px;
+        }
+    }
+}
+
+
+.latest-project-item {
+    background-color: hsl(var(--section-bg));
+    border-radius: 24px;
+    &__content , &__bottom{
+        padding: 24px;
+    }
+    &__content {
+        padding-bottom: 0;
+    }
+    &__thumb {
+        margin: 32px 0;
+        @include lg-screen {
+            margin-top: 24px;
+        }
+    }   
+    &__bottom {
+        padding-top: 0;
+    }
+}
+
+.tag-list {
+    &__link {
+        padding: 4px 16px;
+        border-radius: 50px;
+        border: 1px solid hsl(var(--gray-four));
+        color: hsl(var(--heading-color));
+        &:hover {
+            color: hsl(var(--white));
+            border-color: hsl(var(--black));
+            background-color: hsl(var(--black));
+        }
+    }
+}
+
+.bookmark-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    border: 1px solid hsl(var(--white-one));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+        background-color: hsl(var(--white-one));
+    }
+}
+
+
+.btn-rounded {
+    width: 158px;
+    height: 158px;
+    border-radius: 50%;
+    position: relative;
+    margin: 12px;
+    margin-bottom: -78px;
+    z-index: 2;
+    background-color: hsl(var(--static-black));
+    &::before {
+        position: absolute;
+        content: "";
+        width: calc(100% + 22px);
+        height: calc(100% + 22px);
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid hsl(var(--gray-four));
+        border-radius: inherit;
+    }
+}
+/* ========================= Latest Project Section Css Start ======================= */

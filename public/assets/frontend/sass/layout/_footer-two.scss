@@ -1,0 +1,42 @@
+/* ==================== Footer Two Css Start Here ==================== */
+.footer-two {
+    .footer-menu {
+        &__link {
+            color: hsl(var(--black-three));
+            font-weight: 400;
+            &:hover {
+                color: hsl(var(--main));
+            }
+        }
+    }
+    
+    .footer-item {
+        &__title {
+            color: hsl(var(--heading-color));
+        }
+        &__desc {
+            color: hsl(var(--black-three));
+        }
+    }
+    
+    .social-icon-list {
+        &__link {
+            color: hsl(var(--black));
+            font-size: 16px;
+        }
+    }
+}
+
+/* Bottom Footer Two */
+.bottom-footer-two {
+    border-top: 1px solid hsl(var(--gray-five));
+    .bottom-footer__text {
+        color: hsl(var(--black-three));
+        font-weight: 300;
+    }
+    .footer-link {
+        color: hsl(var(--black-three));
+        font-weight: 400;
+    }
+}
+/* ==================== Footer Two Css End Here ==================== */

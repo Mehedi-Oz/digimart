@@ -1,0 +1,24 @@
+/* ========================= Setting Css Start ======================== */
+.setting-sidebar {
+    background-color: hsl(var(--section-bg));
+    padding: 24px;
+    border-radius: 16px;
+    position: sticky;
+    top: 120px;
+    &.top-24 {
+        top: 24px;
+    }
+    &-list {
+        &__link {
+            width: 100%;
+            padding: 10px 16px;
+            border-radius: 8px;
+            color: hsl(var(--body-color));
+            &:hover, &.active {
+                background-color: hsl(var(--main));
+                color: hsl(var(--static-white));
+            }
+        }
+    }
+}
+/* ========================= Setting Css End ======================== */

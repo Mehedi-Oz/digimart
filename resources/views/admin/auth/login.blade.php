@@ -8,6 +8,10 @@
     <div class="card card-md">
         <div class="card-body">
             <h2 class="h2 text-center mb-4">{{ __('Login to your account') }}</h2>
+            @if (session('status'))
+                <div class="alert alert-success" id="status-alert">{{ session('status') }}</div>
+                <script>setTimeout(() => document.getElementById('status-alert').remove(), 4000)</script>
+            @endif
             <form method="POST" action="{{ route('admin.login') }}">
                 @csrf
 

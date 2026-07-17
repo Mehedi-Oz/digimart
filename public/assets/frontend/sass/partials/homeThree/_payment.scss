@@ -1,0 +1,75 @@
+/* ======================== Payment Method Section Css Start ============================== */
+.payment {
+    background-color: #F6DEE9;
+    @include lg-screen {
+        padding-bottom: 120px;
+    }
+    @include md-screen {
+        padding-bottom: 100px;
+    }
+    .section-heading {
+        max-width: 494px;
+    }
+    &-inner {
+        @include xl-screen {
+            padding-top: 0 !important;
+        }
+    }
+    &-wrapper {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+    &-thumb {
+        max-width: 30%;
+        @include xxl-screen {
+            max-width: 25%;
+        }
+    }
+}
+
+.payment-method {
+    position: relative;
+    z-index: 1;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    @include md-screen {
+        width: 100%;
+    }
+    &::before {
+        position: absolute;
+        content: "";
+        width: 470px;
+        height: 470px;
+        border-radius: 470px;
+        background: rgba(241, 88, 91, 0.30);
+        filter: blur(100px);
+        z-index: -1;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    &__item {
+        height: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 16px;
+        background-color: hsl(var(--static-white));
+        @include xxl-screen {
+            height: 90px;
+        }
+        @include sm-screen {
+            height: 60px;
+        }
+        img {
+            @include msm-screen {
+                max-height: 20px;
+            }
+        }
+    }
+}
+/* ======================== Payment Method Section Css End ============================== */

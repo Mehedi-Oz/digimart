@@ -1,0 +1,181 @@
+/* ======================== All Product Section Css Start ====================== */
+/* Filter Tab Css Start */
+.filter-tab {
+    margin-bottom: 32px;
+    @include lg-screen {
+        gap: 24px;
+    }
+    @include lg-screen {
+        gap: 16px;
+    }
+    &__right {
+        gap: 24px;
+        @include lg-screen {
+            gap: 16px;
+        }
+    }
+    &__button {
+        &:hover {
+            @include md-screen {
+                background-color: transparent !important;
+                border-color: hsl(var(--white-one)) !important;
+                color: hsl(var(--black)) !important;
+            }
+        }
+        &.active {
+            background-color: hsl(var(--white-one)) !important;
+            border-color: hsl(var(--white-one)) !important;
+            color: hsl(var(--black)) !important;
+        }
+    }
+}
+
+.filter-form {
+    display: none;
+}
+/* Filter Tab Css End */
+
+/* List & Grid Buttons Start */
+.list-grid {
+    @include md-screen {
+        order: -1;
+    }
+    &__button {
+        width: 36px;
+        height: 36px;
+        border: 1px solid hsl(var(--gray-five));
+        border-radius: 8px;
+        font-size: 22px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.2s linear;
+        &.active {
+            border-color: hsl(var(--black)) !important;
+            background: hsl(var(--black)) !important;
+            color: hsl(var(--white)) !important;
+        }
+    }
+}
+/* List & Grid Buttons End */
+
+/* List & Grid Card Css Start */
+.list-view {
+    .list-grid-wrapper {
+        > div {
+            width: 100%;
+        }
+        .product-item {
+            display: flex;
+            &__content {
+                flex-grow: 1;
+            }
+        }
+    }
+}
+/* List & Grid Card Css End */
+
+/* Filter Sidebar Css Start */
+.filter-sidebar {
+    background-color: hsl(var(--gray-seven));
+    padding: 32px 16px;
+    border-radius: 8px;
+    position: relative;
+    @include md-screen {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 999;
+        border-radius: 0;
+        width: 300px;
+        transform: translateX(-100%);
+        transition: .2s linear; 
+        height: 100vh;
+        overflow-y: auto;
+        padding-top: 48px;
+    }
+    &.show {
+        transform: translateX(0);
+    }
+    &__item {
+        &:last-child {
+            .filter-sidebar {
+                &__content {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+    &__content {
+        margin-bottom: 44px;
+        @include lg-screen {
+            margin-bottom: 32px;
+        }
+        @include md-screen {
+            margin-bottom: 24px;
+        }
+    }
+    &__button {
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+        width: 100%;
+        text-align: left;
+        position: relative;
+        color: hsl(var(--heading-color));
+        &.active::after {
+            transform: rotate(180deg);
+        }
+        &::before {
+            position: absolute;
+            content: "";
+            width: calc(100% + 32px);
+            height: 1px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: hsl(var(--gray-five));
+        }
+        &::after {
+            position: absolute;
+            content: "\f107";
+            font-weight: 900;
+            font-family: 'Line Awesome Free';
+            right: 0;
+            top: 0px;
+            transition: .2s linear;
+        }
+        
+    }
+}
+
+.filter-sidebar-list {
+    &__item {
+        margin-bottom: 16px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    &__text {
+        @include font-14; 
+        color: hsl(var(--black-three));
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: .2s linear;
+      
+        &:hover {
+            color: hsl(var(--main));
+            .form-check-label {
+                color: hsl(var(--main));
+            }
+        }
+        .common-check {
+            margin-bottom: 0;
+        }
+        .form-check-label {
+            transition: .2s linear; 
+        }
+    }
+}
+/* Filter Sidebar Css End */
+/* ======================== All Product Section Css End ====================== */

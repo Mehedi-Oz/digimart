@@ -1,0 +1,58 @@
+/* ======================== Follow Css Start ============================== */
+.follow-wrapper {
+    background-color: hsl(var(--section-bg));
+    padding: 24px 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+.notification {
+    background: var(--main-gradient);
+    padding: 3px 5px;
+    line-height: 1;
+    border-radius: 50px;
+    color: hsl(var(--static-white));
+    font-size: 11px;
+    font-weight: 500;
+    margin-left: 4px;
+    min-width: 17px;
+}
+
+.follow-item {
+    position: relative;
+    padding-bottom: 22px;
+    margin-bottom: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    min-width: max-content;
+    &:last-child {
+        padding-bottom: 0;
+        margin-bottom: 0;
+        &::before {
+            display: none;
+        }
+    }
+    &::before {
+        position: absolute;
+        content: "";
+        width: calc(100% + 32px);
+        height: 1px;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0;
+        background-color: hsl(var(--gray-five));
+    }
+    &__meta {
+        min-width: max-content;
+        max-width: 177px;
+    }
+    &__sales {
+        min-width: max-content;
+    }
+    &__author {
+        max-width: 316px;
+    }
+}
+/* ======================== Follow Css End ============================== */

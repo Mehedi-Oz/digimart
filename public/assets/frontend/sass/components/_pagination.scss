@@ -1,0 +1,63 @@
+/* ================================= Pagination Css Start =========================== */
+.common-pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 64px;
+    gap: 8px;
+    @include lg-screen {
+        margin-top: 48px;
+    }
+    @include md-screen {
+        margin-top: 40px;
+    }
+    @include sm-screen {
+        margin-top: 32px;
+    }
+    .page-item {
+        &.active {
+            .page-link {
+                color: hsl(var(--white));
+                background-color: hsl(var(--black));
+            }
+        }
+        .page-link {
+            border-radius: 8px;
+            width: 42px;
+            height: 43px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent ;
+            font-weight: 600;
+            padding: 0;
+            color: hsl(var(--heading-color));
+            border: 1px solid hsl(var(--black)/.3); 
+            @include font-16; 
+            @include md-screen {
+                width: 48px;
+                height: 48px;
+            }
+            &:hover, &:focus, &:focus-visible {
+                color: hsl(var(--white));
+                background-color: hsl(var(--black));
+            }
+            &:focus {
+                box-shadow: none;
+            }
+        }
+        &:last-child {
+            .page-link {
+                width: unset;
+                height: unset;
+                background-color: hsl(var(--section-bg));
+                border-color: hsl(var(--section-bg));
+                padding: 9px 16px;
+                &:hover, &:focus, &:focus-visible {
+                    color: hsl(var(--white));
+                    background-color: hsl(var(--black));
+                }
+            }
+        }
+    }
+}
+/* ================================= Pagination Css End =========================== */

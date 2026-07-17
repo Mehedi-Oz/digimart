@@ -1,0 +1,54 @@
+/* ========================= Newsletter Section Css Start ======================= */
+.newsletter-three-content {
+    padding: clampCal(24, 90) clampCal(24, 48);
+    border-radius: 16px;
+    background: #F5F8FF;    
+    border-radius: 16px;
+    position: relative;
+    height: 100%;
+    &.support-content {
+        background: #FFEFF4;
+        &__img {
+            position: absolute;
+            right: 16px;
+            top: 0;
+        }
+        .arrow-round {
+            position: absolute;
+            z-index: -1;
+            top: 26px;
+            left: 80px;
+            @include lg-screen {
+                display: none;
+            }
+        }
+    }
+    &__img {
+        position: absolute;
+        right: 40px;
+        top: 20px;
+        z-index: -1;
+        @include lg-screen {
+            display: none;
+        }
+    }
+}
+
+.search-box {
+    position: relative;
+    .btn {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .common-input {
+        background-color: hsl(var(--white)) !important;
+        border-color: hsl(var(--white)) !important;
+        padding-right: 200px;
+        @include msm-screen {
+            padding-right: 60px;
+        }
+    }
+}
+/* ========================= Newsletter Section Css End ======================= */

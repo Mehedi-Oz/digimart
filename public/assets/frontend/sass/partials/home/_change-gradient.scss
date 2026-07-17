@@ -1,0 +1,6 @@
+/* ====================== Change Body gradient Css Start =================*/
+.change-gradient {
+    --main-gradient: linear-gradient(312deg, hsl(var(--main)) 5.38%, hsl(var(--main-three)) 113.21%);
+    --main-gradient-rev: linear-gradient(312deg, hsl(var(--main-three)) 5.38%, hsl(var(--main)) 113.21%);
+}
+/* ====================== Change Body gradient Css End =================*/

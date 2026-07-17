@@ -1,0 +1,14 @@
+/* ======================== Brand Section Css Start ========================= */
+.brand {
+    margin: 60px 0;
+    position: relative;
+    z-index: 2;
+    @include sm-screen {
+        margin: 40px;
+    }
+    @media (min-width: 1200px) {
+        margin-bottom: -70px;
+        margin-top: 25px;
+    }
+}
+/* ======================== Brand Section Css End ========================= */

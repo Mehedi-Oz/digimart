@@ -1,0 +1,80 @@
+
+/* ====================== Section Heading ==================== */
+.section-heading {
+  text-align: center;
+  margin-bottom: clampCal(32, 48);
+  max-width: 630px;
+  margin-left: auto;
+  margin-right: auto;
+  &__title {
+    position: relative;
+    margin-bottom: 16px;
+    text-transform: capitalize;
+  }
+  &__desc {
+    margin-top: clampCal(16, 32);
+    font-size: clampCal(16, 18);
+    max-width: 634px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 24px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &.w-sm {
+      max-width: 465px;
+    }
+  }
+
+  // Style left
+  &.style-left {
+    text-align: left;
+    margin-left: 0;
+    .section-heading {
+      &__desc {
+        margin-left: 0;
+      }
+    }
+  }
+  // Style White
+  &.style-white {
+    .section-heading {
+      &__title {
+        color: hsl(var(--static-white));
+      }
+      &__desc {
+        color: #bdbecc;
+        font-weight: 300;
+      } 
+    }
+  }
+  // Style Flex
+  &.style-flex {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: unset;
+    align-items: center;
+    .section-heading {
+      &__inner {
+        max-width: 410px;
+        &.w-lg {
+          max-width: 636px;
+        }
+      }
+    }
+  }
+  // Style-three
+  &.style-three {
+    .section-heading__subtitle {
+      text-transform: capitalize;
+      padding: 8px 16px;
+      background-color: hsl(var(--white));
+      color: hsl(var(--main));
+      font-size: clamp(0.9375rem, 0.785rem + 0.317vw, 1.0625rem);
+      border-radius: 50px;
+      margin-bottom: 16px;
+    }
+  }
+}
+/* ====================== Section Heading En d==================== */

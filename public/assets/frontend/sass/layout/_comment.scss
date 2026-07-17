@@ -1,0 +1,40 @@
+/* ================================= Comment Css Start =========================== */
+.comment-list {
+    &--two {
+        margin-left: clampCal(24, 100);
+    }
+    &__item {
+        padding: 24px;
+        border: 1px solid hsl(var(--white-one));
+        border-radius: 8px;
+        margin-bottom: 16px;
+        @include xsm-screen {
+            flex-direction: column;
+            padding: 24px 16px;
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    &__date {
+        @include xsm-screen {
+            font-size: 12px !important; 
+        }
+    }
+    &__reply  {
+        @include font-15; 
+        @include xsm-screen {
+            @include font-14; 
+        }
+    }
+    &__thumb {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        @include md-screen {
+            width: 60px;
+            height: 60px;
+        }
+    }
+}
+/* ================================= Comment Css End =========================== */

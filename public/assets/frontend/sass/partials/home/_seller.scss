@@ -1,0 +1,114 @@
+/* ======================= Become Seller Section Css start ==================== */
+.seller-two {
+    background-image: url(../images/shapes/wave-shape.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    position: relative;
+    background-color: hsl(var(--white));
+    padding-top: 216px;
+    @include lg-screen {
+        padding-top: 120px;
+        background-color: hsl(var(--section-bg));
+        background-image: none;
+    }
+    @include msm-screen {
+        padding-bottom: 60px;
+    }
+    &::before {
+        position: absolute;
+        content: "";
+        width: 835px;
+        height: 682px;
+        background: linear-gradient(152deg, rgba(246, 246, 246, 0.20) 17.12%, rgba(94, 53, 242, 0.20) 105.91%);
+        filter: blur(100px);
+        bottom: 56px;
+        right: -280px;
+    }
+}
+
+.arrow-img {
+    position: absolute;
+    bottom: -40px;
+    left: 25%;
+}
+
+.seller-item {
+    padding: clampCal(24, 75) clampCal(24, 46);
+    border-radius: 16px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    background-color: #F3EBFF;
+    &.bg-two {
+        background-color: #FFCBE7;
+    }
+    &.bg-three {
+        background-color: #D7FDFF;
+    }
+
+    &__title {
+        margin-bottom: 24px;   
+        color: hsl(var(--static-black));
+    }
+    &__desc {
+        margin-bottom: clampCal(24, 40);
+        color: hsl(var(--static-black)) !important;
+    }
+    // .btn-outline-black {
+    //     border-color: hsl(var(--static-black)) !important;
+    //     color: hsl(var(--static-black)) !important;
+    // }
+}
+
+.support {
+    border-radius: 16px;
+    background-color: #FFEFF4;
+    position: relative;
+    overflow: hidden;
+    padding: 16px;
+    @include sm-screen {
+        padding: 24px;
+    }
+    &::before {
+        position: absolute;
+        content: "";
+        border-radius: 608px;
+        width: 608px;
+        height: 608px;
+        transform: rotate(41deg);
+        background-color: rgba(255, 80, 143, 0.30);
+        filter: blur(75px);
+        top: 88%;
+        left: 0;
+    }
+    &-content {
+        padding-left: 24px;
+        &__title {
+            color: hsl(var(--static-black));
+        }
+        @include sm-screen {
+            padding-left: 0px;
+        }
+        &__desc {
+            margin-bottom: 24px;
+            font-size: clampCal(16, 20);
+            color: hsl(var(--static-black));
+        }
+        // .btn-black {
+        //     background-color: hsl(var(--static-black)) !important;
+        //     border-color: hsl(var(--static-black)) !important;
+        //     color: hsl(var(--static-white)) !important;
+        // }
+    }
+}
+.arrow-shape {
+    position: absolute;
+    left: 31%;
+    top: 31%;
+    max-width: 28%;
+    @include md-screen {
+        display: none;
+    }
+}
+/* ======================= Become Seller Section Css End ==================== */

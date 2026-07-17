@@ -1,0 +1,11 @@
+/* ======================= Contact Page Css Start ============================= */
+.contact-info {
+    &__item {
+        &-wrapper {
+            padding-top: clampCal(24, 32) !important;;
+            margin-top: clampCal(24, 32) !important;;
+            border-top: 1px solid hsl(var(--gray-five));
+        }
+    }
+}
+/* ======================= Contact Page Css End ============================= */

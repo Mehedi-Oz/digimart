@@ -1,0 +1,60 @@
+/* ============================ Cart Page Css Start ===================== */
+.cart-content__bottom {
+    margin-top: 64px;
+    @include lg-screen {
+        margin-top: 48px;
+    }
+    @include md-screen {
+        margin-top: 40px;
+    }
+    @include sm-screen {
+        margin-top: 32px;
+    }
+    .btn {
+        @include msm-screen {
+            padding: 17px 20px;
+        }
+    }
+}
+
+.cart-item {
+    max-width: 342px;
+    &__thumb {
+        width: 164px;
+        height: 130px;
+        flex-shrink: 0;
+        display: flex;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    &__count {
+        width: auto;
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid hsl(var(--gray-four));
+        border-radius: 5px;
+        margin: 0 auto;
+        input {
+            background: transparent;
+            border: 0;
+            text-align: center;
+            width: 24px;
+            color: hsl(var(--heading-color));
+            font-size: 16px;
+            &:focus {
+                outline: none;
+            }
+        }
+        button {
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+            color: hsl(var(--body-color));
+            border-radius: inherit;
+            &:hover {
+                color: hsl(var(--main));
+            }
+        }
+    }
+}
+/* ============================ Cart Page Css End ===================== */

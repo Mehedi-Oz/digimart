@@ -1,0 +1,28 @@
+/* ========================= Resource Section Css Start =========================== */
+
+.resource {
+    position: relative;
+    &.style-two {
+        &::before {
+            background: linear-gradient(152deg, rgba(246, 246, 246, 0.20) 17.12%, rgba(94, 53, 242, 0.20) 105.91%);
+            bottom: auto;
+        }
+    }
+    &::before {
+        position: absolute;
+        content: "";
+        background: linear-gradient(152deg, rgba(246, 246, 246, 0.20) 17.12%, rgba(5, 228, 242, 0.20) 105.91%);
+        filter: blur(100px);
+        width: 712px;
+        height: 582px;
+        left: -224px;
+        bottom: 60px;
+        z-index: -1;
+    }
+
+    .slick-arrow {
+        top: 96px;
+        transform: unset;
+    }
+}
+/* ========================= Resource Section Css End =========================== */

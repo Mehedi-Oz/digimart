@@ -1,0 +1,202 @@
+/* ===================== Dashboard Start ======================= */
+.dashboard-nav, .dashboard-body__content, .dashboard-footer { 
+    padding-left: 32px;
+    padding-right: 32px;
+    @include xl-screen {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}
+
+.dashboard-footer {
+    margin-top: auto !important;
+}
+
+.dashboard {
+    background-color: hsl(var(--gray-seven));
+    &-body {
+        width: calc(100% - 312px);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        @include md-screen {
+            width: 100%;
+        }
+        &__content {
+            margin: 32px 0;
+        }
+        &__item {
+            margin-bottom: 32px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+/* Sidebar Collapse */
+.dashboard {
+    @media (min-width: 992px) {
+        &.active {
+            .dashboard-sidebar {
+                width: auto;
+                .logo {
+                    display: none;
+                    &.favicon {
+                        display: block;
+                    }
+                }
+                .sidebar-list {
+                    &__link {
+                        width: 44px;
+                        height: 44px;
+                        padding: 0;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        .text {
+                            display: none;
+                        }
+                    }
+                }        
+            }
+            .bar-icon {
+                display: none;
+            }
+            .arrow-icon {
+                display: block;
+            }
+        }
+    }
+}
+/* Sidebar Collapse End */
+
+/* Dashboard Widget Css Start */
+.dashboard-widget {
+    padding: 16px 24px;
+    border-radius: 8px;
+    background-color: transparent;
+    position: relative;
+    z-index: 1;
+    transition: .2s linear;
+    @include xl-screen {
+        padding: 16px;
+    }
+    &:hover {
+        box-shadow: 0px 20px 30px 0px rgba(197, 196, 201, 0.25);
+        background: var(--main-gradient);
+        .dashboard-widget {
+            &__shape {
+                &.one {
+                    visibility: hidden;
+                    opacity: 0;
+                }
+                &.two {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    &::before {
+        position: absolute;
+        content: "";
+        width: calc(100% - 2px);
+        height: calc(100% - 2px);
+        background: hsl(var(--white));
+        left: 1px;
+        top: 1px;
+        border-radius: inherit;
+        z-index: -1;
+        transition: .2s linear;
+    }
+    &__shape {
+        position: absolute;
+        right: 0;
+        top: 16px;
+        transition: .2s linear;
+        &.two {
+            visibility: hidden;
+            opacity: 0;
+        }
+    }
+    &__icon {
+        width: 72px;
+        height: 72px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background-color: hsl(var(--gray-seven));
+        @media (min-width: 992px) and (max-width: 1399px) {
+            width: 60px;
+            height: 60px;
+        }
+    }
+    &__content {
+
+    }
+    &__number {
+        @media (min-width: 992px) and (max-width: 1399px) {
+            font-size: 22px;
+        }
+    }
+    &__text {
+
+    }
+}
+/* Dashboard Widget Css End */
+
+
+/* Dashboard Card Css Start */
+.dashboard-card {
+    background-color: hsl(var(--white));
+    border-radius: 16px;
+    border: 1px solid hsl(var(--gray-five));
+    height: 100%;
+    &__header {
+        padding: 24px;
+        border-bottom: 1px solid hsl(var(--gray-five));
+    }
+
+    .select-has-icon::before {
+        right: 12px;
+    }
+    .select-sm {
+        background-color: hsl(var(--gray-seven)) !important;
+        border-color: hsl(var(--gray-five));
+        padding: 6px 12px;
+        width: auto;
+    }
+}
+/* Chart Css Start */
+.apexcharts-toolbar {
+    display: none !important;
+}
+.apexcharts-legend {
+    display: none !important;
+}
+
+/* Chart Css End */
+
+.country-list {
+    &__item {
+        padding: 10px 24px;
+        border-bottom: 1px dashed hsl(var(--gray-five));
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+    &__flag {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+}
+/* Dashboard Card Css End */
+
+
+
+/* ===================== Dashboard End ======================= */

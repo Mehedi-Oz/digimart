@@ -1,0 +1,102 @@
+/* ===================== Profile Section Start ============================== */
+.profile {
+    @include lg-screen {
+        .common-tab {
+            width: 100%;
+        }
+        .search-box.style-three {
+            order: -1;
+            @include msm-screen {
+                width: 100%;
+                max-width: unset;
+            }
+        }
+    }
+}
+
+.profile-wrapper {
+    display: flex;
+    align-items: start;
+    gap: 32px;
+    overflow: hidden;
+    @include md-screen {
+        flex-direction: column;
+    }
+}
+
+.profile-content {
+    width: 100%;
+    @media (min-width: 992px) {
+        width: 68%;
+    }
+    &__item {
+        margin-bottom: 32px;
+        border-radius: 8px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.follower-item {
+    @extend .more-item; 
+    &__content {
+        @extend .more-item__content; 
+    }
+    &__item {
+        @extend .more-item__item; 
+        .link {
+            border-radius: 8px;
+        }
+    }
+}
+
+/* profile sidebar Css Start */
+.profile-sidebar {
+    flex-grow: 1;
+    width: 100%;
+    @media (min-width: 992px) {
+        max-width: 478px;
+    }
+    &__title {
+        margin-bottom: 32px;
+        padding-bottom: 32px;
+        position: relative;
+        &::before {
+            position: absolute;
+            content: "";
+            width: calc(100% + 64px);
+            height: 1px;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            border-top: 1px solid hsl(var(--gray-five));
+        }
+    }
+    &__item {
+        background-color: hsl(var(--section-bg));
+        padding: 32px;
+        margin-bottom: 24px;
+        border-radius: 8px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    &__author {
+        padding-top: 32px;
+        margin-top: 32px;
+        position: relative;
+        &::before {
+            position: absolute;
+            content: "";
+            width: calc(100% + 64px);
+            height: 1px;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            border-top: 1px solid hsl(var(--gray-five));
+        }
+    }
+}
+/* profile sidebar Css End */
+/* ===================== Profile Section End ============================== */

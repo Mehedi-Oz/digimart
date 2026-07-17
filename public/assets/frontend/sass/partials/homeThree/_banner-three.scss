@@ -1,0 +1,152 @@
+/* =========================== Banner-three Section Start Here ========================= */
+.banner-three {
+    &__wrapper {
+        border-radius: 16px;
+        padding: 120px;
+        overflow: hidden;
+        @include xxl-screen {
+            padding: 100px;
+        }
+        @include xl-screen {
+            padding: 80px;
+        }
+        @include md-screen {
+            padding: 60px;
+        }
+        @include sm-screen {
+            padding: 40px;
+        }
+        @include msm-screen {
+            padding: 32px 24px;
+        }
+        @include xsm-screen {
+            padding: 24px 16px;
+        }
+    }
+    &__inner {
+        @include md-screen {
+            flex-direction: column;
+            gap: 32px;
+        }
+    }
+}
+
+.banner-three__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.banner-three-thumb {
+    max-width: 714px;
+    margin: 0 auto;
+}
+
+/* Banner-three Content Css Start */
+.banner-three-content {
+    max-width: 740px;
+    &__title {
+        @media (min-width: 992px) and (max-width: 1199px) {
+            font-size: 40px; 
+        }
+        @media (min-width: 1200px) and (max-width: 1499px) {
+            font-size: 50px; 
+        }
+        @media (min-width: 1500px) and (max-width: 1699px) {
+            font-size: 60px; 
+        }
+        @include msm-screen {
+            @include font-30; 
+        }
+    }
+}
+/* Banner-three Content Css End */
+
+
+/* Statistics-three Css Start */
+.statistics-three-wrapper {
+    gap: clampCal(16, 40);
+}
+
+.statistics-three {
+    &__text {
+        @include xsm-screen {
+            font-size: 13px !important;
+        }
+    }
+}
+.curve-arrow {
+    position: absolute;
+    left: 100%;
+    bottom: -8px;
+    max-width: 45%;
+    @include md-screen {
+        max-width: 34%;
+        bottom: 0;
+    }
+}
+
+.statistics-three-box {
+    padding: 24px 16px;
+    border-radius: 16px;
+    box-shadow: -10px 20px 30px 0px rgba(189, 190, 204, 0.50);
+    top: 0px;
+    right: 32px;
+    width: 120px;
+    background-color: hsl(var(--white));
+    position: absolute;
+    @include sm-screen {
+        left: 0;
+        right: auto;
+        padding: 16px;
+    }
+    &::before {
+        position: absolute;
+        content: "";
+        width: calc(100% + 2px);
+        height: calc(100% + 2px);
+        background: var(--main-gradient);
+        background:  linear-gradient(270deg, #FFA5F6 22.75%, #FFEDBF 56.98%, #DAC8FF 90.52%);
+        left: -1px;
+        top: -1px;
+        border-radius: inherit;
+        z-index: -1;
+    }
+    &__amount {
+        margin-bottom: 0px;
+    }
+}
+/* Statistics-three Css End */
+
+/* Happy Client Css Start */
+.happy-client-three {
+    gap: 12px;
+    padding: 8px;
+    background-color: hsl(var(--white));
+    border-radius: 50px;
+    display: inline-flex;
+    padding-right: 24px;
+    position: absolute;
+    left: 15px;
+    bottom: 16px;
+    box-shadow: -10px 20px 20px 0px rgba(204, 204, 204, 0.25);
+    @include sm-screen {
+        left: 0;
+        bottom: 0;
+        gap: 2px;
+    }
+    &__img {
+        position: relative;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        &:not(:first-child) {
+            margin-left: -27px;
+        }
+    }
+    &__text {
+        max-width: 77px; 
+    }
+}
+/* Happy Client Css End */
+/* =========================== Banner-three Section End Here ========================= */

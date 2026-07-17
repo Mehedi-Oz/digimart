@@ -1,0 +1,120 @@
+/* ===================== Dashboard Sidebar Start ======================= */
+.dashboard-sidebar {
+    padding: 32px;
+    background-color: hsl(var(--white));
+    border-right: 1px solid hsl(var(--gray-five));
+    transition: .2s linear;
+    width: 312px;
+    height: 100vh;
+    overflow-y: auto;
+    position: sticky;
+    top: 0;
+    /* width */
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+    
+    /* Track */
+        &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    /* Handle */
+        &::-webkit-scrollbar-thumb {
+        background: rgb(232, 232, 232); 
+        border-radius: 10px;
+    }
+    
+    /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+        background: #d1d1d1;
+    }
+    @include md-screen {
+        &.active {
+            transform: translateX(0);
+        }
+    }
+    @include xl-screen {
+        padding: 24px;
+    }
+    @include md-screen {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 99;
+        transform: translateX(-100%);
+    }
+    &__close {
+        position: absolute;
+        right: 4px;
+        top: 4px;
+        font-size: 20px;
+    }
+    .logo {
+        img {
+            max-width: 166px !important;
+        }
+        &.favicon {
+            img {
+                max-width: 44px;
+            }
+            display: none;
+        }
+    }
+}
+
+/* Sidebar Menu List Css Start */
+.sidebar-list {
+    &__item {
+        margin-bottom: 8px;
+        &.activePage, &:hover {
+            .sidebar-list {
+                &__link {
+                    color: hsl(var(--heading-color));
+                    background-color: hsl(var(--gray-seven));
+                }
+                &__icon {
+                    .icon {
+                        visibility: hidden;
+                        opacity: 0;
+                        &-active {
+                            visibility: visible;
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    &__link {
+        width: 100%;
+        color: hsl(var(--body-color));
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        transition: 0s;
+    }
+    &__icon {   
+        width: 24px;
+        height: auto;
+        position: relative;
+        .icon {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            &-active {
+                visibility: hidden;
+                opacity: 0;
+            }
+        }
+    }
+}
+
+/* Sidebar Menu List Css End */
+/* ===================== Dashboard Sidebar End ======================= */

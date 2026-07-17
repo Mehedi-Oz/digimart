@@ -1,0 +1,45 @@
+/* ========================= Team Section Css Start ======================= */
+.team {
+    position: relative;
+    &::before, &::after {
+        position: absolute;
+        content: "";
+        width: 826px;
+        height: 826px;
+        border-radius: 826px;
+        background: rgba(244, 211, 255, 0.22);
+        filter: blur(100px);
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: -1;
+    }
+    &::after {
+        right: auto;
+        left: 0;
+    }
+}
+
+.team-item-slider {
+    .slick-arrow {
+        top: 25%;
+    }
+}
+
+.team-item {
+    padding: 8px;
+    border-radius: 16px;
+    background-color: hsl(var(--white));
+    &__thumb {
+        border-radius: 16px 16px 0px 0px;
+        overflow: hidden;
+    }
+    &__content {
+        padding: 8px;
+        padding-top: 0;
+        margin-top: -22px;
+        position: relative;
+        z-index: 1;
+    }
+}
+/* ========================= Team Section Css End ======================= */

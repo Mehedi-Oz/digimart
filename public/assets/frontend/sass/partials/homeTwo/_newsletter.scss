@@ -1,0 +1,43 @@
+/* ====================== Newsletter Section Css Start ===================== */
+.newsletter {
+    background-color: hsl(var(--static-black));
+    padding: 52px 0;
+}
+
+.newsletter-box {
+    .btn {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        @include sm-screen {
+            right: 4px;
+            padding: 17px 24px;
+        }
+    }
+    
+    .common-input {
+        padding-right: 210px;
+        @include sm-screen {
+            padding-right: 130px;
+        }
+    }
+}
+
+.newsletter-man {
+    position: absolute;
+    bottom: 0;
+    left: clampCal(0, 130, 1399,  1699);
+    z-index: -1;
+    @include lg-screen {
+        display: none;
+    }
+}
+
+
+/* Newsletter Two Css Star */
+.newsletter-two-content {
+    max-width: 600px;
+}
+/* Newsletter Two Css End */
+/* ====================== Newsletter Section Css End ===================== */

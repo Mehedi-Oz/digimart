@@ -1,0 +1,23 @@
+/* ======================== Breadcrumb One Section Css Start ===================== */
+.breadcrumb {
+    margin-bottom: 0;
+    padding: 60px 0;
+}
+.breadcrumb-one-content {
+    max-width: 704px;
+    &__desc {
+        margin-bottom: 32px;
+        @include md-screen {
+            margin-bottom: 24px;
+        }
+    }
+    .search-box {
+        max-width: 636px;
+        margin: 0 auto;
+    }
+}
+
+.breadcrumb.border-bottom {
+    border-bottom: 1px solid hsl(var(--gray-five)) !important;
+}
+/* ======================== Breadcrumb One Section Css End ===================== */

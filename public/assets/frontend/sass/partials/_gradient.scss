@@ -1,0 +1,16 @@
+/* ===================== Gradient Bg Css Start ======================= */
+.bg--gradient {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
+}
+
+.bg-pattern {
+    @extend .bg--gradient;
+}
+/* ===================== Gradient Bg Css End ======================= */

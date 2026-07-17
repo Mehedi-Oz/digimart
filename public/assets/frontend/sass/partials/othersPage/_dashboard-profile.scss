@@ -1,0 +1,132 @@
+/* ======================== Dashboard Profile Css Start ========================= */
+.profile-info {
+    padding: 32px 16px;
+    background-color: hsl(var(--white));
+    border: 1px solid hsl(var(--gray-five));
+    border-radius: 8px;
+    @include lg-screen {
+        padding: 24px 16px;
+    }
+}
+
+/* Cover Photo Upload Css Start */
+.cover-photo {
+    .avatar-upload {
+        display: block;
+        .avatar-edit {
+            top: 38px;
+            bottom: auto;
+            right: 32px;
+            input + label {
+                width: unset;
+                height: unset;
+                border-radius: 8px;
+                padding: 8px 12px;
+                color: hsl(var(--white));
+                gap: 8px;
+                border: 0;
+                background: hsl(var(--black) / 0.5);
+                backdrop-filter: blur(8px);
+                font-weight: 300;
+                &:hover {
+                    background: hsl(var(--black) / 0.8);
+                }
+            }
+        }
+        .avatar-preview {
+            height: 300px;
+            width: 100%;
+            border-radius: 0;
+            background-image: url(../images/thumbs/cover-photo.png);
+            @include md-screen {
+                height: 250px;
+            }
+            > div {
+                border-radius: 0;
+            }
+        }
+    }
+}
+
+/* Cover Photo Upload Css End */
+
+/* Image Upload Css Start */
+.avatar-upload {
+    position: relative;
+    margin: 0 auto;
+    display: inline-block;
+    .avatar-edit {
+        position: absolute;
+        right: 8px;
+        z-index: 1;
+        bottom: 0;
+        input {
+            display: none;
+            + label {
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                margin-bottom: 0;
+                border-radius: 100%;
+                background: var(--main-gradient);
+                border: 1px solid hsl(var(--white));
+                    cursor: pointer;
+                font-weight: normal;
+                transition: all .2s ease-in-out;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+    .avatar-preview {
+        width: 116px;
+        height: 116px;
+        position: relative;
+        border-radius: 100%;
+        background-image: url(../images/thumbs/profile-info-img.png);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        > div {
+            width: 100%;
+            height: 100%;
+            border-radius: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    }
+}
+/* Image Upload Css End */
+
+
+
+.profile-info-list {
+    &__item {
+        display: grid;
+        grid-template-columns: 1fr 1.4fr;
+        gap: 8px;
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+        border-bottom: 1px dashed hsl(var(--gray-four));
+        
+        &:last-child {
+            padding-bottom: 0;
+            margin-bottom: 0;
+            border-bottom: 0
+        }
+        @include xxxl-screen {
+            @include font-14; 
+        }
+        @include xsm-screen {
+            @include font-13; 
+        }
+    }
+}
+
+
+.profile-info-content {
+    padding: 24px;
+}
+/* ======================== Dashboard Profile Css End ========================= */

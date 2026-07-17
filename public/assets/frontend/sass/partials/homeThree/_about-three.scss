@@ -1,0 +1,100 @@
+/* ======================== About-three Section Css Start ========================== */
+.about-three {
+    &::before {
+        position: absolute;
+        content: "";
+        width: 195px;
+        height: 620px;
+        transform: rotate(46.878deg);
+        border-radius: 620px;
+        background: rgba(241, 88, 91, 0.50);
+        filter: blur(100px);
+        left: 25%;
+        top: 25%;
+        @include lg-screen {
+            background: rgba(241, 88, 91, 0.25);
+        }
+    }
+    .element {
+        left: 18%;
+        z-index: 1;
+    }
+}
+
+.about-three-thumb {
+    margin-right: 56px;
+    @include md-screen {
+        margin-right: 0;
+    }
+    @include sm-screen {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    &__img {
+        overflow: hidden;
+        @include sm-screen {
+            margin-top: 0 !important;
+            border-radius: 8px !important;
+        }
+        &.one {
+            border-radius: 210px 0 0 0;
+        }
+        &.two {
+            margin-top: -165px;
+            border-radius: 0 0 210px 0;
+            z-index: 1;
+            position: relative;
+        }
+    }
+}
+
+.experience-content {
+    width: 188px;
+    height: 188px;
+    border-radius: 50%;
+    background-color: hsl(var(--static-black));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 0px 10px hsl(var(--white)/.3);
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    z-index: 1;
+    @include lg-screen {
+        width: 120px;
+        height: 120px;
+        padding: 16px;
+    }
+    &__text {
+        @include lg-screen {
+            font-size: 14px;
+            font-weight: 500;
+        }
+    }
+}
+
+/* About-three Content */
+.about-three-content {
+    &__item {
+        margin-bottom: 32px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    &__icon {
+        width: 28px;
+        height: 28px;
+        @include font-16; 
+        background: var(--main-gradient);
+        border-radius: 50%;
+        color: hsl(var(--static-white));
+    }
+    &__desc {
+        max-width: 430px;
+    }
+}
+/* ======================== About-three Section Css End ========================== */

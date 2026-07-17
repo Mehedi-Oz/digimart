@@ -1,0 +1,89 @@
+/* ======================= Blog Details Section Start ========================= */
+.blog-details {
+    &::before, &::after {
+        position: absolute;
+        content: "";
+        width: 573px;
+        height: 355px;
+        background: linear-gradient(152deg, rgba(246, 246, 246, 0.20) 17.12%, rgba(5, 228, 242, 0.20) 105.91%);
+        filter: blur(100px);
+        left: 24px;
+        top: 0;
+        z-index: -1;
+    }
+    &::after {
+        background: linear-gradient(152deg, rgba(246, 246, 246, 0.20) 17.12%, rgba(94, 53, 242, 0.20) 105.91%);
+        left: auto;
+        right: 40px;
+    }
+}
+
+/* blog details top Start */
+.blog-details-top {
+    max-width: 1040px;
+    &__desc {
+        max-width: 746px;
+    }
+    &__thumb {
+        img {
+            width: 40px;
+            height: 40px;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+    }
+}
+/* blog details top End */
+
+
+/* blog details content Start */
+.blog-details-content {
+    &__thumb {
+        border-radius: 16px;
+        overflow: hidden;
+        height: 100%;
+        max-height: 460px;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+.quote-text {
+    padding: 0 8px;
+    padding-right: 24px;
+    border-left: 4px solid hsl(var(--main));
+    position: relative;
+    &__icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}
+
+.post-tag {
+    &__link {
+        padding: 5px 12px;
+        background-color: hsl(var(--section-bg));
+        &:hover {
+            color: hsl(var(--static-white)) !important;
+            background-color: hsl(var(--main));
+        }
+    }
+}
+/* blog details content End */
+
+/* Advisor Start */
+.advisor {
+    border-radius: 8px;
+    &__thumb {
+        width: clampCal(60, 100);
+        height: clampCal(60, 100);
+        border-radius: 50%;
+        overflow: hidden;
+    }
+}
+/* Advisor End */
+/* ======================= Blog Details Section End ========================= */

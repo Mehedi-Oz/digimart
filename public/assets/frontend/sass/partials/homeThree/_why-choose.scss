@@ -1,0 +1,54 @@
+/* ===================== Why Choose Us Css Start ========================== */
+.choose-us-item {
+    padding: 8px;
+    background-color: hsl(var(--white));
+    border-radius: 16px;
+    border: 1px solid #FFE8F4;
+    box-shadow: 0px 20px 30px 0px rgba(197, 196, 201, 0.25);
+    transition: .2s linear;
+    &:hover {
+        box-shadow: 0px 20px 30px 0px rgba(197, 196, 201, 0.45);
+        .choose-us-item {
+            &__thumb {
+                img {
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+    &__thumb {
+        border-radius: inherit;
+        overflow: hidden;
+        img {
+            transition: .2s linear;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    &__content {
+        margin-top: -43px;
+        position: relative;
+        z-index: 1;
+        padding: 24px;
+        padding-top: 0 !important;
+        @include xxl-screen {
+            padding: 16px;  
+        }
+        @include xl-screen {
+            padding: 8px;  
+        }
+    }
+    &__icon {
+        width: 86px;
+        height: 86px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0px 20px 20px #F4F8FC;
+        border-radius: 50%;
+        background-color: hsl(var(--white));
+        margin: 0 auto;
+    }
+}
+/* ===================== Why Choose Us Css End ========================== */

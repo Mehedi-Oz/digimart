@@ -1,0 +1,118 @@
+/* ======================= Common Table Css Start ======================= */
+.table {
+    color: hsl(var(--white));
+    margin-bottom: 0;
+    min-width: max-content;
+    border-collapse: separate;
+    border-spacing: 0 24px;
+    &>:not(caption)>*>* {
+        border-bottom: 0;
+    }
+    tr {
+        th {
+            padding-left: 0;
+            padding: 20px 16px;
+            color: hsl(var(--heading-color));
+            background-color: hsl(var(--section-bg));
+            &:not(:last-child) {
+                border-radius: 0;
+            }
+            &:not(:first-child) {
+                border-radius: 0;
+            }
+            &:first-child {
+                border-radius: 8px 0 0 8px;
+            }
+            &:last-child {
+                border-radius: 0 8px 8px 0;
+            }
+        }
+        th, td {
+            text-align: center;
+            vertical-align: middle;
+            &:first-child {
+                text-align: left;
+            }
+            &:last-child {
+                text-align: right;
+            }
+        }
+    }
+    thead {
+        tr {
+            border-bottom: 1px solid hsl(var(--white)/.2);
+            th {
+                font-size: clampCal(16, 18);
+                font-weight: 500;
+            }
+        }
+    }
+    
+    tbody {
+        tr {
+            border-bottom: 1px solid hsl(var(--white)/.2);
+            &:last-child {
+                border-bottom: 0;
+            }
+            td {
+                font-size: clampCal(14, 16);
+                font-weight: 400;
+                padding: 16px;
+                border: 1px solid hsl(var(--gray-five));
+                &:not(:last-child) {
+                    border-right: 0;
+                }
+                &:not(:first-child) {
+                    border-left: 0;
+                }
+                &:first-child {
+                    border-radius: 8px 0 0 8px;
+                }
+                &:last-child {
+                    border-radius: 0 8px 8px 0;
+                }
+            }
+        }
+    }
+
+    /* Style Two */
+    &.style-two {
+        color: hsl(var(--body-color));
+        border-spacing: 0px;
+        background-color: hsl(var(--white));
+        border: 1px solid hsl(var(--gray-five));
+        border-radius: 16px;
+        overflow: hidden;
+
+        thead {
+            tr {
+                border: 0;
+                th {
+                    border-bottom: 1px solid hsl(var(--gray-five));
+                    border-radius: 0;
+                    padding: 24px;
+                    font-weight: 700;
+                    font-family: var(--heading-font);
+                    background-color: hsl(var(--white));
+                }
+            }
+        }
+        tbody {
+            tr {
+                &:last-child {
+                    td {
+                        border-bottom: 0;
+                    }
+                }
+                td {
+                    border-radius: 0 !important;
+                    border-top: 0;
+                    border-left: 0;
+                    border-right: 0;
+                    border-style: dashed;
+                }
+            }
+        }
+    }
+}
+/* ======================= Common Table Css End ======================= */

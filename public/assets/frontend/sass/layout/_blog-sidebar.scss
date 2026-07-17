@@ -1,0 +1,87 @@
+/* ========================= Blog Sidebar Start =================== */
+.common-sidebar-wrapper {
+    position: sticky;
+    top: 120px;
+    padding: 32px 24px;
+    background-color: hsl(var(--section-bg));
+    border-radius: 8px;
+    @include lg-screen {
+        padding: 24px;
+    }
+}
+
+.common-sidebar {
+    margin-bottom: clampCal(24, 32);
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+    &__title {
+        position: relative;
+        margin-bottom: clampCal(16, 24);
+        padding-bottom: 8px;
+        border-bottom: 1px solid hsl(var(--gray-five));
+    }
+}
+
+/* Category Style */
+.category-list {
+    &__item {
+        margin-bottom: 12px;
+        transition: .2s linear;
+        &:hover {
+            margin-left: 8px;
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+/* Tag */
+.tag-list {
+    &__link{
+        color: hsl(var(--body-color));
+        background-color: hsl(var(--white));
+        &:hover {
+            background-color: hsl(var(--main));
+            color: hsl(var(--static-white));
+        }
+    }
+}
+/* Tag End */
+
+/* Latest Blog Css  */
+.latest-blog {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    border-radius: 5px;
+    overflow: hidden;
+    &:last-of-type {
+        margin-bottom: 0px;
+    }
+    &__thumb {
+        width: 80px;
+        height: 80px;
+        display: flex;
+        overflow: hidden;
+        border-radius: 5px;
+        @include xsm-screen {
+            width: 60px;
+        }
+        a {
+            display: block;
+            height: 100%;
+            width: 100%;
+        }
+    }
+    &__content {
+        width: calc(100% - 80px);
+        padding-left: 16px;
+        @include xsm-screen {
+            width: calc(100% - 60px);
+        }
+    }
+}
+/* Latest Blog Css End */
+/* ========================= Blog Sidebar End =================== */

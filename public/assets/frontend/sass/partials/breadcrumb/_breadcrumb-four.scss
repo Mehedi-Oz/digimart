@@ -1,0 +1,130 @@
+/* ===================== Breadcrumb Four Start ======================== */
+.process-list {
+    margin-top: clampCal(32, 74);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: hsl(var(--white)/.3);
+    border: 1px solid hsl(var(--white));
+    border-radius: 16px;
+    padding: 12px;
+    backdrop-filter: blur(5px);
+    gap: 10px;
+    @include sm-screen {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    &__item {
+        &:last-child {
+            .process-list { 
+                &__link { 
+                    &::after {
+                        display: none;
+                    }                    
+                }
+            }
+        }
+        &.activePage, &:hover {
+            .process-list {
+                &__link {
+                    color: hsl(var(--static-white));
+                    &::before {
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                    &::after {
+                        border-color: hsl(var(--black-three));
+                    }
+                    .icons {
+                        .icon {
+                            &.white {
+                                visibility: visible;
+                                opacity: 1;
+                            }
+                            &.colored {
+                                visibility: hidden;
+                                opacity: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &__link {
+        padding: 14px 26px;
+        text-align: center;
+        background-color: hsl(var(--white));
+        border-radius: 16px;
+        position: relative;
+        z-index: 1;
+        color: hsl(var(--body));
+        border: 1px solid hsl(var(--white-one)/.3);
+        width: 100%;
+        @include font-14; 
+        @include md-screen {
+            padding: 16px;
+        }
+        @include sm-screen {
+            padding: 16px 10px;
+            @include font-12; 
+        }
+        &::before {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            background: var(--main-gradient);
+            left: 0;
+            top: 0;
+            z-index: -1;
+            visibility: hidden;
+            opacity: 0;
+            transition: .2s linear;
+        }
+        &::after {
+            position: absolute;
+            content: "";
+            width: 130px;
+            height: 1px;
+            right: -100%;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 1px dashed hsl(var(--black-three)/.5);
+            @include lg-screen {
+                display: none;
+            }
+        }
+        .icons {
+            width: 26px;
+            height: 26px;
+            position: relative;
+            margin: 0 auto;
+            .icon {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                height: 100%;
+                transition: .2s linear;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                &.white {
+                    visibility: hidden;
+                    opacity: 0;
+                }
+               
+            }
+        }
+        .text {
+            color: inherit;
+            margin-top: 8px;
+            font-size: inherit;
+        }
+    }
+}
+/* ===================== Breadcrumb Four End ======================== */

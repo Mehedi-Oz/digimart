@@ -1,0 +1,274 @@
+/* ================================= Classes Css Start =========================== */
+.container-full {
+    @media (min-width: 1199px) {
+        max-width: 1792px;
+    }
+}
+.container-two {
+    @media (min-width: 1199px) {
+        max-width: 1296px;
+    }
+}
+.container-three {
+    @media (min-width: 1199px) {
+        max-width: 1590px;
+    }
+}
+/* Section Background */
+.section-bg {
+    background-color: hsl(var(--section-bg)) !important;
+}
+
+.sales-offer-bg-two {
+    background: linear-gradient(117deg, #F3FEFF 14.35%, #DACFFF 84.4%) !important;
+}
+
+.box-shadow {
+    box-shadow: var(--box-shadow) !important;
+}
+
+.box-shadow-lg {
+    box-shadow: var(--box-shadow-lg) !important;
+}
+
+.max-h-unset {
+    max-height: unset !important;
+}
+
+.max-w-unset {
+    max-width: unset !important;
+}
+
+.w-20 {
+    width: 20px;
+}
+
+.min-w-maxContent {
+    min-width: max-content;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.z-index-1 {
+    z-index: 1;
+}
+
+.z-index--1 {
+    z-index: -1;
+}
+
+.bg {
+    &-white {
+        background-color: hsl(var(--white)) !important;
+    }
+    &-main {
+        background-color: hsl(var(--main)) !important;
+    }
+    &-black {
+        background-color: hsl(var(--black)) !important;
+    }
+    &-static-black {
+        background-color: hsl(var(--static-black)) !important;
+    }
+    &-black-two {
+        background-color: hsl(var(--black-two)) !important;
+    }
+    &-black-three {
+        background-color: hsl(var(--black-three)) !important;
+    }
+    &-gray-seven {
+        background-color: hsl(var(--gray-seven)) !important;
+    }
+}
+/* Border Color */
+.border {
+    border: 1px solid hsl(var(--border-color)) !important;
+    &:focus {
+        border: 1px solid hsl(var(--main)) !important;
+    }
+    &-main {
+        border-color: hsl(var(--main)) !important;
+    }
+    &-color {
+        border-color: hsl(var(--border-color));
+    }
+    &-black {
+        border-color: hsl(var(--black)) !important;
+    }
+    &-gray-five {
+        border-color: hsl(var(--gray-five)) !important;
+    }
+}
+
+.fw {
+    &-200 {
+        font-weight: 200 !important;
+    }
+    &-300 {
+        font-weight: 300 !important;
+    }
+    &-400 {
+        font-weight: 400 !important;
+    }
+    &-500 {
+        font-weight: 500 !important;
+    }
+    &-600 {
+        font-weight: 600 !important;
+    }
+    &-700 {
+        font-weight: 700 !important;
+    }
+    &-800 {
+        font-weight: 800 !important;
+    }
+    &-900 {
+        font-weight: 900 !important;
+    }
+}
+
+.left-auto {
+    left: auto !important;
+}
+
+
+/* Text Color */
+.text {
+    &-heading {
+        color: hsl(var(--heading-color)) !important;
+    }
+    &-body {
+        color: hsl(var(--body-color)) !important;
+    }
+    &-main {
+        color: hsl(var(--main)) !important;
+    }
+}
+
+.hover-text {
+    &-heading {
+        &:hover {
+            color: hsl(var(--heading-color)) !important;
+        }
+    }
+    &-body {
+        &:hover {
+            color: hsl(var(--body-color)) !important;
+        }
+    }
+    &-main {
+        &:hover {
+            color: hsl(var(--main)) !important;
+        }
+    }
+    &-decoration-underline {
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.font {
+    &-heading {
+        font-family: var(--heading-font);
+    }
+    &-body {
+        font-family: var(--body-font);
+    }
+}
+
+.pill {
+    border-radius: 40px !important;
+}
+
+.radius-8 {
+    border-radius: 8px !important;
+}
+
+.line-height {
+    &-0 {
+        line-height: 0;
+    }
+    &-1 {
+        line-height: 1;
+    }
+}
+
+/* Column Extra Small Screen */
+.col-xs-6 {
+    @media screen and (min-width: 425px) and (max-width: 575px) {
+        width: 50%;
+    }
+}
+
+/* Bg Image Css */
+.background-img {
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    width: 100%;
+    height: 100%;
+}
+
+/* Hide Scroll bar Css For Custom Modal */
+.scroll-hide {
+    position: absolute;
+    overflow-y: hidden;
+    padding-right: 17px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    @include md-screen {
+        padding-right: 0;
+    }
+}
+.scroll-hide-sm {
+    position: absolute;
+    overflow-y: hidden;
+    top: 0;
+    left: 0;
+    width: calc(100% - 0px);
+}
+
+/* Overlay Start */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    content: "";
+    left: 0;
+    top: 0;
+    background-color: hsl(var(--static-black) / .8);
+    z-index: 99;
+    transition: .2s linear;
+    visibility: hidden;
+    opacity: 0;
+    &.show-overlay {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+.side-overlay {
+    @media (max-width: 991px) {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        content: "";
+        left: 0;
+        top: 0;
+        background-color: hsl(var(--static-black) / .8);
+        z-index: 99;
+        transition: .2s linear;
+        visibility: hidden;
+        opacity: 0;
+        &.show {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
+/* Overlay End */
+/* ================================= Classes Css End =========================== */

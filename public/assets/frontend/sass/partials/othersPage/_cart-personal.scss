@@ -1,0 +1,32 @@
+/* =================== Cart Personal Start ========================== */
+.order-summary {
+    background-color: hsl(var(--section-bg));
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.billing-list {
+    &__item {
+        position: relative;
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+        &:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            &::before {
+                display: none;
+            }
+        }
+        &::before {
+            position: absolute;
+            content: "";
+            width: calc(100% + 48px);
+            left: 50%;
+            height: 1px;
+            transform: translateX(-50%);
+            background-color: hsl(var(--gray-five));
+            bottom: 0;
+        }
+    }
+}
+/* =================== Cart Personal End ========================== */

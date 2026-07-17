@@ -4,9 +4,9 @@
             <div class="col-12 col-lg-auto mt-3 mt-lg-0">
                 <ul class="list-inline list-inline-dots mb-0">
                     <li class="list-inline-item">
-                        Copyright &copy; {{ date('Y') }}
-                        <a href="." class="link-secondary">Digimart</a>.
-                        All rights reserved.
+                        {{ __('Copyright') }} &copy; {{ date('Y') }}
+                        <a href="." class="link-secondary">{{ __('Digimart') }}</a>.
+                        {{ __('All rights reserved.') }}
                     </li>
                 </ul>
             </div>

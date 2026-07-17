@@ -1,0 +1,33 @@
+/* ============================ Testimonial Section Css Start ======================= */
+.testimonial-three {
+    .slick-list {
+        padding: 0 !important;
+    }
+    .slick-dots {
+        width: 100%;
+        justify-content: end;
+        right: -29%;
+        position: relative;
+        @include lg-screen {
+            right: -12%;
+        }
+    }
+}
+
+.testimonial-three-thumb {
+    border-radius: 32px 300px 300px 32px;
+    padding: 16px;
+    background-color: hsl(var(--white));
+    img {
+        border-radius: 16px 206px 206px 16px;
+        background: #fafafa;
+        width: 100%;
+    }
+}
+
+.testimonial-three-item {
+    &__desc {
+        font-size: clampCal(16, 24);
+    }
+}
+/* ============================ Testimonial Section Css End ======================= */

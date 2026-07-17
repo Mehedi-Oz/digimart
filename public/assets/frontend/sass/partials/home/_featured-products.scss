@@ -1,0 +1,14 @@
+/* ======================= Featured Products Css Start =============================== */
+.card-wrapper {
+    @media (min-width: 576px) { 
+        margin-bottom: 56px;
+    }
+    div[class*="col"]:nth-child(even) {
+        .product-item {
+            @media (min-width: 576px) {
+                transform: translateY(56px);
+            }
+        }
+    }
+}
+/* ======================= Featured Products Css End =============================== */

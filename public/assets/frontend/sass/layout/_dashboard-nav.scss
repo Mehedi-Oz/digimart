@@ -1,0 +1,108 @@
+/* ====================== Dashboard nav Css Start =================== */
+.dashboard-nav {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    @include lg-screen {
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+    @include md-screen {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+}
+
+.icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: .2s linear;
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+.bar-icon {
+    font-size: 24px;
+}
+
+.arrow-icon {
+    display: none;
+}
+
+.search-input {
+    position: relative;
+    @media (min-width: 1299px) {
+        min-width: 415px;
+    }
+    @include lg-screen {
+        max-width: 200px;
+    }
+    .icon {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    input {
+        padding-left: 42px;
+    }
+}
+
+
+/* User Profile Css Start */
+.user-profile {
+    position: relative;
+    text-align: center;
+    &__thumb {
+        width: 40px;
+        height: 40px;
+        overflow: hidden;
+        border-radius: 50%;
+    }
+    &__button {
+        position: relative;
+    }
+    .user-profile-dropdown {
+        border-radius: 8px;
+        transition: .2s linear;
+        background-color: hsl(var(--white));
+        box-shadow: var(--box-shadow);
+        width: 200px;
+        position: absolute;
+        right: 0;
+        z-index: 9;
+        top: 100%;
+        margin-top: 15px;
+        padding: 15px;
+        transform: scale(0.9);
+        visibility: hidden;
+        opacity: 0;
+        border: 1px solid hsl(var(--gray-five));
+        &::before {
+            position: absolute;
+            content: "";
+            width: 14px;
+            height: 14px;
+            top: -7px;
+            right: 16px;
+            transform: rotate(45deg);
+            border: 1px solid hsl(var(--gray-five));
+            background-color: hsl(var(--white));
+            border-radius: 3px;
+            border-bottom: 0;
+            border-right: 0;
+        }
+        @include md-screen {
+            transform: unset; 
+            top: 43px; 
+        }
+        &.show {
+            visibility: visible;
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+}
+/* User Profile Css End */
+
+/* ====================== Dashboard nav Css End =================== */

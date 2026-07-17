@@ -1,0 +1,145 @@
+/* ========================= Pricing Plan Section Css Start ============================ */
+.pricing-tabs {
+    position: relative;
+    background-color: #F5F7F9;
+    padding: 8px;
+    border-radius: 56px;
+    @include lg-screen {
+        padding: 4px;
+    }
+    &::before {
+        position: absolute;
+        content: "";
+        width: calc(100% + 2px);
+        height: calc(100% + 2px);
+        background: var(--main-gradient);
+        left: -1px;
+        top: -1px;
+        border-radius: inherit;
+        z-index: -1;
+    }
+}
+
+.pricing-item {
+    border-radius: 16px;
+    background-color: #F5F7F9;
+    padding: 32px 24px;
+    background-color: hsl(var(--white));
+    box-shadow: var(--box-shadow);
+    transition: .2s linear;
+    &:hover {
+        background-color: hsl(var(--black));
+        .pricing-item {
+            &__top {
+                &::before {
+                    background-color: hsl(var(--static-white)/.3);
+                }
+            }
+            &__title {
+                color: hsl(var(--static-white));
+            }
+            &__price {
+                color: hsl(var(--static-white));
+                .text {
+                    color: hsl(var(--static-white)) !important;
+                }
+            }
+            &__desc {
+                color: hsl(var(--static-white));
+            }
+        }
+        .text-list {
+            &__item {
+                color: hsl(var(--static-white)) !important;
+            }
+        }
+        .btn-outline-light {
+            background: var(--main-gradient);
+            border-color: transparent !important;
+            color: hsl(var(--white)) !important;
+            transition: .2s linear;
+            &:hover {
+                transform: scale(1.04);
+            }
+        }
+    }
+    &__top {
+        padding-bottom: clampCal(16, 32);
+        margin-bottom: clampCal(16, 32);
+        position: relative;
+        &::before {
+            position: absolute; 
+            content: "";
+            width: calc(100% + 48px);
+            height: 1px;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            background-color: hsl(var(--gray-five));
+            transition: .2s linear;
+        }
+    }
+    &__icon {
+        border-radius: 50%;
+        border: 1px solid hsl(var(--white-one));
+        background-color: hsl(var(--white));
+        width: 72px;
+        height: 72px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+    }
+    &__title {
+        transition: .2s linear;
+    }
+    &__price {
+        transition: .2s linear;
+    }
+    &__desc {
+        margin-bottom: clampCal(24, 40);
+        transition: .2s linear;
+    }
+    &__lists {
+        margin-top: clampCal(24, 40);
+    }
+}
+
+.text-list {
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+        transition: .2s linear;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        .icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 1px solid hsl(var(--white-one));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+    }
+}
+
+.popular-badge {
+    background-color: hsl(var(--main-two));
+    color: hsl(var(--static-black));
+    padding: 3px 16px;
+    padding-left: 28px;
+    position: relative;
+    right: -24px;
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 100% 100%, 0 100%, 8% 52%);
+    font-size: 18px;
+    @include sm-screen {
+        font-size: 13px;
+    }
+}
+
+/* ========================= Pricing Plan Section Css End ============================ */

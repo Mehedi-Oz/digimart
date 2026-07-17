@@ -11,7 +11,10 @@
             <h2 class="card-title text-center mb-4">{{ __('Forgot Password') }}</h2>
             <p class="text-secondary mb-4">{{ __('Enter your email address and we will send you a password reset link.') }}
             </p>
-            <x-auth-session-status class="mb-4 text-success" :status="session('status')" />
+            @if (session('status'))
+                <div class="alert alert-success mb-4" id="status-alert">{{ session('status') }}</div>
+                <script>setTimeout(() => document.getElementById('status-alert').remove(), 4000)</script>
+            @endif
             <div class="mb-3">
                 <label class="form-label">{{ __('Email address') }}</label>
                 <input type="email" name="email" value="{{ old('email') }}" class="form-control"

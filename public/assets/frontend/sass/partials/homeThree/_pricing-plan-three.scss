@@ -1,0 +1,173 @@
+/* ========================= Pricing Plan Section Css Start ============================ */
+.welcome-card {
+    .price-vector {
+        margin-bottom: -2px;
+    }
+    .pricing-plan-three-item {
+        display: flex;
+        flex-direction: column;
+        height: calc(100% - 142px);
+        justify-content: center;
+    }
+
+    .tab-gradient .nav-item .nav-link {
+        border: 2px solid hsl(var(--black-three));
+        &.active {
+            border-color: transparent;
+        }
+        &::before {
+            background: transparent;
+        }
+    }
+}
+
+
+.pricing-plan-three-item {
+    border-radius: 16px;
+    background-color: hsl(var(--section-bg));
+    padding: 32px 24px;
+    transition: .2s linear;
+    position: relative;
+    z-index: 1;
+    border: 1px solid transparent;
+    &:hover, &.active {
+        background-color: #000424;
+        .hover-bg {
+            visibility: visible;
+            opacity: 1;
+        }
+        .pricing-plan-three-item {
+            &__top {
+                &::before {
+                    background-color: hsl(var(--static-white)/.3);
+                }
+            }
+            &__title {
+                color: hsl(var(--static-white));
+            }
+            &__price {
+                color: hsl(var(--static-white));
+                .text {
+                    color: hsl(var(--static-white)) !important;
+                }
+            }
+            &__desc {
+                color: hsl(var(--static-white));
+            }
+        }
+        .text-list {
+            &__item {
+                color: hsl(var(--static-white)) !important;
+            }
+        }
+        .btn-outline-light {
+            background: var(--main-gradient);
+            border-color: transparent !important;
+            color: hsl(var(--static-white)) !important;
+            transition: .2s linear;
+            &:hover {
+                transform: scale(1.04);
+            }
+        }
+    }
+    &__top {
+        padding-bottom: clampCal(16, 32);
+        margin-bottom: clampCal(16, 32);
+        position: relative;
+        &::before {
+            position: absolute; 
+            content: "";
+            width: calc(100% + 48px);
+            height: 1px;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            background-color: hsl(var(--gray-five));
+            transition: .2s linear;
+        }
+    }
+    &__icon {
+        border-radius: 50%;
+        border: 1px solid hsl(var(--white-one));
+        background-color: hsl(var(--white));
+        width: 64px;
+        height: 64px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+    }
+    &__title {
+        transition: .2s linear;
+    }
+    &__price {
+        transition: .2s linear;
+    }
+    &__desc {
+        margin-bottom: clampCal(24, 40);
+        transition: .2s linear;
+    }
+    &__lists {
+        margin-top: clampCal(24, 40);
+    }
+}
+
+.text-list {
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+        transition: .2s linear;
+        font-weight: 300;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        .icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 1px solid hsl(var(--white-one));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+    }
+}
+
+.pricing-plan-three {
+    .popular-badge { 
+        clip-path: unset;
+    }
+}
+
+.popular-badge {
+    color: hsl(var(--white));
+    background: var(--main-gradient);
+    font-size: 14px;
+    font-weight: 300;
+    padding: 6px 28px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 0 16px;
+}
+
+.hover-bg-main:hover .hover-bg {
+    visibility: visible;
+    opacity: 1;
+}
+
+.hover-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s linear;
+    z-index: -1;
+}
+/* ========================= Pricing Plan Section Css End ============================ */
