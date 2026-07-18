@@ -13,8 +13,18 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('avatar')->default('defaults/avatar.png');
             $table->string('name');
             $table->string('email')->unique();
+            $table->foreignId('level_id')->nullable();
+            $table->double('balance')->default(0);
+            $table->enum('user_type', ['user', 'author'])->default('user');
+            $table->string('country')->nullable();
+            $table->string('city')->nullable();
+            $table->string('address')->nullable();
+            $table->boolean('kyc_status')->default(false);
+            $table->integer('total_sales')->default(0);
+            $table->foreignId('withdraw_method_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

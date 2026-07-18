@@ -11,7 +11,7 @@
         <!-- Sidebar List Start -->
         <ul class="sidebar-list">
             <li class="sidebar-list__item">
-                <a href="dashboard.html" class="sidebar-list__link">
+                <a href="{{ route('dashboard') }}" class="sidebar-list__link">
                     <span class="sidebar-list__icon">
                         <i class="ti ti-device-heart-monitor"></i>
                     </span>
@@ -19,7 +19,7 @@
                 </a>
             </li>
             <li class="sidebar-list__item">
-                <a href="dashboard-profile.html" class="sidebar-list__link">
+                <a href="{{ route('profile.index') }}" class="sidebar-list__link">
                     <span class="sidebar-list__icon">
                         <i class="ti ti-user"></i>
                     </span>

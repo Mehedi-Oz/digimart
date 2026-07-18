@@ -24,6 +24,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.21.0/tabler-icons.min.css"
         integrity="sha512-XrgoTBs7P5YtpkeKqKOKkruURsawIaRrhe8QrcWeMnFeyRZiOcRNjBAX+AQeXOvx9/9fSY32dVct1PccRoCICQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Option Searching -->
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/select2.min.css') }}">
+
     <!-- Main css -->
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/main.css') }}">
 
@@ -103,14 +106,14 @@
                                     </button>
                                     <ul class="user-profile-dropdown">
                                         <li class="sidebar-list__item">
-                                            <a href="dashboard-profile.html" class="sidebar-list__link">
+                                            <a href="{{ route('profile.index') }}" class="sidebar-list__link">
                                                 <span class="sidebar-list__icon">
                                                     <img src="{{ asset('assets/frontend/images') }}/icons/sidebar-icon2.svg"
                                                         alt="" class="icon">
                                                     <img src="{{ asset('assets/frontend/images') }}/icons/sidebar-icon-active2.svg"
                                                         alt="" class="icon icon-active">
                                                 </span>
-                                                <span class="text">{{ __("Profile") }}</span>
+                                                <span class="text">{{ __('Profile') }}</span>
                                             </a>
                                         </li>
 
@@ -122,7 +125,7 @@
                                                     <img src="{{ asset('assets/frontend/images') }}/icons/sidebar-icon-active10.svg"
                                                         alt="" class="icon icon-active">
                                                 </span>
-                                                <span class="text">{{ __("Settings") }}</span>
+                                                <span class="text">{{ __('Settings') }}</span>
                                             </a>
                                         </li>
                                         <li class="sidebar-list__item">
@@ -146,10 +149,10 @@
                                     <img src="{{ asset('assets/frontend/images') }}/icons/globe-white.svg"
                                         alt="" class="globe-icon dark-version">
                                     <select class="select py-0 ps-2 border-0 fw-500">
-                                        <option value="1">{{ __("Eng") }}</option>
-                                        <option value="2">{{ __("Bn") }}</option>
-                                        <option value="3">{{ __("Eur") }}</option>
-                                        <option value="4">{{ __("Urd") }}</option>
+                                        <option value="1">{{ __('Eng') }}</option>
+                                        <option value="2">{{ __('Bn') }}</option>
+                                        <option value="3">{{ __('Eur') }}</option>
+                                        <option value="4">{{ __('Urd') }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -193,7 +196,7 @@
     <script src="{{ asset('assets/frontend/js/marquee.min.js') }}"></script>
     <!-- infinite slide  -->
     <script src="{{ asset('assets/frontend/js/infiniteslidev2.js') }}"></script>
-    <!-- select 2  -->
+    <!-- Option Searching  -->
     <script src="{{ asset('assets/frontend/js/select2.min.js') }}"></script>
 
     <!-- main js -->

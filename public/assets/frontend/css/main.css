@@ -1933,7 +1933,7 @@ button:focus {
 }
 
 .common-input::placeholder {
-    color: var(--colorBlack);
+    color: #9ca3af;
     font-size: 0.875rem;
     transition: 0.25s linear;
     font-weight: 400;
@@ -8495,7 +8495,7 @@ Become Seller Section Css start
     height: 116px;
     position: relative;
     border-radius: 100%;
-    background-image: url(../images/thumbs/profile-info-img.png);
+    
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;

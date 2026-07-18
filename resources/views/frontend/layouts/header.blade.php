@@ -112,7 +112,7 @@
                                 <li><a class="dropdown-item" href="{{ route('register') }}">Sign Up</a></li>
                             @else
                                 <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
-                                <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
+                                <li><a class="dropdown-item" href="{{ route('profile.index') }}">Profile</a></li>
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf

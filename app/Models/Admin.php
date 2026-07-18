@@ -10,6 +10,9 @@ use Illuminate\Notifications\Notifiable;
 
 class Admin extends Authenticatable
 {
+
+    public const DEFAULT_AVATAR = 'defaults/avatar.png';
+
     /** @use HasFactory<AdminFactory> */
     use HasFactory, Notifiable;
 
@@ -22,6 +25,7 @@ class Admin extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar',
     ];
 
     /**
