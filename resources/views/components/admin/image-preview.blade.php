@@ -1,11 +1,9 @@
 @props(['src'])
 
 <img
-    src="{{ str_starts_with($src, 'defaults/')
-        ? asset($src)
-        : asset('uploads/' . $src) }}"
+    src="{{ asset($src) }}"
     {{ $attributes->merge([
-        'class' => 'image-fluid',
-        'style' => 'object-fit:cover',
+        'class' => 'img-fluid',
+        'style' => 'object-fit: cover',
     ]) }}
 >

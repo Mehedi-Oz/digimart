@@ -7,29 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Title -->
     <title>@yield('title')</title>
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/frontend/images/logo/favicon-two.png') }}">
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}">
-    <!-- Fontawesome -->
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/fontawesome-all.min.css') }}">
-    <!-- Slick -->
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/slick.css') }}">
-    <!-- magnific popup -->
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/magnific-popup.css') }}">
-    <!-- line awesome -->
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/line-awesome.min.css') }}">
-    <!-- Tabler Icons CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.21.0/tabler-icons.min.css"
-        integrity="sha512-XrgoTBs7P5YtpkeKqKOKkruURsawIaRrhe8QrcWeMnFeyRZiOcRNjBAX+AQeXOvx9/9fSY32dVct1PccRoCICQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Option Searching -->
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/select2.min.css') }}">
-
-    <!-- Main css -->
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/main.css') }}">
-
+    <!-- CSS files -->
+    @include('frontend.layouts.partials.styles')
 </head>
 
 <body>
@@ -46,7 +26,7 @@
     <div class="overlay"></div>
     <!--==================== Overlay End ====================-->
 
-    <!--==================== Sidebar Overlay End ====================-->
+    <!--==================== Sidebar Overlay Start ====================-->
     <div class="side-overlay"></div>
     <!--==================== Sidebar Overlay End ====================-->
 
@@ -78,30 +58,8 @@
 
     </main>
 
-    <!-- Jquery js -->
-    <script src="{{ asset('assets/frontend/js/jquery-3.7.1.min.js') }}"></script>
-    <!-- Bootstrap Bundle Js -->
-    <script src="{{ asset('assets/frontend/js/boostrap.bundle.min.js') }}"></script>
-    <!-- CountDown -->
-    <script src="{{ asset('assets/frontend/js/countdown.js') }}"></script>
-    <!-- counter up -->
-    <script src="{{ asset('assets/frontend/js/counterup.min.js') }}"></script>
-    <!-- Slick js -->
-    <script src="{{ asset('assets/frontend/js/slick.min.js') }}"></script>
-    <!-- magnific popup -->
-    <script src="{{ asset('assets/frontend/js/jquery.magnific-popup.js') }}"></script>
-    <!-- apex chart -->
-    <script src="{{ asset('assets/frontend/js/apexchart.js') }}"></script>
-    <!-- marquee -->
-    <script src="{{ asset('assets/frontend/js/marquee.min.js') }}"></script>
-    <!-- infinite slide  -->
-    <script src="{{ asset('assets/frontend/js/infiniteslidev2.js') }}"></script>
-    <!-- Option Searching  -->
-    <script src="{{ asset('assets/frontend/js/select2.min.js') }}"></script>
-
-    <!-- main js -->
-    <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
-
+    <!-- Js files -->
+    @include('frontend.layouts.partials.scripts')
 
 </body>
 

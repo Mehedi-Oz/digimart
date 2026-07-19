@@ -13837,3 +13837,5 @@ select {
 .search-list__link.font-14.text-heading:hover {
     color: black !important;
 }
+
+.common-input.is-invalid { border-color: #dc3545 !important; }

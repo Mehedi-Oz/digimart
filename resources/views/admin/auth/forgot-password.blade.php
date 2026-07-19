@@ -1,7 +1,7 @@
 @extends('admin.layouts.guest')
 
 @section('title')
-    {{ __('Forget Password') }}
+    {{ __('Forgot Password') }}
 @endsection
 
 @section('content')

@@ -7,25 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>@yield('title')</title>
     <!-- CSS files -->
-    <link href="{{ asset('assets/admin/css/tabler.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/admin/css/tabler-flags.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/admin/css/tabler-payments.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/admin/css/tabler-vendors.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/admin/css/demo.min.css') }}" rel="stylesheet" />
-    <style>
-        @import url('https://rsms.me/inter/inter.css');
-
-        :root {
-            --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
-        }
-
-        body {
-            font-feature-settings: "cv03", "cv04", "cv11";
-        }
-    </style>
+    @include('admin.layouts.partials.styles')
 </head>
 
 <body>
+    {{-- Loaded inline to apply theme before render, preventing flash of wrong theme --}}
     <script src="{{ asset('assets/admin/js/demo-theme.min.js') }}"></script>
     <div class="page">
 
@@ -35,11 +21,12 @@
         <!-- Dynamic Contents -->
         @yield('content')
 
+        <!-- Footer -->
+        @include('admin.layouts.footer')
     </div>
 
-    <!-- Tabler Core -->
-    <script src="{{ asset('assets/admin/js/tabler.min.js') }}" defer></script>
-    <script src="{{ asset('assets/admin/js/demo.min.js') }}" defer></script>
+    <!-- Js files -->
+    @include('admin.layouts.partials.scripts')
 </body>
 
 </html>
