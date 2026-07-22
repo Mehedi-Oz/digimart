@@ -1,7 +1,7 @@
 <div class="mobile-menu d-lg-none d-block">
     <button type="button" class="close-button"> <i class="las la-times"></i> </button>
     <div class="mobile-menu__inner">
-        <a href="index.html" class="mobile-menu__logo">
+        <a href="{{ route('home') }}" class="mobile-menu__logo">
             <img src="{{ asset('assets/frontend/images/logo/logo-two.png') }}" alt="Logo" class="white-version">
         </a>
         <div class="mobile-menu__menu">
@@ -12,10 +12,20 @@
                         <img src="{{ asset('assets/frontend/images/icons/user.svg') }}" alt="">
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('login') }}">Sign In</a></li>
-                        <li><a class="dropdown-item" href="{{ route('register') }}">Sign Up</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        @guest
+                            <li><a class="dropdown-item" href="{{ route('login') }}">Sign In</a></li>
+                            <li><a class="dropdown-item" href="{{ route('register') }}">Sign Up</a></li>
+                        @else
+                            <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profile.index') }}">Profile</a></li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <a href="javascript:;" onclick="event.preventDefault();this.closest('form').submit();"
+                                        class="dropdown-item">Logout</a>
+                                </form>
+                            </li>
+                        @endguest
                     </ul>
                 </div>
             </div>
@@ -25,7 +35,7 @@
                     <a href="javascript:void(0)" class="nav-menu__link">Home</a>
                     <ul class="nav-submenu">
                         <li class="nav-submenu__item">
-                            <a href="index.html" class="nav-submenu__link"> Home One</a>
+                            <a href="{{ route('home') }}" class="nav-submenu__link"> Home One</a>
                         </li>
                         <li class="nav-submenu__item">
                             <a href="index-two.html" class="nav-submenu__link"> Home Two</a>
