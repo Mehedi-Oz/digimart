@@ -3,7 +3,6 @@
 namespace Database\Seeders\Admin;
 
 use App\Models\Admin;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class AdminSeeder extends Seeder
@@ -13,10 +12,20 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
+        //Super Admin
         $admin = new Admin();
         $admin->name = 'Admin';
         $admin->email = 'admin@gmail.com';
         $admin->password = '12345678';
         $admin->save();
+        $admin->assignRole('super admin');
+
+        //Reviewer
+        $reviewer = new Admin();
+        $reviewer->name = 'Reviewer';
+        $reviewer->email = 'reviewer@gmail.com';
+        $reviewer->password = '12345678';
+        $reviewer->save();
+        $reviewer->assignRole('reviewer');
     }
 }

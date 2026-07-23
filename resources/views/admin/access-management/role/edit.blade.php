@@ -10,16 +10,16 @@
             <div class="container-xl">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">{{ __('Create Roles') }}</h3>
+                        <h3 class="card-title">{{ __('Update Role') }}</h3>
                         <div class="card-actions">
                             <a href="{{ route('admin.roles.index') }}" class="btn btn-primary btn-3">
                                 <i class="ti ti-arrow-left"></i>
-                                Back
+                                {{ __('Back') }}
                             </a>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.roles.update', $role->id) }}" method="POST">
+                        <form id="role-form" action="{{ route('admin.roles.update', $role->id) }}" method="POST">
                             @csrf
                             @method('PUT')
 
@@ -41,7 +41,7 @@
                         </form>
                     </div>
                     <div class="card-footer text-end">
-                        <button type="submit" onclick="$('form').submit();"
+                        <button type="submit" onclick="$('#role-form').submit();"
                             class="btn btn-primary">{{ __('Update Role') }}</button>
                     </div>
                 </div>

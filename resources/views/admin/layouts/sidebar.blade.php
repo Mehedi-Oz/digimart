@@ -184,7 +184,8 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                     aria-label="Open user menu">
-                    <span class="avatar avatar-sm" style="background-image: url({{ asset(Auth::guard('admin')->user()->avatar) }})"></span>
+                    <span class="avatar avatar-sm"
+                        style="background-image: url({{ asset(Auth::guard('admin')->user()->avatar) }})"></span>
                     <div class="d-none d-xl-block ps-2">
                         <div>{{ Auth::guard('admin')->user()->name }}</div>
                         <div class="mt-1 small text-secondary">{{ Auth::guard('admin')->user()->email }}</div>
@@ -264,8 +265,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
                         data-bs-auto-close="false" role="button" aria-expanded="true">
-                        <span
-                            class="nav-link-icon d-md-none d-lg-inline-block">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                 stroke-linecap="round" stroke-linejoin="round">
@@ -287,8 +287,8 @@
                     <div class="dropdown-menu">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="./layout-horizontal.html">
-                                    Horizontal
+                                <a class="dropdown-item" href="{{ route('admin.role-users.index') }}">
+                                    Role Users
                                 </a>
                                 <a class="dropdown-item" href="{{ route('admin.roles.index') }}">
                                     Role & Permission
@@ -468,7 +468,8 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                     aria-label="Open user menu">
-                    <span class="avatar avatar-sm" style="background-image: url({{ asset(Auth::guard('admin')->user()->avatar) }})"></span>
+                    <span class="avatar avatar-sm"
+                        style="background-image: url({{ asset(Auth::guard('admin')->user()->avatar) }})"></span>
                     <div class="d-none d-xl-block ps-2">
                         <div>{{ Auth::guard('admin')->user()->name }}</div>
                         <div class="mt-1 small text-secondary">{{ Auth::guard('admin')->user()->email }}</div>

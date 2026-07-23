@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    {{ __('All Roles') }}
+    {{ __('All Role Users') }}
 @endsection
 
 @section('styles')
@@ -18,11 +18,11 @@
             <div class="container-xl">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">{{ __('All Roles') }}</h3>
+                        <h3 class="card-title">{{ __('All Role Users') }}</h3>
                         <div class="card-actions">
-                            <a href="{{ route('admin.roles.create') }}" class="btn btn-primary btn-3">
+                            <a href="{{ route('admin.role-users.create') }}" class="btn btn-primary btn-3">
                                 <i class="ti ti-plus"></i>
-                                {{ __('Create Role') }}
+                                {{ __('Create Role User') }}
                             </a>
                         </div>
                     </div>
@@ -33,32 +33,31 @@
                                     <table class="table table-vcenter card-table table-striped">
                                         <thead>
                                             <tr>
-                                                <th> {{ __('Roles') }}</th>
-                                                <th> {{ __('Permissions') }}</th>
+                                                <th> {{ __('Role Users') }}</th>
+                                                <th> {{ __('Email') }}</th>
+                                                <th> {{ __('Role') }}</th>
                                                 <th class="w-1"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($roles as $role)
+                                            @forelse ($admins as $admin)
                                                 <tr>
-                                                    <td>{{ $role->name }}</td>
-                                                    @if ($role->name === 'super admin')
-                                                        <td><span
-                                                                class="badge text-bg-primary">{{ __('All Permissions') }}</span>
-                                                        </td>
-                                                    @else
-                                                        <td class="text-secondary">{{ $role->permissions_count }}</td>
-                                                    @endif
+                                                    <td>{{ $admin->name }}</td>
+                                                    <td class="text-secondary">{{ $admin->email }}</td>
+                                                    <td>
+                                                        @foreach ($admin->roles as $role)
+                                                            <span class="badge text-bg-primary">{{ $role->name }}</span>
+                                                        @endforeach
+                                                    </td>
                                                     <td>
                                                         <div class="d-flex align-items-center gap-2">
-                                                            @if($role->name === 'super admin')
+                                                            @if($admin->hasRole('super admin'))
                                                                 <span class="text-muted"><i class="ti ti-edit"></i></span>
                                                                 <span class="text-muted"><i class="ti ti-trash"></i></span>
                                                             @else
-                                                                <a href="{{ route('admin.roles.edit', $role->id) }}">
+                                                                <a href="{{ route('admin.role-users.edit', $admin->id) }}">
                                                                     <i class="ti ti-edit"></i></a>
-                                                                <a class="delete-item text-danger"
-                                                                    href="{{ route('admin.roles.destroy', $role->id) }}">
+                                                                <a class="delete-item text-danger" href="{{ route('admin.role-users.destroy', $admin->id) }}">
                                                                     <i class="ti ti-trash"></i></a>
                                                             @endif
                                                         </div>
@@ -66,7 +65,8 @@
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="3" class="text-center"> {{ __('No roles found.') }}
+                                                    <td colspan="4" class="text-center">
+                                                        {{ __('No role users found.') }}
                                                     </td>
                                                 </tr>
                                             @endforelse

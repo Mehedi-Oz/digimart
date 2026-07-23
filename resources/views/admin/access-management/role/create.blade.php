@@ -14,12 +14,12 @@
                         <div class="card-actions">
                             <a href="{{ route('admin.roles.index') }}" class="btn btn-primary btn-3">
                                 <i class="ti ti-arrow-left"></i>
-                                Back
+                                {{ __('Back') }}
                             </a>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.roles.store') }}" method="POST">
+                        <form id="role-form" action="{{ route('admin.roles.store') }}" method="POST">
                             @csrf
                             <div class="col-12">
                                 <x-admin.input-text name="role" :label="__('Role Name')" :placeholder="__('enter role name')" />
@@ -38,7 +38,7 @@
                         </form>
                     </div>
                     <div class="card-footer text-end">
-                        <button type="submit" onclick="$('form').submit();"
+                        <button type="submit" onclick="$('#role-form').submit();"
                             class="btn btn-primary">{{ __('Create') }}</button>
                     </div>
                 </div>

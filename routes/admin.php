@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\RoleUserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -53,5 +54,8 @@ Route::middleware('auth:admin')
 
     /* Role Management Routes */
     Route::resource('roles', RoleController::class);
+
+    /* Role User Management Routes */
+    Route::resource('role-users', RoleUserController::class);
 
   });
