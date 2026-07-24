@@ -1,27 +1,28 @@
 <?php
 
-namespace App\View\Components\Frontend;
+namespace App\View\Components\Admin;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class InputSelect extends Component
+class InputToggle extends Component
 {
     public string $name, $label;
-    public bool $required;
+
+    public ?bool $checked;
 
     /**
      * Create a new component instance.
      */
     public function __construct(
         string $name,
-        string $label = null,
-        bool $required = false
+        ?string $label = null,
+        bool $checked = false,
     ) {
         $this->name = $name;
         $this->label = $label ?? \Str::title(str_replace('_', ' ', $name));
-        $this->required = $required;
+        $this->checked = old($name, $checked);
     }
 
     /**
@@ -29,6 +30,6 @@ class InputSelect extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.frontend.input-select');
+        return view('components.admin.input-toggle');
     }
 }

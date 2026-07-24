@@ -3,3 +3,4 @@
         name="{{ $name }}" value="{{ $value }}" {{ $attributes }}>
     <span class="form-check-label">{{ $label }}</span>
 </label>
+<x-input-error :messages="$errors->first($name)" />
