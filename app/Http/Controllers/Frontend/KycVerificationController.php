@@ -26,7 +26,7 @@ class KycVerificationController extends Controller
     {
         $paths = [];
         foreach ($request->file('documents', []) as $file) {
-            $paths[] = $this->uploadFile($file, 'frontend/kyc');
+            $paths[] = $this->uploadFile($file, 'frontend/kyc', 'local');
         }
 
         KycVerification::create([

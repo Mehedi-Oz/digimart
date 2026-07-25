@@ -17,7 +17,7 @@ return new class extends Migration
             $table->enum('document_type', ['nid', 'passport']);
             $table->string('document_number');
             $table->json('documents');
-            $table->boolean('status')->default(0);
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->string('reject_reason')->nullable();
             $table->timestamps();
         });

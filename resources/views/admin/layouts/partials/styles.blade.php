@@ -24,3 +24,6 @@
         font-feature-settings: "cv03", "cv04", "cv11";
     }
 </style>
+
+{{-- Custom Css --}}
+<link href="{{ asset('assets/admin/css/custom.css') }}" rel="stylesheet" />

@@ -4,14 +4,6 @@
     {{ __('All Roles') }}
 @endsection
 
-@section('styles')
-    <style>
-        .ti {
-            font-size: 1.25rem;
-        }
-    </style>
-@endsection
-
 @section('content')
     <div class="page-wrapper">
         <div class="page-body">
@@ -35,7 +27,7 @@
                                             <tr>
                                                 <th> {{ __('Roles') }}</th>
                                                 <th> {{ __('Permissions') }}</th>
-                                                <th class="w-1"></th>
+                                                <th class="w-1">{{ __('Action') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>

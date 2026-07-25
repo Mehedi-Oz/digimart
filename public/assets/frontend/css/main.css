@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
 
 /* ========================= Variable Css Start ======================== */
@@ -5219,12 +5218,12 @@ section.dashboard {
     overflow: hidden;
 }
 
-/* =========================== 
-Blog Section Css End 
+/* ===========================
+Blog Section Css End
 ========================== */
 
-/* ======================= 
-Become Seller Section Css start 
+/* =======================
+Become Seller Section Css start
 ==================== */
 
 .seller-two {
@@ -8495,7 +8494,7 @@ Become Seller Section Css start
     height: 116px;
     position: relative;
     border-radius: 100%;
-    
+
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -8555,11 +8554,11 @@ Become Seller Section Css start
     padding: 24px;
 }
 
-/* ======================== 
+/* ========================
 Dashboard Profile Css End ========================= */
 
-/* ===================== 
-Gradient Bg Css Start 
+/* =====================
+Gradient Bg Css Start
 ======================= */
 .bg--gradient,
 .bg-pattern {
@@ -13820,8 +13819,9 @@ select {
 }
 
 .hero-inner__title {
-	color: white;
+    color: white;
 }
+
 .hero-inner .hero-inner__desc {
     color: white;
 }
@@ -13831,11 +13831,13 @@ select {
 }
 
 .search-list__link.font-14.text-heading {
-	color: white !important;
+    color: white !important;
 }
 
 .search-list__link.font-14.text-heading:hover {
     color: black !important;
 }
 
-.common-input.is-invalid { border-color: #dc3545 !important; }
+.common-input.is-invalid {
+    border-color: #dc3545 !important;
+}

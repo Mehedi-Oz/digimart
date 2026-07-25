@@ -36,7 +36,7 @@
                                                 <th> {{ __('Role Users') }}</th>
                                                 <th> {{ __('Email') }}</th>
                                                 <th> {{ __('Role') }}</th>
-                                                <th class="w-1"></th>
+                                                <th class="w-1">{{ __('Action') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>

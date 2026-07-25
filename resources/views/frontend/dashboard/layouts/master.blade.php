@@ -80,8 +80,7 @@
                                 <div class="user-profile">
                                     <button class="user-profile__button flex-align">
                                         <span class="user-profile__thumb">
-                                            <img src="{{ asset('assets/frontend/images') }}/thumbs/user-profile.png"
-                                                class="cover-img" alt="">
+                                            <x-frontend.image-preview :src="user()->avatar" class="cover-img" />
                                         </span>
                                     </button>
                                     <ul class="user-profile-dropdown">

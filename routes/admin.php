@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\KycController;
 use App\Http\Controllers\Admin\KYCSettingController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
@@ -45,7 +46,7 @@ Route::middleware('auth:admin')
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-        /* Profile Routes */
+        /* Profile Management Routes */
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
         Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::put('/password', [ProfileController::class, 'updatePassword'])->name('password.update');
@@ -56,7 +57,10 @@ Route::middleware('auth:admin')
         /* Role User Management Routes */
         Route::resource('role-users', RoleUserController::class);
 
-        /* Role User Management Routes */
+        /* KYC Settings Management Routes */
         Route::get('/kyc-settings', [KYCSettingController::class, 'index'])->name('kyc-settings.index');
         Route::put('/kyc-settings', [KYCSettingController::class, 'update'])->name('kyc-settings.update');
+
+        /* KYC Requests Management Routes */
+        Route::resource('kyc', KycController::class);
     });

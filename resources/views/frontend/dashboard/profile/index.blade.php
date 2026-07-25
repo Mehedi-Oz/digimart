@@ -16,8 +16,7 @@
                     <div class="profile-info">
                         <div class="profile-info__inner mb-40 text-center">
 
-                            <x-frontend.image-preview :src="$user->avatar"
-                                style="height:128px; width:128px;" />
+                            <x-frontend.image-preview :src="$user->avatar" style="height:128px; width:128px;" />
                             <br>
                             <h5 class="profile-info__name mb-1">{{ $user->name }}</h5>
                             <span class="profile-info__designation font-14">{{ $user->user_type }}</span>

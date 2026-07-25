@@ -9,7 +9,6 @@
     <title>@yield('title')</title>
     <!-- CSS files -->
     @include('admin.layouts.partials.styles')
-    @yield('styles')
 </head>
 
 <body>

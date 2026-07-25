@@ -105,8 +105,9 @@
                     <div class="dropdown-menu">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="./layout-horizontal.html">
-                                    Horizontal
+                                <a class="dropdown-item" href="{{ route('admin.kyc.index') }}">
+                                    KYC Requests
+                                    <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">1</span>
                                 </a>
                                 <a class="dropdown-item" href="{{ route('admin.kyc-settings.index') }}">
                                     KYC Settings
