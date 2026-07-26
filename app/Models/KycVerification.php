@@ -12,18 +12,8 @@ class KycVerification extends Model
         'document_type',
         'document_number',
         'documents',
+        'status',
     ];
-
-    protected $attributes = [
-        'status' => 'pending',
-    ];
-
-    protected function casts(): array
-    {
-        return [
-            'documents' => 'array',
-        ];
-    }
 
     function user(): BelongsTo
     {

@@ -33,7 +33,7 @@ class KycVerificationController extends Controller
             'user_id'         => Auth::id(),
             'document_type'   => $request->document_type,
             'document_number' => $request->document_number,
-            'documents'       => $paths,
+            'documents'       => json_encode($paths),
         ]);
 
         NotificationService::CREATED('KYC documents submitted successfully. Pending admin review.');

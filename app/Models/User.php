@@ -29,6 +29,7 @@ class User extends Authenticatable
         'country',
         'city',
         'address',
+        'kyc_status'
     ];
 
     /**

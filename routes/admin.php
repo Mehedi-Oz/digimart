@@ -62,5 +62,7 @@ Route::middleware('auth:admin')
         Route::put('/kyc-settings', [KYCSettingController::class, 'update'])->name('kyc-settings.update');
 
         /* KYC Requests Management Routes */
+        Route::get('/kyc/download-document/{kyc_id}/{attachment_id}', [KycController::class, 'downloadDocument'])->name('kyc.download-document');
+        Route::put('/kyc/kyc-status/{kyc}', [KycController::class, 'updateStatus'])->name('kyc.status');
         Route::resource('kyc', KycController::class);
     });

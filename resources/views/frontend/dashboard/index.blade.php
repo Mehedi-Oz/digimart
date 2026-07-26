@@ -5,10 +5,23 @@
 @endsection
 
 @section('content')
-    @if (user()->kyc_status == 0 && user()->kyc->first()?->status == 'pending')
+    @php $kycStatus = user()->kyc->first()?->status; @endphp
+    @if (user()->kyc_status == 0 && $kycStatus == 'pending')
         <div class="alert alert-warning alert-dismissible d-flex align-items-center gap-2" role="alert">
             <i class="ti ti-alert-triangle fs-5"></i>
             <span>{{ __('Your KYC request is pending. You will get notified by the admin shortly.') }}</span>
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="close"></button>
+        </div>
+    @elseif (user()->kyc_status == 0 && $kycStatus == 'rejected')
+        <div class="alert alert-danger alert-dismissible d-flex align-items-center gap-2" role="alert">
+            <i class="ti ti-circle-x fs-5"></i>
+            <span>{{ __('Your KYC request has been rejected. Please resubmit your documents.') }}</span>
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="close"></button>
+        </div>
+    @elseif (user()->kyc_status == 1 && $kycStatus == 'approved')
+        <div class="alert alert-success alert-dismissible d-flex align-items-center gap-2" role="alert">
+            <i class="ti ti-circle-check fs-5"></i>
+            <span>{{ __('Your KYC has been verified successfully.') }}</span>
             <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="close"></button>
         </div>
     @endif
