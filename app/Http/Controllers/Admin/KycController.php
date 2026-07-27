@@ -78,7 +78,7 @@ class KycController extends Controller
                 mailContent: __('You can now sell products in our platform. Happy Selling!')
             );
         } elseif ($kyc->status == 'rejected') {
-            User::findOrFail($kyc->user_id)?->update(['kyc_status' => 0]);
+            User::findOrFail($kyc->user_id)?->update(['kyc_status' => 0, 'user_type' => 'user']);
             MailSenderService::sendMail(
                 receiverName: $kyc->user->name,
                 receiverMail: $kyc->user->email,
@@ -93,7 +93,7 @@ class KycController extends Controller
         return to_route('admin.kyc.index');
     }
 
-    /** 
+    /**
      * Delete a KYC verification request.
      */
     public function destroy(KycVerification $kyc): JsonResponse|RedirectResponse

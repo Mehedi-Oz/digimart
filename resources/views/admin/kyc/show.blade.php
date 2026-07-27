@@ -46,7 +46,7 @@
 
                                         @foreach ($attachments as $attachment)
                                             <a
-                                                href="{{ route('admin.kyc.download-document', ['kyc_id' => $kyc->id, 'attachment_id' => $loop->index]) }}">{{ __('Attachment') }}
+                                                href="{{ route('admin.kyc.download-document', ['kyc' => $kyc->id, 'attachment' => $loop->index]) }}">{{ __('Attachment') }}
                                                 ({{ $loop->iteration }})
                                             </a>
                                         @endforeach
