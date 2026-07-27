@@ -13,6 +13,7 @@ class KycVerification extends Model
         'document_number',
         'documents',
         'status',
+        'reject_reason',
     ];
 
     function user(): BelongsTo

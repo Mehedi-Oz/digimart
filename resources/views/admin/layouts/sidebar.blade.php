@@ -107,7 +107,8 @@
                             <div class="dropdown-menu-column">
                                 <a class="dropdown-item" href="{{ route('admin.kyc.index') }}">
                                     KYC Requests
-                                    <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">1</span>
+                                    <span
+                                        class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">{{ pendingKycCount() }}</span>
                                 </a>
                                 <a class="dropdown-item" href="{{ route('admin.kyc-settings.index') }}">
                                     KYC Settings

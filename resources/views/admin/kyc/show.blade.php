@@ -76,17 +76,20 @@
                                                 @csrf
                                                 @method('PUT')
                                                 <x-admin.input-select name="status" label="">
-                                                    <option @selected($kyc->status == 'pending') value="pending">
+                                                    <option @selected(old('status', $kyc->status) == 'pending') value="pending">
                                                         {{ __('Pending') }}
                                                     </option>
-                                                    <option @selected($kyc->status == 'approved') value="approved">
+                                                    <option @selected(old('status', $kyc->status) == 'approved') value="approved">
                                                         {{ __('Approved') }}
                                                     </option>
-                                                    <option @selected($kyc->status == 'rejected') value="rejected">
+                                                    <option @selected(old('status', $kyc->status) == 'rejected') value="rejected">
                                                         {{ __('Rejected') }}
                                                     </option>
                                                 </x-admin.input-select>
-                                                <x-admin.submit-button :label="__('Update')" onclick="$('form').submit();" />
+                                                <div id="reject_reason" class="{{ $kyc->status === 'rejected' || $errors->has('reject_reason') ? '' : 'd-none' }}">
+                                                    <x-admin.input-text-area name="reject_reason"
+                                                        :label="__('Reason')" :value="old('reject_reason', $kyc->reject_reason)" />
+                                                </div>
                                             </form>
                                         </div>
                                     </td>
@@ -94,8 +97,28 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="card-footer text-end">
+                        <x-admin.submit-button :label="__('Update')" onclick="$('form').submit();" />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
+
+@push('scripts')
+    <script>
+        'use strict';
+
+        $(function() {
+            $(document).on('change', '#status', function() {
+                if ($(this).val() === 'rejected') {
+                    $('#reject_reason').removeClass('d-none');
+                } else {
+                    $('#reject_reason').addClass('d-none');
+                }
+            });
+        })
+    </script>
+@endpush

@@ -9,6 +9,7 @@
     <title>@yield('title')</title>
     <!-- CSS files -->
     @include('admin.layouts.partials.styles')
+    @stack('styles')
 </head>
 
 <body>
@@ -28,6 +29,7 @@
 
     <!-- Js files -->
     @include('admin.layouts.partials.scripts')
+    @stack('scripts')
 </body>
 
 </html>

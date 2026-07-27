@@ -66,7 +66,7 @@
                         </div>
                     </div>
                     <div class="card-footer text-end">
-
+                        {{ $kycRequests->Links() }}
                     </div>
                 </div>
             </div>
