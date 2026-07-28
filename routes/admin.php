@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\KYCSettingController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\RoleUserController;
+use App\Http\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')
@@ -65,4 +66,8 @@ Route::middleware('auth:admin')
         Route::get('/kyc/download-document/{kyc}/{attachment}', [KycController::class, 'downloadDocument'])->name('kyc.download-document');
         Route::put('/kyc/kyc-status/{kyc}', [KycController::class, 'updateStatus'])->name('kyc.status');
         Route::resource('kyc', KycController::class);
+
+        /* Settings Management Routes */
+        Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
+        Route::put('general-setting', [SettingController::class, 'updateGeneralSetting'])->name('setting.general-setting.update');
     });

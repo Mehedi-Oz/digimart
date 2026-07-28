@@ -1,5 +1,22 @@
 # DigiMart - Development Guidelines
 
+## Other Rule Files (off by default — enable manually per task)
+
+Only `guidelines.md` loads automatically. The files below are toggled off in the Rules panel to save tokens. Enable the relevant one before starting a task that needs it, then disable it again when done — Amazon Q cannot open these on its own just because they're mentioned here.
+
+| File | Enable when... |
+|---|---|
+| `tech.md` | Task involves dependencies, build tooling, or environment/version questions |
+| `structure.md` | Task involves unfamiliar folders or you need the full directory map |
+| `product.md` | Task involves product/feature-scope questions, not code |
+| `frontend-js.md` | Task touches frontend JS conventions |
+| `graphify.md` | You're running `/graphify` build or query commands |
+| `tooling.md` | RTK-specific troubleshooting needed |
+
+## Required: Check Before Reading
+
+**Before grepping or reading multiple files** to answer a "how does X connect to Y" / "where is X used" / "explain X" question: check whether `graphify-out/graph.json` exists (you can check this with a file read/list, not the Rules panel). If it exists but `graphify.md` isn't loaded in this session, tell the user to enable it in the Rules panel, then use it to query the graph instead of reading files. Only fall back to grep/read if the graph doesn't answer the question, or if `graphify-out/` doesn't exist. This check is required, not optional — do not skip it by default.
+
 ## PHP / Laravel Conventions
 
 ### Controller Pattern
@@ -9,29 +26,6 @@
 - Check `$user->isDirty()` before saving to skip unnecessary DB writes and notifications
 - Use `$request->safe()->except('avatar')` when filling models to exclude file fields from mass assignment
 
-```php
-public function update(ProfileUpdateRequest $request): RedirectResponse
-{
-    $user = Auth::guard('admin')->user();
-    $user->fill($request->safe()->except('avatar'));
-
-    if ($request->hasFile('avatar')) {
-        if ($user->avatar !== Admin::DEFAULT_AVATAR) {
-            $this->deleteFile($user->avatar);
-        }
-        $user->avatar = $this->uploadFile($request->file('avatar'), 'admin/avatars');
-    }
-
-    if (!$user->isDirty()) {
-        return redirect()->back();
-    }
-
-    $user->save();
-    NotificationService::UPDATED();
-    return redirect()->back();
-}
-```
-
 ### Model Conventions
 - Define `DEFAULT_AVATAR` as a public constant on models that have avatars: `public const DEFAULT_AVATAR = 'defaults/avatar.png';`
 - Always declare `$fillable`, `$hidden`, and `casts()` method (not `$casts` property)
@@ -40,7 +34,6 @@ public function update(ProfileUpdateRequest $request): RedirectResponse
 
 ### Form Request Conventions
 - Admin requests use array syntax for rules: `['required', 'string', 'max:255']`
-- Frontend requests may use pipe syntax: `'required|string|max:255'` — prefer array syntax for new code
 - Avatar validation: `['sometimes', 'image', 'mimes:jpg,jpeg,png,webp,gif', 'max:2048']`
 - Always use `Rule::unique()->ignore($this->user()->id)` for email uniqueness in update requests
 - `authorize()` always returns `true` — authorization is handled by middleware
@@ -73,10 +66,7 @@ class MyController extends Controller
 {
     use FileUpload;
 
-    // Upload: returns path string stored under public disk
     $path = $this->uploadFile($request->file('avatar'), 'frontend/avatars');
-
-    // Delete: pass the stored path
     $this->deleteFile($user->avatar);
 }
 ```
@@ -135,72 +125,7 @@ Admin forms follow Tabler UI card structure:
 ```
 
 ### Translations
-Always wrap user-facing strings in `__()`: `{{ __('Profile') }}`, `{{ __('Update Profile') }}`. Never hardcode English strings directly in blade templates.
-
-### Homepage Sections
-Homepage sections are isolated partials included via `@include`:
-
-```blade
-@include('frontend.home.sections.banner')
-@include('frontend.home.sections.category')
-@include('frontend.home.sections.product')
-```
-Add new homepage sections as separate files in `resources/views/frontend/home/sections/`.
-
-## JavaScript Conventions (Frontend)
-
-### Structure
-All frontend JS is wrapped in an IIFE with jQuery: `(function ($) { "use strict"; ... })(jQuery);`
-
-All DOM-ready code goes inside `$(document).ready(function () { ... });`
-
-### Event Handling
-Use jQuery `.on()` — never inline handlers or `.click()`:
-
-```js
-$('.toggle-mobileMenu').on('click', function () { ... });
-$('body').on('click', function () { ... });  // delegated/global dismiss
-```
-
-### Active State Pattern
-Toggle UI states with `.addClass('active')` / `.removeClass('active')` / `.toggleClass('active')`:
-
-```js
-$('.mobile-menu').addClass('active');
-$('.side-overlay').addClass('show');
-$('body').addClass('scroll-hide-sm');
-```
-
-### Section Comments
-Each JS section is wrapped in start/end comments:
-```js
-// ============================== Feature Name Js Start ==============================
-// ... code ...
-// ============================== Feature Name Js End ==============================
-```
-
-### Slider Configuration
-Slick sliders use consistent arrow markup:
-```js
-prevArrow: '<button type="button" class="slick-prev"><i class="las la-arrow-left"></i></button>',
-nextArrow: '<button type="button" class="slick-next"><i class="las la-arrow-right"></i></button>',
-```
-Always include `responsive` breakpoints: 1199, 991, 767, 575 (and 425 for very small).
-
-### Guard Against Missing Elements
-Before initializing plugins on optional elements, check existence:
-```js
-if (document.querySelector('.countdown')) { ... }
-if ($('ul').length) { ... }
-var chartElement = document.querySelector("#chart");
-if (chartElement) { ... }
-```
-
-## Database / Migration Conventions
-- Migrations use anonymous classes: `return new class extends Migration { ... }`
-- Default avatar stored directly in DB: `$table->string('avatar')->default('defaults/avatar.png')`
-- Always include `$table->rememberToken()` and `$table->timestamps()` on auth models
-- Default DB connection is SQLite for local dev; switch to MySQL via `DB_CONNECTION` env var
+Always wrap user-facing strings in `__()`. Never hardcode English strings directly in blade templates.
 
 ## Dual Auth Guard Rules
 - Never use `Auth::user()` in admin controllers — always `Auth::guard('admin')->user()`
@@ -213,3 +138,66 @@ if (chartElement) { ... }
 - Blade: 4-space indentation, CRLF line endings (admin views use CRLF)
 - JS: 2-space indentation, `"use strict"`, jQuery-based (no ES modules in static assets)
 - No inline comments explaining obvious code — use section delimiter comments in JS
+
+## Laravel Skills
+
+Whenever writing, reviewing, or refactoring any Laravel PHP code, consult `.agents/skills/`. Two skill sets are available — pick based on the concern:
+
+| Skill | Path | Use When |
+| ----- | ---- | -------- |
+| `laravel-best-practices` | `.agents/skills/laravel-best-practices/` | Controllers, models, migrations, form requests, jobs, Eloquent, N+1, caching, validation, error handling, queues, routes, architecture, code reviews |
+| `laravel-security` | `.agents/skills/laravel-security/` | Auth, gates/policies, mass assignment, SQL injection, CSRF, XSS, file upload security, rate limiting, secrets, API security, secure deployment |
+
+**How to apply:**
+1. Check existing patterns in sibling files first — follow what the codebase already does
+2. Pick the skill(s) matching the concern and read before editing
+3. Make the smallest coherent change — don't introduce a second pattern for the same job
+
+### laravel-best-practices Rule Index
+
+| Concern | File |
+| ------- | ---- |
+| Query count, eager loading, indexes, large datasets | `rules/db-performance.md` |
+| Subqueries, aggregates, complex ordering | `rules/advanced-queries.md` |
+| Models, relationships, scopes, casts | `rules/eloquent.md` |
+| Form Requests and validation rules | `rules/validation.md` |
+| Controllers, route binding, middleware | `rules/routing.md` |
+| Schema changes, columns, FK, indexes | `rules/migrations.md` |
+| Jobs, retries, uniqueness, batches | `rules/queue-jobs.md` |
+| Cache lifetime, invalidation, locks | `rules/caching.md` |
+| Outbound requests, retries, timeouts | `rules/http-client.md` |
+| Exceptions, reporting, log context | `rules/error-handling.md` |
+| Events and notifications | `rules/events-notifications.md` |
+| Mailables and mail assertions | `rules/mail.md` |
+| Scheduled tasks | `rules/scheduling.md` |
+| Collections, lazy iteration, bulk ops | `rules/collections.md` |
+| Blade components, attributes, composers | `rules/blade-views.md` |
+| Environment values, config | `rules/config.md` |
+| Pest patterns, factories, fakes | `rules/testing.md` |
+| Naming, helpers, file boundaries, PHP style | `rules/style.md` |
+| Actions, services, dependencies, structure | `rules/architecture.md` |
+
+### laravel-security Rule Index
+
+| Concern | File |
+| ------- | ---- |
+| Authentication, sessions, password hashing | `rules/auth.md` |
+| Gates, policies, middleware authorization | `rules/authorization.md` |
+| Mass assignment, SQL injection, attribute casting | `rules/eloquent-safety.md` |
+| CSRF protection, XSS prevention, HTTP headers | `rules/csrf-xss.md` |
+| Rate limiting, CORS, API authentication | `rules/api-security.md` |
+| File upload validation and secure storage | `rules/file-uploads.md` |
+| Secrets, .env hygiene, Composer audit | `rules/secrets-deps.md` |
+| Queue security, logging sensitive events | `rules/queue-logging.md` |
+| Quick pre-deploy security checklist | `rules/checklist.md` |
+
+**Decision Rules:**
+- Prefer framework features and existing abstractions over new helpers or dependencies
+- Avoid speculative abstractions — extract only when it creates a clear domain boundary or removes meaningful duplication
+- Keep database access out of Blade views — prevent hidden N+1 queries
+
+---
+
+## graphify (Knowledge Graph)
+
+Full build/query syntax and docs: `.amazonq/rules/memory-bank/graphify.md` (enable it in the Rules panel first — see index at top of this file).
