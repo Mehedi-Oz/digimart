@@ -9,7 +9,7 @@ use Illuminate\View\Component;
 class InputText extends Component
 {
     public string $name, $label, $type;
-    public ?string  $id, $value, $placeholder;
+    public ?string  $id, $value, $placeholder, $hint;
 
     /**
      * Create a new component instance.
@@ -20,7 +20,8 @@ class InputText extends Component
         string $type = 'text',
         string $id = null,
         string $value = null,
-        string $placeholder = null
+        string $placeholder = null,
+        string $hint = null,
     ) {
         $this->name = $name;
         $this->label = $label ?? \Str::title(str_replace('_', ' ', $name));
@@ -28,6 +29,7 @@ class InputText extends Component
         $this->id = $id ?? $name;
         $this->value = $value;
         $this->placeholder = $placeholder;
+        $this->hint = $hint;
     }
 
     /**

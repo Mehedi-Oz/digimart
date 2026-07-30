@@ -10,3 +10,7 @@
 
 <!-- Custom js -->
 <script src="{{ asset('assets/admin/js/custom/admin.js') }}"></script>
+
+<!-- TagsInput js -->
+<script src="{{ asset('assets/admin/js/bootstrap-tagsinput.min.js') }}"></script>
+

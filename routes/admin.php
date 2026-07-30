@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\KycController;
 use App\Http\Controllers\Admin\KYCSettingController;
@@ -70,4 +71,7 @@ Route::middleware('auth:admin')
         /* Settings Management Routes */
         Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
         Route::put('general-setting', [SettingController::class, 'updateGeneralSetting'])->name('setting.general-setting.update');
+
+        /* Category Management Routes */
+        Route::resource('category', CategoryController::class);
     });

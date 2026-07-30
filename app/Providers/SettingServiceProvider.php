@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\SettingService;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class SettingServiceProvider extends ServiceProvider
@@ -22,7 +23,12 @@ class SettingServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $setting = $this->app->make(SettingService::class);
-        $setting->setSettings();
+        try {
+            if (Schema::hasTable('settings') && Schema::hasTable('cache')) {
+                $this->app->make(SettingService::class)->setSettings();
+            }
+        } catch (\Exception) {
+            // DB not ready (e.g. during migrate)
+        }
     }
 }
