@@ -3,16 +3,26 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\CategoryStoreRequest;
+use App\Http\Requests\Admin\CategoryUpdateRequest;
+use App\Models\Category;
+use App\Services\NotificationService;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        return view('admin.category.index');
+        $categories = Category::paginate(25);
+
+        return view('admin.category.index', compact('categories'));
     }
 
     /**
@@ -26,40 +36,56 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryStoreRequest $request)
     {
-        //
-    }
+        $data = $request->validated();
+        $data['slug'] = Str::slug($data['name']);
+        $data['file_types'] = explode(',', $data['file_types']);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        Category::create($data);
+        NotificationService::UPDATED();
+        return to_route('admin.category.index')
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Category $category): View
     {
-        //
+        return view('admin.category.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CategoryUpdateRequest $request, Category $category): RedirectResponse
     {
-        //
+        $data = $request->validated();
+        $data['slug'] = Str::slug($data['name']);
+        $data['file_types'] = explode(',', $data['file_types']);
+
+        $category->update($data);
+
+        NotificationService::UPDATED();
+
+        return redirect()->route('admin.category.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category): JsonResponse
     {
-        //
+        try {
+            $category->delete();
+
+            NotificationService::DELETED();
+
+            return response()->json(['status' => 'success', 'message' => __('Deleted Successful')], 200);
+        } catch (\Throwable $th) {
+            Log::error('An error occurred during deleting category:', ['exception' => $th]);
+
+            return response()->json(['status' => 'error', 'message' => $th->getMessage()], 400);
+        }
     }
 }

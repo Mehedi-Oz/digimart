@@ -35,6 +35,13 @@ TagsInput
   background: var(--tblr-primary) !important;
 }
 
+/**
+Highlight tagsinput
+ */
+.bootstrap-tagsinput:has(+ input.is-invalid) {
+  border-color: var(--tblr-danger) !important;
+}
+
 
 /**
 FormHint

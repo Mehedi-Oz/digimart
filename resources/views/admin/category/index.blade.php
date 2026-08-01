@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    {{ __('Category') }}
+    {{ __('All Categories') }}
 @endsection
 
 @section('content')
@@ -12,9 +12,9 @@
                     <div class="card-header">
                         <h3 class="card-title">{{ __('All Categories') }}</h3>
                         <div class="card-actions">
-                            <a href="{{ route('admin.roles.create') }}" class="btn btn-primary btn-3">
+                            <a href="{{ route('admin.category.create') }}" class="btn btn-primary btn-3">
                                 <i class="ti ti-plus"></i>
-                                {{ __('Button Text') }}
+                                {{ __('Create Category') }}
                             </a>
                         </div>
                     </div>
@@ -24,23 +24,39 @@
                                 <table class="table table-vcenter card-table table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Title</th>
-                                            <th>Email</th>
-                                            <th>Role</th>
-                                            <th class="w-1"></th>
+                                            <th>{{ __('ID') }}</th>
+                                            <th>{{ __('Icon') }}</th>
+                                            <th>{{ __('Name') }}</th>
+                                            <th>{{ __('File Types') }}</th>
+                                            <th>{{ __('Date') }}</th>
+                                            <th class="w-1">{{ __('Action') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td class="text-secondary"></td>
-                                            <td class="text-secondary"><a href="#" class="text-reset"></a></td>
-                                            <td class="text-secondary"></td>
-                                            <td>
-                                                <a href="#">Edit</a>
-                                            </td>
-                                        </tr>
+                                        @foreach ($categories as $category)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td><i class="{{ $category->icon }}"></i></td>
+                                                <td class="text-secondary">{{ $category->name }}</td>
+                                                 <td class="text-secondary">
+                                                     @if (is_array($category->file_types))
+                                                         @foreach ($category->file_types as $file_type)
+                                                             <span class="badge bg-primary text-primary-fg">{{ $file_type }}</span>
+                                                         @endforeach
+                                                     @endif
+                                                 </td>
+                                                <td class="text-secondary">{{ formatDate($category->created_at) }}</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <a href="{{ route('admin.category.edit', $category->id) }}">
+                                                            <i class="ti ti-edit"></i></a>
+                                                        <a class="delete-item text-danger"
+                                                            href="{{ route('admin.category.destroy', $category->id) }}">
+                                                            <i class="ti ti-trash"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -54,3 +70,4 @@
         </div>
     </div>
 @endsection
+ 

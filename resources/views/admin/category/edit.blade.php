@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    {{ __('Create Category') }}
+    {{ __('Update Category') }}
 @endsection
 
 @push('styles')
@@ -15,7 +15,7 @@
             <div class="container-xl">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">{{ __('Create Category') }}</h3>
+                        <h3 class="card-title">{{ __('Update Category') }}</h3>
                         <div class="card-actions">
                             <a href="{{ route('admin.category.index') }}" class="btn btn-primary btn-3">
                                 <i class="ti ti-arrow-left"></i>
@@ -24,24 +24,25 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.category.store') }}" method="POST">
+                        <form action="{{ route('admin.category.update', $category->id) }}" method="POST">
                             @csrf
+                            @method('PUT')
                             <div class="row">
                                 <div class="col-md-12">
-                                    <x-admin.input-icon name="icon" :label="__('Category Icon')" />
+                                    <x-admin.input-icon name="icon" :label="__('Category Icon')" :value="$category->icon" />
                                 </div>
                                 <div class="col-md-12">
-                                    <x-admin.input-text name="name" :label="__('Category Name')" />
+                                    <x-admin.input-text name="name" :label="__('Category Name')" :value="$category->name" />
                                 </div>
                                 <div class="col-md-12">
                                     <x-admin.input-text name="file_types" :label="__('File Types')" data-role="tagsinput"
                                         :hint="__(
                                             'The allowed files to be uploaded as main file: zip, mp4, mp3, png, etc.',
-                                        )" />
+                                        )" :value="implode(',', $category->file_types)" />
                                 </div>
                             </div>
                             <div>
-                                <x-admin.submit-button :label="__('Create Category')" onclick="$('form').submit();" />
+                                <x-admin.submit-button :label="__('Update Category')" onclick="$('form').submit();" />
                             </div>
                         </form>
                     </div>
