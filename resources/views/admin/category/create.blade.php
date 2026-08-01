@@ -39,6 +39,10 @@
                                             'The allowed files to be uploaded as main file: zip, mp4, mp3, png, etc.',
                                         )" />
                                 </div>
+                                <div class="col-md-12">
+                                    <x-admin.input-toggle name="show_at_nav" :label="__('Show at nav')" />
+                                    <x-admin.input-toggle name="show_at_featured" :label="__('Show at featured')" />
+                                </div>
                             </div>
                             <div>
                                 <x-admin.submit-button :label="__('Create Category')" onclick="$('form').submit();" />

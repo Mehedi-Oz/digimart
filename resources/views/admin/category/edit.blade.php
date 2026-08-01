@@ -40,6 +40,10 @@
                                             'The allowed files to be uploaded as main file: zip, mp4, mp3, png, etc.',
                                         )" :value="implode(',', $category->file_types)" />
                                 </div>
+                                <div class="col-md-12">
+                                    <x-admin.input-toggle name="show_at_nav" :label="__('Show at nav')" :checked="$category->show_at_nav" />
+                                    <x-admin.input-toggle name="show_at_featured" :label="__('Show at featured')" :checked="$category->show_at_featured"/>
+                                </div>
                             </div>
                             <div>
                                 <x-admin.submit-button :label="__('Update Category')" onclick="$('form').submit();" />

@@ -21,7 +21,6 @@ class CategoryController extends Controller
     public function index(): View
     {
         $categories = Category::paginate(25);
-
         return view('admin.category.index', compact('categories'));
     }
 
@@ -44,7 +43,7 @@ class CategoryController extends Controller
 
         Category::create($data);
         NotificationService::UPDATED();
-        return to_route('admin.category.index')
+        return to_route('admin.category.index');
     }
 
     /**
@@ -80,11 +79,8 @@ class CategoryController extends Controller
             $category->delete();
 
             NotificationService::DELETED();
-
             return response()->json(['status' => 'success', 'message' => __('Deleted Successful')], 200);
         } catch (\Throwable $th) {
-            Log::error('An error occurred during deleting category:', ['exception' => $th]);
-
             return response()->json(['status' => 'error', 'message' => $th->getMessage()], 400);
         }
     }

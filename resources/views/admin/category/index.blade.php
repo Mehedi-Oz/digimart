@@ -28,23 +28,40 @@
                                             <th>{{ __('Icon') }}</th>
                                             <th>{{ __('Name') }}</th>
                                             <th>{{ __('File Types') }}</th>
+                                            <th>{{ __('Show At Navbar') }}</th>
+                                            <th>{{ __('Show At Featured') }}</th>
                                             <th>{{ __('Date') }}</th>
                                             <th class="w-1">{{ __('Action') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($categories as $category)
+                                        @forelse ($categories as $category)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td><i class="{{ $category->icon }}"></i></td>
                                                 <td class="text-secondary">{{ $category->name }}</td>
-                                                 <td class="text-secondary">
-                                                     @if (is_array($category->file_types))
-                                                         @foreach ($category->file_types as $file_type)
-                                                             <span class="badge bg-primary text-primary-fg">{{ $file_type }}</span>
-                                                         @endforeach
-                                                     @endif
-                                                 </td>
+                                                <td class="text-secondary">
+                                                    @if (is_array($category->file_types))
+                                                        @foreach ($category->file_types as $file_type)
+                                                            <span
+                                                                class="badge bg-primary text-primary-fg">{{ $file_type }}</span>
+                                                        @endforeach
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if($category->show_at_nav)
+                                                        <span class="badge bg-green text-green-fg">{{ __('Yes') }}</span>
+                                                    @else
+                                                        <span class="badge bg-red text-red-fg">{{ __('No') }}</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if($category->show_at_featured)
+                                                        <span class="badge bg-green text-green-fg">{{ __('Yes') }}</span>
+                                                    @else
+                                                        <span class="badge bg-red text-red-fg">{{ __('No') }}</span>
+                                                    @endif
+                                                </td>
                                                 <td class="text-secondary">{{ formatDate($category->created_at) }}</td>
                                                 <td>
                                                     <div class="d-flex align-items-center gap-2">
@@ -56,7 +73,13 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                            <tr>
+                                                <td colspan="6" class="text-center text-secondary">
+                                                    {{ __('No categories found.') }}
+                                                </td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -70,4 +93,3 @@
         </div>
     </div>
 @endsection
- 

@@ -8,13 +8,8 @@ use Illuminate\View\Component;
 
 class InputIcon extends Component
 {
-    public string $name;
-
-    public string $label;
-
-    public ?string $value;
-
-    public ?string $hint;
+    public string $name, $label;
+    public ?string $value, $hint;
 
     /**
      * Create a new component instance.

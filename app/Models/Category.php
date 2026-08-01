@@ -11,6 +11,8 @@ class Category extends Model
         'name',
         'slug',
         'file_types',
+        'show_at_nav',
+        'show_at_featured'
     ];
 
     protected function casts(): array

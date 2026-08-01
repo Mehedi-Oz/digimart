@@ -24,8 +24,10 @@ class CategoryUpdateRequest extends FormRequest
     {
         return [
             'icon' => ['required', 'string', 'max:50'],
-            'name' => ['required', 'string', 'max:100', 'unique:categories,name,'.$this->category->id],
+            'name' => ['required', 'string', 'max:100', 'unique:categories,name,' . $this->category->id],
             'file_types' => ['required', 'string', 'max:255'],
+            'show_at_nav' => ['nullable', 'boolean'],
+            'show_at_featured' => ['nullable', 'boolean']
         ];
     }
 }
