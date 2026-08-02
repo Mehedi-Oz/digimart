@@ -3,18 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\CategoryStoreRequest;
-use App\Http\Requests\Admin\CategoryUpdateRequest;
+use App\Http\Requests\Admin\SubCategoryStoreRequest;
+use App\Http\Requests\Admin\SubCategoryUpdateRequest;
 use App\Models\Category;
+use App\Models\SubCategory;
 use App\Services\NotificationService;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Str;
 
-class CategoryController extends Controller implements HasMiddleware
+class SubCategoryController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
@@ -28,9 +27,9 @@ class CategoryController extends Controller implements HasMiddleware
      */
     public function index(): View
     {
-        $categories = Category::paginate(25);
+        $sub_categories = SubCategory::paginate(25);
 
-        return view('admin.category.index', compact('categories'));
+        return view('admin.category.sub-category.index', compact('sub_categories'));
     }
 
     /**
@@ -38,59 +37,56 @@ class CategoryController extends Controller implements HasMiddleware
      */
     public function create(): View
     {
-        return view('admin.category.create');
+        $categories = Category::all();
+
+        return view('admin.category.sub-category.create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CategoryStoreRequest $request): RedirectResponse
+    public function store(SubCategoryStoreRequest $request)
     {
         $data = $request->validated();
         $data['slug'] = Str::slug($data['name']);
-        $data['file_types'] = explode(',', $data['file_types']);
 
-        Category::create($data);
+        SubCategory::create($data);
         NotificationService::UPDATED();
 
-        return to_route('admin.categories.index');
+        return to_route('admin.sub-categories.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category): View
+    public function edit(SubCategory $sub_category)
     {
-        return view('admin.category.edit', compact('category'));
+        $categories = Category::all();
+
+        return view('admin.category.sub-category.edit', compact('categories', 'sub_category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(CategoryUpdateRequest $request, Category $category): RedirectResponse
+    public function update(SubCategoryUpdateRequest $request, SubCategory $sub_category)
     {
         $data = $request->validated();
         $data['slug'] = Str::slug($data['name']);
-        $data['file_types'] = explode(',', $data['file_types']);
 
-        $category->update($data);
-
+        $sub_category->update($data);
         NotificationService::UPDATED();
 
-        return redirect()->route('admin.categories.index');
+        return to_route('admin.sub-categories.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category): JsonResponse
+    public function destroy(SubCategory $sub_category)
     {
         try {
-            if ($category->subCategories()->exists()) {
-                return response()->json(['status' => 'error', 'message' => __('Category has sub-categories, please delete them first.')], 402);
-            }
-
-            $category->delete();
+            $sub_category->delete();
 
             NotificationService::DELETED();
 

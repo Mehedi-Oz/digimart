@@ -17,14 +17,14 @@
                     <div class="card-header">
                         <h3 class="card-title">{{ __('Update Category') }}</h3>
                         <div class="card-actions">
-                            <a href="{{ route('admin.category.index') }}" class="btn btn-primary btn-3">
+                            <a href="{{ route('admin.categories.index') }}" class="btn btn-primary btn-3">
                                 <i class="ti ti-arrow-left"></i>
                                 {{ __('Back') }}
                             </a>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.category.update', $category->id) }}" method="POST">
+                        <form action="{{ route('admin.categories.update', $category->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="row">

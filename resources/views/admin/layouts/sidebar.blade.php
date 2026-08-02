@@ -93,29 +93,31 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
-                        data-bs-auto-close="false" role="button" aria-expanded="true">
-                        <span class="nav-link-icon d-md-none d-lg-inline-block">
-                            <i class="ti ti-user-shield"></i>
-                        </span>
-                        <span class="nav-link-title">
-                            Category Management
-                        </span>
-                    </a>
-                    <div class="dropdown-menu">
-                        <div class="dropdown-menu-columns">
-                            <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="{{ route('admin.category.index') }}">
-                                    Main Category
-                                </a>
-                                <a class="dropdown-item" href="{{ route('admin.category.index') }}">
-                                    Update Category
-                                </a>
+                @if (canAccess(['manage categories']))
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
+                            data-bs-auto-close="false" role="button" aria-expanded="true">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <i class="ti ti-user-shield"></i>
+                            </span>
+                            <span class="nav-link-title">
+                                Category Management
+                            </span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-menu-columns">
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item" href="{{ route('admin.categories.index') }}">
+                                        Categories
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('admin.sub-categories.index') }}">
+                                        SubCategories
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
+                @endif
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
                         data-bs-auto-close="false" role="button" aria-expanded="true">

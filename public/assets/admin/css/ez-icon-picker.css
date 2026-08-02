@@ -1,6 +1,6 @@
 .ez_container {
   width: 100%;
-  max-width: 300px;
+  max-width: 400px;
   padding: 10px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
@@ -10,7 +10,7 @@
 }
 
 .ez_search {
-  width: 300px;
+  width: 320px;
   padding: 15px 10px;
   margin-bottom: 10px;
   background: var(--tblr-bg-surface-secondary);
@@ -94,4 +94,8 @@
 .ez_no_results_icon {
   font-size: 40px;
   margin: 0;
+}
+
+.ez_main {
+  max-width: 320px !important;
 }

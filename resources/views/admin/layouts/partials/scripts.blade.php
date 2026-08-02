@@ -8,9 +8,11 @@
 <script src="{{ asset('assets/admin/js/tabler.min.js') }}" defer></script>
 <script src="{{ asset('assets/admin/js/demo.min.js') }}" defer></script>
 
-<!-- Custom js -->
-<script src="{{ asset('assets/admin/js/custom/admin.js') }}"></script>
-
 <!-- TagsInput js -->
 <script src="{{ asset('assets/admin/js/bootstrap-tagsinput.min.js') }}"></script>
 
+<!-- Option Searching  -->
+<script src="{{ asset('assets/admin/js/select2.min.js') }}"></script>
+
+<!-- Custom js -->
+<script src="{{ asset('assets/admin/js/custom/admin.js') }}"></script>

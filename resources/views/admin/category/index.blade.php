@@ -12,7 +12,7 @@
                     <div class="card-header">
                         <h3 class="card-title">{{ __('All Categories') }}</h3>
                         <div class="card-actions">
-                            <a href="{{ route('admin.category.create') }}" class="btn btn-primary btn-3">
+                            <a href="{{ route('admin.categories.create') }}" class="btn btn-primary btn-3">
                                 <i class="ti ti-plus"></i>
                                 {{ __('Create Category') }}
                             </a>
@@ -65,10 +65,10 @@
                                                 <td class="text-secondary">{{ formatDate($category->created_at) }}</td>
                                                 <td>
                                                     <div class="d-flex align-items-center gap-2">
-                                                        <a href="{{ route('admin.category.edit', $category->id) }}">
+                                                        <a href="{{ route('admin.categories.edit', $category->id) }}">
                                                             <i class="ti ti-edit"></i></a>
                                                         <a class="delete-item text-danger"
-                                                            href="{{ route('admin.category.destroy', $category->id) }}">
+                                                            href="{{ route('admin.categories.destroy', $category->id) }}">
                                                             <i class="ti ti-trash"></i></a>
                                                     </div>
                                                 </td>

@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\RoleUserController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')
@@ -73,5 +74,8 @@ Route::middleware('auth:admin')
         Route::put('general-setting', [SettingController::class, 'updateGeneralSetting'])->name('setting.general-setting.update');
 
         /* Category Management Routes */
-        Route::resource('category', CategoryController::class);
+        Route::resource('categories', CategoryController::class);
+
+        /* SubCategory Management Routes */
+        Route::resource('sub-categories', SubCategoryController::class);
     });

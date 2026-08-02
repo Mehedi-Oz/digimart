@@ -1,4 +1,13 @@
 /**
+Layout: Prevent horizontal scrollbar caused by absolutely positioned
+ */
+html,
+body {
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+/**
 Tabler-IconSize
  */
 .ti {
@@ -42,26 +51,10 @@ Highlight tagsinput
   border-color: var(--tblr-danger) !important;
 }
 
-
 /**
 FormHint
  */
 span.form-hint {
   font-size: 12px;
   margin-top: 3px !important;
-}
-
-/**
-EX-IconPicker
- */
-.ez_container {
-  max-width: 400px !important;
-}
-
-.ez_main {
-  max-width: 320px !important;
-}
-
-.ez_search {
-  width: 320px !important;
 }

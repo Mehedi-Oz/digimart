@@ -30,7 +30,13 @@
               }
             },
             error: function (xhr, status, error) {
-              flasher.error(xhr.responseJSON?.message ?? 'Something went wrong');
+              const errorMessage = xhr.responseJSON?.message ?? 'Something went wrong';
+              Swal.fire({
+                title: 'Error',
+                text: errorMessage,
+                icon: 'error',
+                confirmButtonColor: '#d33'
+              });
             }
           });
         }

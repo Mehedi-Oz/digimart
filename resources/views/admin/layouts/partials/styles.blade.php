@@ -23,5 +23,8 @@
     }
 </style>
 
+{{-- Option Searching --}}
+<link href="{{ asset('assets/admin/css/select2.min.css') }}" rel="stylesheet" />
+
 {{-- Custom Css --}}
 <link href="{{ asset('assets/admin/css/custom.css') }}" rel="stylesheet" />
