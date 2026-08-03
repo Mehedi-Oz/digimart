@@ -28,11 +28,11 @@
             </li>
             @if (isAuthor())
                 <li class="sidebar-list__item">
-                    <a href="{{ route('is_author') }}" class="sidebar-list__link">
+                    <a href="{{ route('user.items.index') }}" class="sidebar-list__link">
                         <span class="sidebar-list__icon">
-                            <i class="ti ti-building-store"></i>
+                            <i class="ti ti-list-check"></i>
                         </span>
-                        <span class="text">Products</span>
+                        <span class="text">Items</span>
                     </a>
                 </li>
             @endif

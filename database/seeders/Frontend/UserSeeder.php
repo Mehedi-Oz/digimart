@@ -18,5 +18,12 @@ class UserSeeder extends Seeder
             'email' => 'user@gmail.com',
             'password' => '12345678'
         ]);
+        User::create([
+            'name' => 'author',
+            'email' => 'author@gmail.com',
+            'user_type' => 'author',
+            'kyc_status' => 1,
+            'password' => '12345678'
+        ]);
     }
 }

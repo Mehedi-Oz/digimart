@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ItemController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\KycVerificationController;
@@ -20,13 +21,14 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     /* KYC Settings Management Routes */
     Route::get('/kyc', [KycVerificationController::class, 'index'])->name('kyc.index')->middleware('kyc');
     Route::post('/kyc', [KycVerificationController::class, 'store'])->name('kyc.store')->middleware('kyc');
+});
 
-    /* Author Management Routes */
-    Route::get('/test-author', function () {
-        dd('this can only be accessed by a author!');
-    })->name('is_author')->middleware('is_author');
+/* Author Management Routes */
+Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
+    Route::group(['middleware' => ['is_author']], function () {
+        Route::get('/items', [ItemController::class, 'index'])->name('items.index');
+        Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
+    });
 });
 
 require __DIR__ . '/auth.php';
-
-

@@ -8,6 +8,16 @@ body {
 }
 
 /**
+SweetAlert2: Prevent body padding/overflow changes from causing layout shift
+ */
+body.swal2-shown:not(.swal2-no-backdrop),
+body.swal2-height-auto {
+  overflow: hidden !important;
+  padding-right: 0 !important;
+  width: 100% !important;
+}
+
+/**
 Tabler-IconSize
  */
 .ti {

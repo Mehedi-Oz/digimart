@@ -2,10 +2,11 @@
     <label for="{{ $name }}" class="form-label mb-2 font-18 font-heading fw-600">{{ $label }}
         @if ($required)
             <code>*</code>
-        @endif</label>
+        @endif
+    </label>
     <div class="">
         <select {{ $attributes->class(['common-input', 'is-invalid' => $errors->has($name)]) }}
-            name="{{ $name }}">
+            name="{{ $name }}" {{ $required ? 'required' : ' ' }}>
             <option value="" disabled selected>{{ __('Select Document Type') }}</option>
             {{ $slot }}
         </select>

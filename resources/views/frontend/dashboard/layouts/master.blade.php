@@ -10,6 +10,7 @@
 
     <!-- CSS files -->
     @include('frontend.layouts.partials.styles')
+    @stack('styles')
 </head>
 
 <body>
@@ -155,6 +156,7 @@
 
     <!-- Js files -->
     @include('frontend.layouts.partials.scripts')
+    @stack('scripts')
 
 </body>
 
