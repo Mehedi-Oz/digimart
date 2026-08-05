@@ -17,6 +17,12 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!-- Option Searching -->
 <link rel="stylesheet" href="{{ asset('assets/frontend/css/select2.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/frontend/css/select2-theme.css') }}">
+<!-- Tags-Input -->
+<link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap-tagsinput.css') }}">
+
+<!-- Custom dashboard css -->
+<link rel="stylesheet" href="{{ asset('assets/frontend/css/custom/dashboard.css') }}">
 
 <!-- Main css -->
 <link rel="stylesheet" href="{{ asset('assets/frontend/css/main.css') }}">

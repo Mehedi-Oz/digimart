@@ -1,0 +1,33 @@
+/**
+Layout: Prevent horizontal scrollbar caused by absolutely positioned
+ */
+html,
+body {
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+/**
+SweetAlert2: Prevent body padding/overflow changes from causing layout shift
+ */
+body.swal2-shown:not(.swal2-no-backdrop),
+body.swal2-height-auto {
+  overflow: hidden !important;
+  padding-right: 0 !important;
+  width: 100% !important;
+}
+
+/**
+Tabler-IconSize
+ */
+.ti {
+  font-size: 1.10rem;
+}
+
+/**
+FormHint
+ */
+span.form-hint {
+  font-size: 12px;
+  margin-top: 3px !important;
+}

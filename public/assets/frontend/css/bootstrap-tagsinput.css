@@ -1,0 +1,51 @@
+/**
+TagsInput
+ */
+.bootstrap-tagsinput {
+    width: 100% !important;
+    display: inline-block !important;
+    padding: 10px 12px !important;
+    font-family: inherit !important;
+    font-size: 1.0625rem !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    color: var(--colorBlack) !important;
+    background-color: transparent !important;
+    background-clip: padding-box !important;
+    border: 1px solid #ddd !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+    cursor: text;
+    vertical-align: middle;
+}
+
+.bootstrap-tagsinput .tag {
+    margin-right: 2px;
+    color: #fff !important;
+    background: var(--colorPrimary) !important;
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-size: 0.875rem;
+}
+
+.bootstrap-tagsinput .tag [data-role="remove"] {
+    margin-left: 4px;
+    cursor: pointer;
+}
+
+.bootstrap-tagsinput:has(+ input.is-invalid) {
+    border-color: var(--colorRed, #dc3545) !important;
+}
+
+.bootstrap-tagsinput input {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    background: transparent !important;
+    width: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: inherit !important;
+    color: inherit !important;
+}

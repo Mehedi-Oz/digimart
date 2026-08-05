@@ -10,7 +10,7 @@ class InputText extends Component
 {
 
     public string $name, $label, $type;
-    public ?string $id, $value, $placeholder;
+    public ?string $id, $value, $placeholder, $hint;
     public bool $required;
 
     /**
@@ -23,6 +23,7 @@ class InputText extends Component
         string $id = null,
         string $value = null,
         string $placeholder = null,
+        string $hint = null,
         bool $required = false
     ) {
         $this->name = $name;
@@ -31,6 +32,7 @@ class InputText extends Component
         $this->id = $id ?? $name;
         $this->value = $value;
         $this->placeholder = $placeholder;
+        $this->hint = $hint;
         $this->required = $required;
     }
 

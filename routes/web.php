@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\ItemController;
+use App\Http\Controllers\Frontend\ItemController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\KycVerificationController;
@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     Route::group(['middleware' => ['is_author']], function () {
         Route::get('/items', [ItemController::class, 'index'])->name('items.index');
         Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
+        Route::post('/items/uploads', [ItemController::class, 'itemUploads'])->name('items.uploads');
     });
 });
 

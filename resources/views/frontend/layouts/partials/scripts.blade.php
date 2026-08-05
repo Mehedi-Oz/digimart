@@ -20,10 +20,11 @@
 <script src="{{ asset('assets/frontend/js/select2.min.js') }}"></script>
 <!-- TinyMCE - Modify TextArea  -->
 <script src="{{ asset('assets/frontend/js/libs/tinymce/tinymce.min.js') }}"></script>
+<!-- TagsInput js -->
+<script src="{{ asset('assets/frontend/js/bootstrap-tagsinput.min.js') }}"></script>
 
 
-
+<!-- Custom dashboard js -->
+<script src="{{ asset('assets/frontend/js/custom/dashboard.js') }}"></script>
 <!-- main js -->
 <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
-<!-- dashboard js -->
-<script src="{{ asset('assets/frontend/js/custom/dashboard.js') }}"></script>

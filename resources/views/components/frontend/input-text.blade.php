@@ -6,5 +6,8 @@
     </label>
     <input type="{{ $type }}" {{ $attributes->class(['common-input', 'is-invalid' => $errors->has($name)]) }}
         id="{{ $id }}" name="{{ $name }}" value="{{ $value }}" placeholder="{{ $placeholder }}">
+    @if ($hint)
+        <span class="form-text">{{ $hint }}</span>
+    @endif
     <x-input-error :messages="$errors->first($name)" />
 </div>

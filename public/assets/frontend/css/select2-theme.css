@@ -1,0 +1,89 @@
+/**
+Select2 multiple (pillbox) theme
+ */
+.select2-container--default .select2-selection--multiple {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: transparent;
+    padding: 10px;
+    min-height: 54px;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    border-color: #ddd;
+    box-shadow: none;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    padding: 0;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: var(--colorPrimary);
+    border: 0;
+    border-radius: 20px;
+    color: var(--colorWhite);
+    padding: 4px 12px 4px 8px;
+    position: relative;
+    margin: 3px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 22px;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__display {
+    color: var(--colorWhite);
+    padding-left: 24px;
+    padding-right: 4px;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--colorWhite);
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    padding: 0;
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover,
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:focus {
+    background: rgba(255, 255, 255, 0.35);
+    color: var(--colorWhite);
+    outline: none;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__placeholder {
+    color: var(--paraColor);
+}
+
+.select2-container--default .select2-search--inline .select2-search__field {
+    color: var(--colorBlack);
+    height: 30px;
+    min-width: 120px;
+    margin: 3px 5px;
+    padding: 0 10px;
+    font-size: 1rem;
+    border: 0;
+    border-radius: 20px;
+    background: transparent;
+}
+
+.select2-dropdown {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: var(--box-shadow);
+}
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+    background-color: var(--colorPrimary);
+    color: var(--colorWhite);
+}
