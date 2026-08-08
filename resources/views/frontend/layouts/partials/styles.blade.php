@@ -21,6 +21,9 @@
 <!-- Tags-Input -->
 <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap-tagsinput.css') }}">
 
+<!-- Notyf CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+
 <!-- Custom dashboard css -->
 <link rel="stylesheet" href="{{ asset('assets/frontend/css/custom/dashboard.css') }}">
 

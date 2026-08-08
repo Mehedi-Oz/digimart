@@ -1,14 +1,13 @@
 <?php
 
-use App\Http\Controllers\Frontend\ItemController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\ItemController;
 use App\Http\Controllers\Frontend\KycVerificationController;
 use App\Http\Controllers\Frontend\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -29,7 +28,8 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
         Route::get('/items', [ItemController::class, 'index'])->name('items.index');
         Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
         Route::post('/items/uploads', [ItemController::class, 'itemUploads'])->name('items.uploads');
+        Route::delete('/items/destroy/{id}', [ItemController::class, 'itemDestroy'])->name('items.destroy');
     });
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

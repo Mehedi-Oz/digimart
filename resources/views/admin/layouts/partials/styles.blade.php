@@ -25,6 +25,7 @@
 
 {{-- Option Searching --}}
 <link href="{{ asset('assets/admin/css/select2.min.css') }}" rel="stylesheet" />
+
 {{-- Tags Input --}}
 <link href="{{ asset('assets/admin/css/bootstrap-tagsinput.css') }}" rel="stylesheet" />
 

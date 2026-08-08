@@ -2,7 +2,7 @@
 <script src="{{ asset('assets/frontend/js/jquery-3.7.1.min.js') }}"></script>
 <!-- Bootstrap Bundle Js -->
 <script src="{{ asset('assets/frontend/js/boostrap.bundle.min.js') }}"></script>
-<!-- CountDown -->
+{{-- <!-- CountDown -->
 <script src="{{ asset('assets/frontend/js/countdown.js') }}"></script>
 <!-- counter up -->
 <script src="{{ asset('assets/frontend/js/counterup.min.js') }}"></script>
@@ -15,7 +15,7 @@
 <!-- marquee -->
 <script src="{{ asset('assets/frontend/js/marquee.min.js') }}"></script>
 <!-- infinite slide  -->
-<script src="{{ asset('assets/frontend/js/infiniteslidev2.js') }}"></script>
+<script src="{{ asset('assets/frontend/js/infiniteslidev2.js') }}"></script> --}}
 <!-- Option Searching  -->
 <script src="{{ asset('assets/frontend/js/select2.min.js') }}"></script>
 <!-- TinyMCE - Modify TextArea  -->
@@ -23,6 +23,8 @@
 <!-- TagsInput js -->
 <script src="{{ asset('assets/frontend/js/bootstrap-tagsinput.min.js') }}"></script>
 
+<!-- Notyf Js -->
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
 <!-- Custom dashboard js -->
 <script src="{{ asset('assets/frontend/js/custom/dashboard.js') }}"></script>

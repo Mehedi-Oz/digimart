@@ -9,8 +9,8 @@
         @endif
     </label>
     <div class="">
-        <select {{ $attributes->class(['common-input', 'is-invalid' => $errors->has($name)]) }}
-            id="{{ $id }}" name="{{ $name }}" {{ $required ? 'required' : '' }}>
+        <select {{ $attributes->class(['common-input', 'is-invalid' => $errors->has($name)]) }} id="{{ $id }}"
+            name="{{ $name }}" {{ $required ? 'required' : '' }}>
             @if (!$isMultiple)
                 <option value="" disabled selected>{{ __('Select') }}</option>
             @endif

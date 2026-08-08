@@ -9,9 +9,9 @@
     // ============================== Light & Dark Mode Js Start=====================
 
 
-    // ============================== Light & Dark Mode Js End============================== 
+    // ============================== Light & Dark Mode Js End==============================
 
-    // ============================== Auto Suggestion Js Start ============================== 
+    // ============================== Auto Suggestion Js Start ==============================
     $('.auto-suggestion-input').on('input', function (event) {
       event.stopPropagation();
       $(this).addClass('active');
@@ -22,16 +22,16 @@
       $('.auto-suggestion-input').removeClass('active');
       $('.auto-suggestion-list').removeClass('active');
     });
-    // ============================== Auto Suggestion Js End ============================== 
+    // ============================== Auto Suggestion Js End ==============================
 
 
-    // ============================== Auto Suggestion Text value place to the input field Js End ============================== 
+    // ============================== Auto Suggestion Text value place to the input field Js End ==============================
     $('.auto-suggestion-list__item').on('click', function (event) {
       event.preventDefault();
       const textValue = $(this).text().trim();
       $('.auto-suggestion-input').val(textValue);
     });
-    // ============================== Auto Suggestion Text value place to the input field Js End ============================== 
+    // ============================== Auto Suggestion Text value place to the input field Js End ==============================
 
 
     // ============== Mobile Menu Sidebar Js Start ========
@@ -141,7 +141,7 @@
     // ================================ Remove Sale Offer Js End =============================
 
     // ================================ CountDown Js Start =============================
-    if (document.querySelector('.countdown')) {
+    if (typeof countdown !== 'undefined' && document.querySelector('.countdown')) {
       const myCountdown = new countdown({
         target: '.countdown',
         dayWord: ' Days:',
@@ -153,7 +153,7 @@
     // ================================ CountDown Js End =============================
 
     // ========================= popular Category Js Start ==============
-    $('.popular-slider').slick({
+    if ($.fn.slick) $('.popular-slider').slick({
       slidesToShow: 6,
       slidesToScroll: 1,
       autoplay: true,
@@ -197,13 +197,14 @@
     // ========================= popular Category Js End ===================
 
     // ========================= Wishlist Js Start ===================
+
     $('.product-item__wishlist').on('click', function () {
       $(this).toggleClass('active')
     });
     // ========================= Wishlist Js End ===================
 
     // ========================= Selling Product Js Start ==============
-    $('.selling-product-slider').slick({
+    if ($.fn.slick) $('.selling-product-slider').slick({
       slidesToShow: 2,
       slidesToScroll: 1,
       autoplay: true,
@@ -247,7 +248,7 @@
     // ========================= Selling Product Js End ===================
 
     // ========================= Testimonial Slider Js Start ==============
-    $('.testimonial-slider').slick({
+    if ($.fn.slick) $('.testimonial-slider').slick({
       slidesToShow: 2,
       slidesToScroll: 1,
       autoplay: true,
@@ -273,7 +274,7 @@
     // ========================= Testimonial Slider Js End ===================
 
     // ========================= Selling Product Js Start ==============
-    $('.resource-slider').slick({
+    if ($.fn.slick) $('.resource-slider').slick({
       slidesToShow: 4,
       slidesToScroll: 1,
       autoplay: true,
@@ -311,7 +312,7 @@
     // ========================= Selling Product Js End ===================
 
     // ========================= Brand Slider Js Start ==============
-    $('.brand-slider').slick({
+    if ($.fn.slick) $('.brand-slider').slick({
       slidesToShow: 5,
       slidesToScroll: 1,
       autoplay: true,
@@ -356,7 +357,7 @@
 
 
     // ========================= Brand Three Slider Js Start ==============
-    $('.brand-three-slider').slick({
+    if ($.fn.slick) $('.brand-three-slider').slick({
       slidesToShow: 7,
       slidesToScroll: 1,
       autoplay: true,
@@ -419,7 +420,7 @@
     // ========================= Service Item Js End ===================
 
     // ========================= Latest Project Slider Into Tab Js Start ==============
-    $('.latest-project-slider').slick({
+    if ($.fn.slick) $('.latest-project-slider').slick({
       slidesToShow: 3,
       slidesToScroll: 1,
       autoplay: true,
@@ -451,7 +452,7 @@
     // ========================= Latest Project Slider Into Tab Js End ===================
 
     // ========================= Selling Product Js Start ==============
-    $('.team-item-slider').slick({
+    if ($.fn.slick) $('.team-item-slider').slick({
       slidesToShow: 4,
       slidesToScroll: 1,
       autoplay: true,
@@ -489,7 +490,7 @@
     // ========================= Selling Product Js End ===================
 
     // ========================= Testimonial Slider Js Start ===================
-    $('.testimonial-three-thumb-slider').slick({
+    if ($.fn.slick) $('.testimonial-three-thumb-slider').slick({
       slidesToShow: 1,
       slidesToScroll: 1,
       arrows: true,
@@ -507,7 +508,7 @@
         },
       ]
     });
-    $('.testimonial-three-item-slider').slick({
+    if ($.fn.slick) $('.testimonial-three-item-slider').slick({
       slidesToShow: 1,
       slidesToScroll: 1,
       asNavFor: '.testimonial-three-thumb-slider',
@@ -519,7 +520,7 @@
     // ========================= Testimonial Slider Js End ===================
 
     // ========================== Text Slide Js Start =====================
-    $('.text-slider').marquee({
+    if ($.fn.marquee) $('.text-slider').marquee({
       pauseOnHover: true,
 
       allowCss3Support: true,
@@ -535,7 +536,7 @@
 
 
     // ========================= Payment Method Slider Js Start ==============
-    $('.payment-method__slider').slick({
+    if ($.fn.slick) $('.payment-method__slider').slick({
       slidesToShow: 10,
       slidesToScroll: 1,
       autoplay: false,
@@ -618,7 +619,8 @@
     // ========================= Text Rotation Js End ==========================
 
     // ========================= Counter Up Js End ===================
-    const counterUp = window.counterUp.default;
+    const counterUp = window.counterUp ? window.counterUp.default : null;
+    if (!counterUp) return;
 
     const callback = (entries) => {
       entries.forEach((entry) => {
@@ -704,7 +706,7 @@
 
     // For device width size js start
     // let screenSize = screen.width
-    // alert(' Your Screen Size is: ' + screenSize + 'pixel'); 
+    // alert(' Your Screen Size is: ' + screenSize + 'pixel');
     // For device width size js start
 
     let socialShareBtn = $('.social-share');
@@ -865,25 +867,27 @@
     // ========================== Image Upload Js End =====================
 
     // ========================== Magnific Popup Js Start =====================
-    $('.screenshot-btn').on('click', function () {
-      var images = JSON.parse($(this).attr('data-images'));
-      var items = [];
+    if ($.fn.magnificPopup) {
+      $('.screenshot-btn').on('click', function () {
+        var images = JSON.parse($(this).attr('data-images'));
+        var items = [];
 
-      for (var i = 0; i < images.length; i++) {
-        items.push({
-          src: images[i],
+        for (var i = 0; i < images.length; i++) {
+          items.push({
+            src: images[i],
+            type: 'image'
+          });
+        }
+
+        $.magnificPopup.open({
+          items: items,
+          gallery: {
+            enabled: true
+          },
           type: 'image'
         });
-      }
-
-      $.magnificPopup.open({
-        items: items,
-        gallery: {
-          enabled: true
-        },
-        type: 'image'
       });
-    });
+    }
     // ========================== Magnific Popup Js End =====================
 
     // ========================== Footer Has Class section bg Js Start =====================
@@ -1007,12 +1011,12 @@
 
   // banner scroll images
   $(document).ready(function () {
-    $('.direction_right').infiniteslide({
+    if ($.fn.infiniteslide) $('.direction_right').infiniteslide({
       speed: 20,
       direction: 'up',
       'responsive': true
     });
-    $('.direction_left').infiniteslide({
+    if ($.fn.infiniteslide) $('.direction_left').infiniteslide({
       speed: 20,
       direction: 'down',
       'responsive': true
@@ -1035,4 +1039,3 @@
 
 
 })(jQuery);
-

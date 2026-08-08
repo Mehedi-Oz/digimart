@@ -7,7 +7,7 @@
     const csrf = $('meta[name=csrf]').attr('content');
     $('.delete-item').on('click', function (e) {
       e.preventDefault();
-      var url = $(this).attr('href');
+      let url = $(this).attr('href');
       Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
