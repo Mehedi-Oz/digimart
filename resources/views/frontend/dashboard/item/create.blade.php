@@ -91,7 +91,7 @@
             </div>
         </div>
     </div>
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data" id="item-form">
         @csrf
         <div class="wsus__dash_order_table mt-3">
             <div>
@@ -120,11 +120,12 @@
                             </option>
                         @endforeach
                     </x-frontend.input-select>
+                    <input type="hidden" name="category" value="{{ $selectedCategory->id }}">
                 </div>
                 <div class="col-md-12">
                     <x-frontend.input-select name="sub_category" :label="__('Sub Category')" class="select_2" :required="true">
                         @foreach ($selectedCategory->subcategories as $sub_category)
-                            <option value="{{ $sub_category->slug }}">{{ $sub_category->name }}</option>
+                            <option value="{{ $sub_category->id }}">{{ $sub_category->name }}</option>
                         @endforeach
                     </x-frontend.input-select>
                 </div>
@@ -201,28 +202,90 @@
                         <code>*</code>
                     </label>
                     <div class="input-group mb-3">
-                        <select class="form-select" id="main_file_selector">
+                        <select name="source_type" class="form-select" id="main_file_selector">
                             <option selected value="upload">{{ __('Upload') }}</option>
                             <option value="link">{{ __('Link') }}</option>
                         </select>
-                        <select class="form-select" id="upload_source">
+                        <select name="upload_source" class="form-select" id="upload_source">
                             @foreach ($uploadedFiles as $uploadedFile)
                                 <option value="{{ $uploadedFile->path }}">{{ $uploadedFile->name }}</option>
                             @endforeach
                         </select>
-                        <input id="link_source" type="text" name="main_file"
-                            class="form-control {{ $errors->has('main_file') ? 'is-invalid' : '' }} d-none"
+                        <input id="link_source" name="link_source" type="text" class="form-control d-none"
                             aria-label="Text input with dropdown button">
                     </div>
                     <x-input-error :messages="$errors->first('main_file')" />
                 </div>
                 <div class="col-md-12">
                     <x-frontend.input-select id="screenshot_input" name="screenshots[]" :label="__('Screenshots')"
-                        multiple="multiple" class="select_2" :required="true">
+                        multiple="multiple" class="select_2">
                         @foreach ($uploadedFiles as $uploadedFile)
                             <option value="{{ $uploadedFile->path }}">{{ $uploadedFile->name }}</option>
                         @endforeach
                     </x-frontend.input-select>
+                </div>
+            </div>
+        </div>
+        <div class="wsus__dash_order_table mt-3">
+            <div>
+                <h6>{{ __('Support') }}</h6>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    <x-frontend.input-select id="support-input" name="support" :label="__('Item will be supported?')" :required="true">
+                        <option value="1">{{ __('Yes') }}</option>
+                        <option value="0">{{ __('No') }}</option>
+                    </x-frontend.input-select>
+                </div>
+                <div class="col-md-12 d-none" id="support-instruction">
+                    <x-frontend.text-area name="support_instruction" :label="__('Support Instructions')" />
+                </div>
+            </div>
+        </div>
+        <div class="wsus__dash_order_table mt-3">
+            <div>
+                <h6>{{ __('Pricing') }}</h6>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <x-frontend.input-text name="price" :label="__('Regular Price')" :required="true" />
+                </div>
+                <div class="col-md-6">
+                    <x-frontend.input-text name="discount_price" :label="__('Discount Price')" />
+                </div>
+            </div>
+        </div>
+        <div class="wsus__dash_order_table mt-3">
+            <div>
+                <h6>{{ __('Free Item') }}</h6>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    <x-frontend.input-select name="is_free" :label="__('Is the item free?')" :hint="__('Allow downloading for free? Anyone can download without purchasing!')" :required="true">
+                        <option value="0">{{ __('No') }}</option>
+                        <option value="1">{{ __('Yes') }}</option>
+                    </x-frontend.input-select>
+                </div>
+            </div>
+        </div>
+        <div class="wsus__dash_order_table mt-3">
+            <div>
+                <h6>{{ __('Message to the Reviewer') }}</h6>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    <x-frontend.text-area name="message_for_reviewer" :label="__('Message')" />
+                </div>
+            </div>
+        </div>
+        <div class="wsus__dash_order_table mt-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <x-frontend.submit-button :label="__('Create Item')" />
                 </div>
             </div>
         </div>
@@ -395,6 +458,7 @@
             });
         }
 
+        /* hide upload section based on main_file_selector */
         document.getElementById("main_file_selector").addEventListener("change", function() {
             const selectedValue = this.value;
             const uploadSource = document.getElementById("upload_source");
@@ -407,6 +471,48 @@
                 uploadSource.classList.add("d-none");
                 linkSource.classList.remove("d-none");
             }
+        });
+
+        /* hide support instruction based on support input */
+        document.getElementById("support-input").addEventListener("change", function() {
+            const selectedValue = this.value;
+            const supportInstruction = document.getElementById('support-instruction');
+
+            if (selectedValue === "1") {
+                supportInstruction.classList.remove('d-none');
+            } else if (selectedValue === "0") {
+                supportInstruction.classList.add('d-none');
+            }
+        });
+
+        /* handle form submission */
+        $('#item-form').on('submit', function(e) {
+            e.preventDefault();
+
+            if (window.tinymce) {
+                tinymce.triggerSave();
+            }
+
+            let formData = $(this).serialize();
+
+            $.ajax({
+                method: 'POST',
+                url: '/user/items/store',
+                data: formData,
+                success: function(response) {
+                    if (response.status == 'success') {
+                        window.location.href = response.redirect;
+                    }
+                },
+                error: function(xhr, status, error) {
+                    const errors = xhr.responseJSON.errors;
+                    for (const key in errors) {
+                        errors[key].forEach(error => {
+                            notyf.error(error);
+                        });
+                    }
+                }
+            })
         });
     </script>
 @endpush

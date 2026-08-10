@@ -16,6 +16,9 @@
             @endif
             {{ $slot }}
         </select>
+        @if ($hint)
+            <span class="form-text">{{ $hint }}</span>
+        @endif
         <x-input-error :messages="$errors->first($name)" />
     </div>
 </div>

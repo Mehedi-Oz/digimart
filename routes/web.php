@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
         Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
         Route::post('/items/uploads', [ItemController::class, 'itemUploads'])->name('items.uploads');
         Route::delete('/items/destroy/{id}', [ItemController::class, 'itemDestroy'])->name('items.destroy');
+        Route::post('/items/store', [ItemController::class, 'itemStore'])->name('items.store');
     });
 });
 

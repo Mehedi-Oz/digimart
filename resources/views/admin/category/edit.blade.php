@@ -51,9 +51,6 @@
                         </form>
                     </div>
                 </div>
-                <div class="card-footer text-end">
-
-                </div>
             </div>
         </div>
     </div>

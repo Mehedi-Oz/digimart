@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Sluggable\Attributes\Sluggable;
 
+#[Sluggable(from: 'name', to: 'slug')]
 class Item extends Model
 {
     protected $fillable = [
@@ -38,5 +40,11 @@ class Item extends Model
         'is_best-selling',
         'is_on_discount',
         'is_featured',
+    ];
+
+    protected $casts = [
+        'options' => 'array',
+        'tags' => 'array',
+        'screenshots' => 'array',
     ];
 }

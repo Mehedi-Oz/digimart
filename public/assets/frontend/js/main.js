@@ -620,37 +620,31 @@
 
     // ========================= Counter Up Js End ===================
     const counterUp = window.counterUp ? window.counterUp.default : null;
-    if (!counterUp) return;
+    if (counterUp) {
+      const callback = (entries) => {
+        entries.forEach((entry) => {
+          const el = entry.target;
+          if (entry.isIntersecting && !el.classList.contains('is-visible')) {
+            counterUp(el, {
+              duration: 3500,
+              delay: 16,
+            });
+            el.classList.add('is-visible');
+          }
+        });
+      };
 
-    const callback = (entries) => {
-      entries.forEach((entry) => {
-        const el = entry.target;
-        if (entry.isIntersecting && !el.classList.contains('is-visible')) {
-          counterUp(el, {
-            duration: 3500,
-            delay: 16,
-          });
-          el.classList.add('is-visible');
-        }
-      });
-    };
+      const IO = new IntersectionObserver(callback, { threshold: 1 });
 
-    const IO = new IntersectionObserver(callback, { threshold: 1 });
+      const statisticsCounter = document.querySelectorAll('.statistics__amount');
+      if (statisticsCounter.length > 0) {
+        statisticsCounter.forEach((counterNumber) => IO.observe(counterNumber));
+      }
 
-    // Banner statistics Counter
-    const statisticsCounter = document.querySelectorAll('.statistics__amount');
-    if (statisticsCounter.length > 0) {
-      statisticsCounter.forEach((counterNumber) => {
-        IO.observe(counterNumber);
-      });
-    }
-
-    // performance Count
-    const performanceCount = document.querySelectorAll('.performance-content__count');
-    if (performanceCount.length > 0) {
-      performanceCount.forEach((counterNumber) => {
-        IO.observe(counterNumber);
-      });
+      const performanceCount = document.querySelectorAll('.performance-content__count');
+      if (performanceCount.length > 0) {
+        performanceCount.forEach((counterNumber) => IO.observe(counterNumber));
+      }
     }
     // ========================= Counter Up Js End ===================
 
@@ -811,14 +805,18 @@
     // ========================== Password Show Hide Js End =====================
 
     // ========================== Dashboard Sidebar Js Start =====================
-    $('.bar-icon, .arrow-icon').on('click', function () {
-      $('.dashboard').toggleClass('active');
+    $('.bar-icon').on('click', function () {
+      if ($(window).width() < 992) {
+        $('.dashboard-sidebar').toggleClass('active');
+        $('.side-overlay').toggleClass('show');
+        $('body').toggleClass('scroll-hide-sm');
+      } else {
+        $('.dashboard').toggleClass('active');
+      }
     });
 
-    $('.bar-icon').on('click', function () {
-      $('.dashboard-sidebar').toggleClass('active');
-      $('.side-overlay').toggleClass('show');
-      $('body').toggleClass('scroll-hide-sm');
+    $('.arrow-icon').on('click', function () {
+      $('.dashboard').toggleClass('active');
     });
 
     $('.side-overlay, .dashboard-sidebar__close').on('click', function () {

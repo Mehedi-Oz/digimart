@@ -8,7 +8,12 @@ use Illuminate\View\Component;
 
 class InputSelect extends Component
 {
-    public string $name, $label;
+    public string $name;
+
+    public string $label;
+
+    public ?string $hint;
+
     public bool $required;
 
     /**
@@ -16,11 +21,13 @@ class InputSelect extends Component
      */
     public function __construct(
         string $name,
-        string $label = null,
+        ?string $label = null,
+        ?string $hint = null,
         bool $required = false
     ) {
         $this->name = $name;
         $this->label = $label ?? \Str::title(str_replace('_', ' ', $name));
+        $this->hint = $hint;
         $this->required = $required;
     }
 
