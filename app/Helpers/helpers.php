@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Item;
 use App\Models\KycVerification;
 use Illuminate\Support\Facades\Auth;
 
@@ -69,7 +70,7 @@ if (! function_exists('formatSize')) {
             count($sizes) - 1
         );
 
-        return round($bytes / pow(1024, $factor), $decimalPlaces).' '.$sizes[$factor];
+        return round($bytes / pow(1024, $factor), $decimalPlaces) . ' ' . $sizes[$factor];
     }
 }
 
@@ -94,5 +95,18 @@ if (! function_exists('getIcon')) {
         }
 
         return $fileIcon;
+    }
+}
+
+/* check author product status */
+if (! function_exists('authorProductStatus')) {
+    function authorProductStatus(string $productId): bool|string
+    {
+        $item = Item::where('id', $productId)->where('author_id', user()->id)->first();
+
+        if ($item) {
+            return $item->status;
+        }
+        return false;
     }
 }

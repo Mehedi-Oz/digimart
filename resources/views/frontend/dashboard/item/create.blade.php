@@ -1,7 +1,7 @@
 @extends('frontend.dashboard.layouts.master')
 
 @section('title')
-    {{ __('Items') }}
+    {{ __('Create Item') }}
 @endsection
 
 @push('styles')
@@ -85,9 +85,7 @@
             </div>
             <div>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    {{ __('Back') }}
-                </button>
+                <a href="{{ route('user.items.index') }}" class="btn btn-primary">{{ __('Back') }}</a>
             </div>
         </div>
     </div>

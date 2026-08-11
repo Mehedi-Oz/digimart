@@ -23,86 +23,88 @@
                 <thead>
                     <tr>
                         <th class="sn">
-                            serial
+                            {{ __('SN') }}
                         </th>
                         <th class="details">
-                            details
-                        </th>
-                        <th class="p_date">
-                            Purchase Date
-                        </th>
-                        <th class="e_date">
-                            Expired Date
+                            {{ __('Details') }}
                         </th>
                         <th class="price">
-                            Price
+                            {{ __('Price') }}
+                        </th>
+                        <th class="p_date">
+                            {{ __('Publish Date') }}
+                        </th>
+                        <th class="status">
+                            {{ __('Status') }}
                         </th>
                         <th class="action">
-                            action
+                            {{ __('action') }}
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="sn">
-                            <p>1</p>
-                        </td>
-                        <td class="details">
-                            <a class="title" href="#">Complete Blender Creator Learn 3D Modelling.</a>
-                        </td>
-                        <td class="p_date">
-                            <p>2021-12-28</p>
-                        </td>
-                        <td class="e_date">
-                            <p>2021-12-28</p>
-                        </td>
-                        <td class="price">
-                            <p>$300</p>
-                        </td>
-                        <td class="action">
-                            <a class="view" href="#"><i class="ti ti-eye"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="sn">
-                            <p>2</p>
-                        </td>
-                        <td class="details">
-                            <a class="title" href="#">Complete Blender Creator Learn 3D Modelling.</a>
-                        </td>
-                        <td class="p_date">
-                            <p>2021-12-28</p>
-                        </td>
-                        <td class="e_date">
-                            <p>2021-12-28</p>
-                        </td>
-                        <td class="price">
-                            <p>$300</p>
-                        </td>
-                        <td class="action">
-                            <a class="view" href="#"><i class="ti ti-eye"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="sn">
-                            <p>3</p>
-                        </td>
-                        <td class="details">
-                            <a class="title" href="#">Complete Blender Creator Learn 3D Modelling.</a>
-                        </td>
-                        <td class="p_date">
-                            <p>2021-12-28</p>
-                        </td>
-                        <td class="e_date">
-                            <p>2021-12-28</p>
-                        </td>
-                        <td class="price">
-                            <p>$300</p>
-                        </td>
-                        <td class="action">
-                            <a class="view" href="#"><i class="ti ti-eye"></i></a>
-                        </td>
-                    </tr>
+                    @forelse ($items as $item)
+                        <tr>
+                            <td class="sn">{{ $loop->iteration }}</td>
+                            <td class="details">
+                                <div class="d-flex">
+                                    @if ($item->preview_type == 'image')
+                                        <x-frontend.image-preview src="{{ asset($item->preview_image) }}" width="60"
+                                            height="60" />
+                                    @elseif($item->preview_type == 'video')
+                                        <img src="{{ asset('default/video.webp') }}" alt="">
+                                    @elseif($item->preview_type == 'audio')
+                                        <img src="{{ asset('default/audio.webp') }}" alt="">
+                                    @endif
+                                    <div class="ms-3">
+                                        <h3>
+                                            {{ $item->name }}
+                                        </h3>
+                                        <div class="d-flex">
+                                            <span class="text-primary">{{ $item->category?->name }}</span> <span
+                                                class="ms-2 me-2">/</span> <span
+                                                class="text-primary">{{ $item->subcategory?->name }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="price">
+                                @if ($item->discount_price > 0)
+                                    <span>{{ __('Regular Price: ') }}<del>
+                                            {{ $item->price }}{{ __(' Taka') }}</del></span>
+                                    <span>{{ __('Discount Price: ') }}{{ $item->discount_price }}{{ __(' Taka') }}</span>
+                                @else
+                                    <span>{{ __('Regular Price: ') }}{{ $item->price }}{{ __(' Taka') }}</span>
+                                @endif
+                            </td>
+                            <td class="p_date">
+                                <p>{{ formatDate($item->created_at) }}</p>
+                            </td>
+                            <td class="status">
+                                @if ($item->status == 'pending')
+                                    <div class="badge bg-warning">{{ __('Pending') }}</div>
+                                @elseif($item->status == 'approved')
+                                    <div class="badge bg-success">{{ __('Approved') }}</div>
+                                @elseif($item->status == 'soft_rejected')
+                                    <div class="badge bg-danger">{{ __('Soft Rejected') }}</div>
+                                @elseif($item->status == 'hard_rejected')
+                                    <div class="badge bg-danger">{{ __('Hard Rejected') }}</div>
+                                @elseif($item->status == 'resubmitted')
+                                    <div class="badge bg-primary">{{ __('Resubmitted') }}</div>
+                                @endif
+                            </td>
+                            <td class="action">
+                                @if($item->status=='approved' || $item->status=='soft_rejected')
+                                <a href="{{ route('user.items.edit', $item->id) }}"
+                                    class="btn btn-sm btn-primary">{{ __('Edit') }}</a>
+                                @else
+                                    <a href="{{ route('user.items.edit', $item->id) }}"
+                                    class="btn btn-sm btn-primary disabled">{{ __('Edit') }}</a>
+                                @endif
+                            </td>
+                        </tr>
+                    @empty
+                    @endforelse
                 </tbody>
             </table>
         </div>

@@ -4,15 +4,21 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\ItemStoreRequest;
+use App\Http\Requests\Frontend\ItemUpdateRequest;
 use App\Models\Category;
 use App\Models\Item;
+use App\Models\ItemChangeLog;
+use App\Models\ItemHistory;
 use App\Models\UploadedFiles;
 use App\Services\NotificationService;
 use App\Traits\FileUpload;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ItemController extends Controller
 {
@@ -21,8 +27,9 @@ class ItemController extends Controller
     public function index(): View
     {
         $categories = Category::all();
+        $items = Item::with(['category', 'subcategory'])->where('author_id', user()->id)->paginate(15);
 
-        return view('frontend.dashboard.item.index', compact('categories'));
+        return view('frontend.dashboard.item.index', compact('categories', 'items'));
     }
 
     public function create(Request $request): View
@@ -45,7 +52,7 @@ class ItemController extends Controller
         $categorySupportedExtensions = Category::find(session()->get('selectedCategory'))->file_types;
         $extensions = \Str::lower(implode(',', $categorySupportedExtensions));
         $request->validate([
-            'file.*' => ['required', 'mimes:'.$extensions],
+            'file.*' => ['required', 'mimes:' . $extensions],
         ]);
 
         foreach ($request->file('file') as $file) {
@@ -80,13 +87,13 @@ class ItemController extends Controller
         }
 
         try {
-            $fileName = uniqid().'.'.$file->getClientOriginalExtension();
+            $fileName = \Str::uuid() . '.' . $file->getClientOriginalExtension();
             $path = $file->storeAs("uploads/{$dir}", $fileName, $disk);
 
             return [
                 'name' => $file->getClientOriginalName(),
                 'extension' => $file->getClientOriginalExtension(),
-                'path' => "uploads/{$dir}/{$fileName}",
+                'path' => $path,
                 'size' => $file->getSize(),
                 'mime_type' => $file->getMimeType(),
             ];
@@ -145,8 +152,162 @@ class ItemController extends Controller
         $item->is_free = $request->is_free;
         $item->save();
 
+        /* Move public files to public/uploads/items folder */
+        $publicFiles = $request->screenshots ?? [];
+        $publicFiles[] = $request->preview_file;
+        foreach ($publicFiles as $file) {
+            if (! $file) {
+                continue;
+            }
+
+            $source = Storage::disk('local')->path($file);
+            $destination = public_path('uploads/items/' . basename($file));
+            if (File::exists($source)) {
+                File::ensureDirectoryExists(public_path('uploads/items'));
+                File::move($source, $destination);
+            }
+        }
+
+        // stone initial history
+        $itemHistory = new ItemHistory();
+        $itemHistory->author_id = user()->id;
+        $itemHistory->item_id = $item->id;
+        $itemHistory->title = 'Initial Submission';
+        $itemHistory->body = $request->message_for_reviewer;
+        $itemHistory->status = 'pending';
+        $itemHistory->save();
+
+        UploadedFiles::where('author_id', user()->id)
+            ->where('category_id', $item->category_id)?->delete();
+
         NotificationService::CREATED();
 
         return response()->json(['status' => 'success', 'redirect' => route('user.items.index')], 200);
+    }
+
+    public function itemEdit(string $id): View
+    {
+        $categories = Category::all();
+        $item = Item::with(['category', 'subcategory'])->where('id', $id)->where('author_id', user()->id)->findOrFail($id);
+        $uploadedFiles = UploadedFiles::where('author_id', auth()->id())
+            ->where('category_id', $item->category_id)
+            ->get();
+        // put category_id on session
+        session()->put('selectedCategory', $item->category->id);
+
+        return view('frontend.dashboard.item.edit', compact('categories', 'item', 'uploadedFiles'));
+    }
+
+    public function itemUpdate(ItemUpdateRequest $request, string $id)
+    {
+        $item = Item::where('id', $id)->where('author_id', user()->id)->firstOrFail();
+
+        if ($item->status != 'approved' || $item->status != 'soft_rejected') return abort(404);
+
+        $item->name = $request->name;
+        $item->description = $request->description;
+        $item->version = $request->version;
+        $item->demo_link = $request->demo_link;
+        $item->tags = explode(',', $request->tags);
+        if ($request->filled('preview_type')) {
+            $item->preview_type = $request->preview_type;
+        }
+        if ($request->filled('preview_file')) {
+            $item->preview_image = $request->preview_file;
+        }
+        if ($request->filled('preview_file')) {
+            $item->preview_video = $request->preview_file;
+        }
+        if ($request->filled('preview_file')) {
+            $item->preview_audio = $request->preview_file;
+        }
+        if ($request->filled('source_type')) {
+            $item->main_file = $request->source_type == 'upload' ? $request->upload_source : $request->link_source;
+        }
+        if ($request->filled('source_type')) {
+            $item->is_main_file_external = $request->source_type == 'upload' ? 0 : 1;
+        }
+        if ($request->filled('screenshots')) {
+            $item->screenshots = $request->screenshots;
+        }
+        $item->price = $request->price;
+        $item->discount_price = $request->discount_price;
+        $item->is_supported = $request->is_supported;
+        $item->support_instruction = $request->support_instruction;
+        $item->status = 'resubmitted';
+        $item->is_free = $request->is_free;
+        $item->save();
+
+        /* Move public files (preview_files, screenshots) to public/uploads/items folder */
+        $publicFiles = $request->screenshots ?? [];
+        $publicFiles[] = $request->preview_file;
+        foreach ($publicFiles as $file) {
+            if (! $file) {
+                continue;
+            }
+
+            $source = Storage::disk('local')->path($file);
+            $destination = public_path('uploads/items/' . basename($file));
+            if (File::exists($source)) {
+                File::ensureDirectoryExists(public_path('uploads/items'));
+                File::move($source, $destination);
+            }
+        }
+
+        UploadedFiles::where('author_id', user()->id)
+            ->where('category_id', $item->category_id)?->delete();
+
+        NotificationService::UPDATED();
+
+        return response()->json(['status' => 'success', 'redirect' => route('user.items.index')], 200);
+    }
+
+    public function itemDownload(string $id)
+    {
+        $item = Item::where('id', $id)->where('author_id', user()->id)->firstOrFail();
+
+        if ($item->is_main_file_external) {
+            return redirect()->away($item->main_file);
+        }
+
+        abort_unless(Storage::disk('local')->exists($item->main_file), 404, 'File not found.');
+
+        return Storage::disk('local')->download($item->main_file, basename($item->main_file));
+    }
+
+    public function itemChangelog(string $id): View
+    {
+        $item = Item::where('id', $id)->where('author_id', user()->id)->firstOrFail();
+
+        return view('frontend.dashboard.item.changelog', compact('item'));
+    }
+
+    public function itemHistory(string $id): View
+    {
+        $histories = ItemHistory::where('item_id', $id)->latest()->get();
+        $item = Item::where('id', $id)->where('author_id', user()->id)->firstOrFail();
+        return view('frontend.dashboard.item.history', compact('item', 'histories'));
+    }
+
+    public function storeChangelog(Request $request, string $id): RedirectResponse
+    {
+        $item = Item::where('id', $id)->where('author_id', user()->id)->firstOrFail();
+
+        $request->validate([
+            'version' => 'required|string|max:30',
+            'description' => 'required|string|max:1000',
+        ]);
+
+        if ($item->status != 'approved') return abort(404);
+
+        $changeLog = new ItemChangeLog();
+        $changeLog->version = $request->version;
+        $changeLog->description = $request->description;
+        $changeLog->item_id = $item->id;
+        $changeLog->save();
+
+        NotificationService::UPDATED();
+
+        return redirect()->back();
     }
 }

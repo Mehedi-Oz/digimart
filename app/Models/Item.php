@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Sluggable\Attributes\Sluggable;
 
 #[Sluggable(from: 'name', to: 'slug')]
@@ -47,4 +48,14 @@ class Item extends Model
         'tags' => 'array',
         'screenshots' => 'array',
     ];
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function subcategory(): BelongsTo
+    {
+        return $this->belongsTo(SubCategory::class, 'sub_category_id');
+    }
 }

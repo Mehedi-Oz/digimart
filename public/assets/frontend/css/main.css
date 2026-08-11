@@ -13216,7 +13216,7 @@ select {
 }
 
 .wsus__dash_order_table table tr .details {
-    min-width: 350px;
+    min-width: 200px;
 }
 
 .wsus__dash_order_table table tr .p_date,
