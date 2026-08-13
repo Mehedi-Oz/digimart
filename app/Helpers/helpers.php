@@ -13,6 +13,15 @@ if (! function_exists('user')) {
     }
 }
 
+/* Get logged in admin */
+
+if (! function_exists('admin')) {
+    function admin()
+    {
+        return Auth::guard('admin')->user();
+    }
+}
+
 /* Get pending kyc count */
 
 if (! function_exists('pendingKycCount')) {
@@ -108,5 +117,13 @@ if (! function_exists('authorProductStatus')) {
             return $item->status;
         }
         return false;
+    }
+}
+
+/* get item status count */
+if (! function_exists('getItemStatusCount')) {
+    function getItemStatusCount(string $status): int
+    {
+        return Item::select('select')->where('status', $status)->count();
     }
 }

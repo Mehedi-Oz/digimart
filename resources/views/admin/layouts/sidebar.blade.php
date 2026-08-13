@@ -142,6 +142,43 @@
                         </div>
                     </div>
                 </li>
+                @if (canAccess(['review products']))
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
+                        data-bs-auto-close="false" role="button" aria-expanded="true">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <i class="ti ti-certificate"></i>
+                        </span> <span class="nav-link-title">
+                            Item Review
+                        </span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-menu-columns">
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item" href="{{ route('admin.item-reviews.pending') }}">
+                                    Pending Items
+                                    <span
+                                        class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">{{ getItemStatusCount('pending') }}</span>
+                                </a>
+                                <a class="dropdown-item" href="{{ route('admin.item-reviews.resubmitted') }}">
+                                    Resubmitted Items
+                                    <span
+                                        class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">{{ getItemStatusCount('resubmitted') }}</span>
+                                </a>
+                                <a class="dropdown-item" href="{{ route('admin.item-reviews.soft-rejected') }}">
+                                    Soft-Rejected Items
+                                </a>
+                                <a class="dropdown-item" href="{{ route('admin.item-reviews.hard-rejected') }}">
+                                    Hard-Rejected Items
+                                </a>
+                                <a class="dropdown-item" href="{{ route('admin.item-reviews.approved') }}">
+                                    Approved Items
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                @endif
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.setting.index') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">

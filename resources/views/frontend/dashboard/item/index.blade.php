@@ -49,8 +49,7 @@
                             <td class="details">
                                 <div class="d-flex">
                                     @if ($item->preview_type == 'image')
-                                        <x-frontend.image-preview src="{{ asset($item->preview_image) }}" width="60"
-                                            height="60" />
+                                        <x-frontend.image-preview :src="$item->preview_image" width="60" height="60" />
                                     @elseif($item->preview_type == 'video')
                                         <img src="{{ asset('default/video.webp') }}" alt="">
                                     @elseif($item->preview_type == 'audio')
@@ -94,12 +93,12 @@
                                 @endif
                             </td>
                             <td class="action">
-                                @if($item->status=='approved' || $item->status=='soft_rejected')
-                                <a href="{{ route('user.items.edit', $item->id) }}"
-                                    class="btn btn-sm btn-primary">{{ __('Edit') }}</a>
+                                @if ($item->status == 'approved' || $item->status == 'soft_rejected')
+                                    <a href="{{ route('user.items.edit', $item->id) }}"
+                                        class="btn btn-sm btn-primary">{{ __('Edit') }}</a>
                                 @else
                                     <a href="{{ route('user.items.edit', $item->id) }}"
-                                    class="btn btn-sm btn-primary disabled">{{ __('Edit') }}</a>
+                                        class="btn btn-sm btn-primary disabled">{{ __('Edit') }}</a>
                                 @endif
                             </td>
                         </tr>

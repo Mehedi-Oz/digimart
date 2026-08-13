@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Sluggable\Attributes\Sluggable;
 
 #[Sluggable(from: 'name', to: 'slug')]
@@ -57,5 +58,14 @@ class Item extends Model
     public function subcategory(): BelongsTo
     {
         return $this->belongsTo(SubCategory::class, 'sub_category_id');
+    }
+
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'author_id', 'id');
+    }
+    public function histories(): HasMany
+    {
+        return $this->HasMany(ItemHistory::class)->latest();
     }
 }

@@ -95,7 +95,8 @@
 
         <ul class="nav nav-pills mt-3">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{ route('user.items.edit', $item->id) }}">{{ __('Edit Details') }}</a>
+                <a class="nav-link active" aria-current="page"
+                    href="{{ route('user.items.edit', $item->id) }}">{{ __('Edit Details') }}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('user.items.changelog', $item->id) }}">{{ __('Change Logs') }}</a>
@@ -330,8 +331,17 @@
                         <div class="col-md-6"><b>{{ __('Publish Date') }}</b></div>
                         <div class="col-md-6 text-end">{{ formatDate($item->created_at) }}</div>
                         <div class="col-md-12 mt-2">
-                            <a class="btn btn-primary w-100"
-                                href="{{ route('user.items.download', $item->id) }}">{{ __('Download') }}</a>
+                            @if ($item->demo_link)
+                                <a class="btn btn-yellow w-100 mb-2"
+                                    href="{{ $item->demo_link }}">{{ __('Demo') }}</a>
+                            @endif
+
+                            @if ($item->is_main_file_external == 1)
+                                <a class="btn btn-primary w-100" href="{{ $item->main_file }}">{{ __('File Link') }}</a>
+                            @else
+                                <a class="btn btn-primary w-100"
+                                    href="{{ route('user.items.download', $item->id) }}">{{ __('Download') }}</a>
+                            @endif
                         </div>
                     </div>
                 </div>

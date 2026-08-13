@@ -202,8 +202,7 @@ class ItemController extends Controller
     {
         $item = Item::where('id', $id)->where('author_id', user()->id)->firstOrFail();
 
-        if ($item->status != 'approved' || $item->status != 'soft_rejected') return abort(404);
-
+        if ($item->status == 'pending' || $item->status == 'hard_rejected') return response()->json(['status' => 'error', 'message' => __('Item not approved yet.')]);
         $item->name = $request->name;
         $item->description = $request->description;
         $item->version = $request->version;

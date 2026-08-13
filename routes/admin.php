@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ItemReviewController;
 use App\Http\Controllers\Admin\KycController;
 use App\Http\Controllers\Admin\KYCSettingController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -78,4 +79,14 @@ Route::middleware('auth:admin')
 
         /* SubCategory Management Routes */
         Route::resource('sub-categories', SubCategoryController::class);
+
+        /* Item Review Routes */
+        Route::get('item-reviews/pending', [ItemReviewController::class, 'pending'])->name('item-reviews.pending');
+        Route::get('item-reviews/approved', [ItemReviewController::class, 'approved'])->name('item-reviews.approved');
+        Route::get('item-reviews/soft-rejected', [ItemReviewController::class, 'softRejected'])->name('item-reviews.soft-rejected');
+        Route::get('item-reviews/hard-rejected', [ItemReviewController::class, 'hardRejected'])->name('item-reviews.hard-rejected');
+        Route::get('item-reviews/resubmitted', [ItemReviewController::class, 'resubmitted'])->name('item-reviews.resubmitted');
+        Route::get('item-reviews/{id}/show', [ItemReviewController::class, 'show'])->name('item-reviews.show');
+        Route::post('item-reviews/{id}/status', [ItemReviewController::class, 'updateStatus'])->name('item-reviews.status');
+        Route::get('item/{id}/download', [ItemReviewController::class, 'downloadItem'])->name('item.download');
     });
