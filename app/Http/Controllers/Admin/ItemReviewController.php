@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ItemStatusUpdateRequest;
 use App\Models\Item;
+use App\Models\ItemChangeLog;
 use App\Models\ItemHistory;
 use App\Services\MailSenderService;
 use App\Services\NotificationService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Storage;
@@ -107,5 +109,21 @@ class ItemReviewController extends Controller implements HasMiddleware
         abort_unless(Storage::disk('local')->exists($item->main_file), 404, 'File not found.');
 
         return Storage::disk('local')->download($item->main_file, basename($item->main_file));
+    }
+
+    public function changeLogStore(Request $request, string $id): RedirectResponse
+    {
+        $request->validate([
+            'version' => 'required|string|max:30',
+            'description' => 'required|string|max:1000',
+        ]);
+        $item = Item::where('id', $id)->where('author_id', user()->id)->firstOrFail();
+        $item::changelogs()->create([
+            'version' => $request->version,
+            'description' => $request->description,
+        ]);
+
+        NotificationService::UPDATED();
+        return redirect()->back();
     }
 }

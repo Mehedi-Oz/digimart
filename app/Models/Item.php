@@ -64,8 +64,14 @@ class Item extends Model
     {
         return $this->belongsTo(User::class, 'author_id', 'id');
     }
+
     public function histories(): HasMany
     {
         return $this->HasMany(ItemHistory::class)->latest();
+    }
+
+    public function changelogs(): HasMany
+    {
+        return $this->HasMany(ItemChangeLog::class)->latest();
     }
 }

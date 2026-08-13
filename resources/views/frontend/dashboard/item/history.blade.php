@@ -43,7 +43,7 @@
                         <p>{{ $history->body }}</p>
                         <p>{{ __('Status:') }}{{ Str::replace('_', ' ', $history->status) }}</p>
                         <hr>
-                        <span>{{ __('Date:') }}{{ formatDate($history->created_at) }}</span>
+                        <span>{{ __('Date: ') }}{{ formatDate($history->created_at) }}</span>
                     </div>
                 @empty
                     <div class="wsus__dash_order_table mt-3">
@@ -53,22 +53,18 @@
             </div>
             <div class="col-md-5">
                 <div class="wsus__dash_order_table mt-3">
-                    <div>
-                        <h6></h6>
-                    </div>
-                    <hr>
                     <div class="row">
-                        <div class="col-md-6"><b>{{ __('ID') }}</b></div>
-                        <div class="col-md-6 text-end">{{ $item->id }}</div>
-                        <hr style="margin-top: 15px">
-                        <div class="col-md-6"><b>{{ __('Name') }}</b></div>
-                        <div class="col-md-6 text-end">{{ $item->name }}</div>
-                        <hr style="margin-top: 15px">
-                        <div class="col-md-6"><b>{{ __('Category') }}</b></div>
-                        <div class="col-md-6 text-end">{{ $item->category->name }} / {{ $item->subcategory->name }}</div>
-                        <hr style="margin-top: 15px">
-                        <div class="col-md-6"><b>{{ __('Status') }}</b></div>
-                        <div class="col-md-6 text-end">
+                        <div class="col-6"><b>{{ __('ID') }}</b></div>
+                        <div class="col-6 text-end">{{ $item->id }}</div>
+                        <hr style="margin-top: 10px; margin-bottom: 10px;">
+                        <div class="col-6"><b>{{ __('Name') }}</b></div>
+                        <div class="col-6 text-end">{{ $item->name }}</div>
+                        <hr style="margin-top: 10px; margin-bottom: 10px;">
+                        <div class="col-6"><b>{{ __('Category') }}</b></div>
+                        <div class="col-6 text-end">{{ $item->category->name }} / {{ $item->subcategory->name }}</div>
+                        <hr style="margin-top: 10px; margin-bottom: 10px;">
+                        <div class="col-6"><b>{{ __('Status') }}</b></div>
+                        <div class="col-6 text-end">
                             @if ($item->status == 'approved')
                                 <span class="badge bg-success">{{ __('Approved') }}</span>
                             @elseif ($item->status == 'pending')
@@ -81,9 +77,9 @@
                                 <span class="badge bg-primary">{{ __('Resubmitted') }}</span>
                             @endif
                         </div>
-                        <hr style="margin-top: 15px">
-                        <div class="col-md-6"><b>{{ __('Publish Date') }}</b></div>
-                        <div class="col-md-6 text-end">{{ formatDate($item->created_at) }}</div>
+                        <hr style="margin-top: 10px; margin-bottom: 10px;">
+                        <div class="col-6"><b>{{ __('Publish Date') }}</b></div>
+                        <div class="col-6 text-end">{{ formatDate($item->created_at) }}</div>
                         <div class="col-md-12 mt-2">
                             <a class="btn btn-primary w-100"
                                 href="{{ route('user.items.download', $item->id) }}">{{ __('Download') }}</a>

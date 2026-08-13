@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ItemChangeLog extends Model
 {
-    //
+    protected $fillable = [
+        'item_id',
+        'version',
+        'description'
+    ];
 }
