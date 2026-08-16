@@ -26,6 +26,9 @@
 <!-- Notyf Js -->
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
+<!-- Plyr CDN -->
+<script src="https://cdn.plyr.io/3.8.4/plyr.polyfilled.js"></script>
+
 <!-- Custom dashboard js -->
 <script src="{{ asset('assets/frontend/js/custom/dashboard.js') }}"></script>
 <!-- main js -->

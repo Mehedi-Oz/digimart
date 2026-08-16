@@ -77,31 +77,35 @@
                                                 <div id="collapse-2-default" class="accordion-collapse collapse"
                                                     data-bs-parent="#accordion-default">
                                                     <div class="accordion-body">
-                                                        <div id="carousel-controls" class="carousel slide pointer-event"
-                                                            data-bs-ride="carousel">
-                                                            <div class="carousel-inner">
-                                                                @foreach ($item->screenshots as $screenshot)
-                                                                    <div
-                                                                        class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                                                        <x-admin.image-preview :src="$screenshot"
-                                                                            width="100%" height="400px"
-                                                                            class="img-fluid" />
-                                                                    </div>
-                                                                @endforeach
+                                                        @if ($item->screenshots)
+                                                            <div id="carousel-controls" class="carousel slide pointer-event"
+                                                                data-bs-ride="carousel">
+                                                                <div class="carousel-inner">
+                                                                    @foreach ($item->screenshots as $screenshot)
+                                                                        <div
+                                                                            class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                                                            <x-admin.image-preview :src="$screenshot"
+                                                                                width="100%" height="400px"
+                                                                                class="img-fluid" />
+                                                                        </div>
+                                                                    @endforeach
+                                                                </div>
+                                                                <a class="carousel-control-prev" href="#carousel-controls"
+                                                                    role="button" data-bs-slide="prev">
+                                                                    <span class="carousel-control-prev-icon"
+                                                                        aria-hidden="true"></span>
+                                                                    <span class="visually-hidden">Previous</span>
+                                                                </a>
+                                                                <a class="carousel-control-next" href="#carousel-controls"
+                                                                    role="button" data-bs-slide="next">
+                                                                    <span class="carousel-control-next-icon"
+                                                                        aria-hidden="true"></span>
+                                                                    <span class="visually-hidden">Next</span>
+                                                                </a>
                                                             </div>
-                                                            <a class="carousel-control-prev" href="#carousel-controls"
-                                                                role="button" data-bs-slide="prev">
-                                                                <span class="carousel-control-prev-icon"
-                                                                    aria-hidden="true"></span>
-                                                                <span class="visually-hidden">Previous</span>
-                                                            </a>
-                                                            <a class="carousel-control-next" href="#carousel-controls"
-                                                                role="button" data-bs-slide="next">
-                                                                <span class="carousel-control-next-icon"
-                                                                    aria-hidden="true"></span>
-                                                                <span class="visually-hidden">Next</span>
-                                                            </a>
-                                                        </div>
+                                                        @else
+                                                            <p class="text-muted">{{ __('No screenshots available') }}</p>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -280,10 +284,10 @@
 
                                                 @if ($item->is_main_file_external == 1)
                                                     <a class="btn btn-primary w-100"
-                                                        href="{{ $item->main_file }}">{{ __('File Link') }}</a>
+                                                        href="{{ $item->main_file }}" target="_blank">{{ __('File Link') }}</a>
                                                 @else
                                                     <a class="btn btn-primary w-100"
-                                                        href="{{ route('admin.item.download', $item->id) }}">{{ __('Download File') }}</a>
+                                                        href="{{ route('admin.item.download', $item->id) }}" target="_blank">{{ __('Download File') }}</a>
                                                 @endif
                                             </div>
                                         </div>

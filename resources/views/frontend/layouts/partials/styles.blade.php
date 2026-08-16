@@ -24,6 +24,9 @@
 <!-- Notyf CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 
+<!-- Plyr CDN -->
+<link rel="stylesheet" href="https://cdn.plyr.io/3.8.4/plyr.css" />
+
 <!-- Custom dashboard css -->
 <link rel="stylesheet" href="{{ asset('assets/frontend/css/custom/dashboard.css') }}">
 

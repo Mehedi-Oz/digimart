@@ -3,6 +3,7 @@
 use App\Models\Item;
 use App\Models\KycVerification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 /* Get logged in user */
 
@@ -125,5 +126,14 @@ if (! function_exists('getItemStatusCount')) {
     function getItemStatusCount(string $status): int
     {
         return Item::select('select')->where('status', $status)->count();
+    }
+}
+
+/* get file size */
+if (! function_exists('getFileSize')) {
+    function getFileSize(string $path): string
+    {
+        $fullPath = storage_path('app/private/' . $path);
+        return File::exists($fullPath) ? formatSize(File::size($fullPath)) : 'N/A';
     }
 }
