@@ -134,6 +134,13 @@ if (! function_exists('getFileSize')) {
     function getFileSize(string $path): string
     {
         $fullPath = storage_path('app/private/' . $path);
-        return File::exists($fullPath) ? formatSize(File::size($fullPath)) : 'N/A';
+
+        if (File::exists($fullPath)) {
+            return formatSize(File::size($fullPath));
+        }
+
+        $publicPath = public_path($path);
+
+        return File::exists($publicPath) ? formatSize(File::size($publicPath)) : 'N/A';
     }
 }

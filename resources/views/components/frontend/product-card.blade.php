@@ -1,14 +1,21 @@
 <div class="col-lg-6 col-xl-4 col-sm-6">
-    <div class="product-item ">
+    <div class="product-item {{ $product->preview_type == 'video' ? 'product-video' : '' }}">
         <div class="product-item__thumb d-flex">
-            <a href="{{ route('products.show', $product->slug) }}" class="link w-100">
-                @if ($product->preview_type == 'image')
-                    <x-frontend.image-preview src="{{ asset($product->preview_image) }}" class="cover-img" />
-                @elseif($product->preview_type == 'video')
 
-                @elseif($product->preview_type == 'audio')
-                @endif
-            </a>
+            @if ($product->preview_type == 'image')
+                <a href="{{ route('products.show', $product->slug) }}" class="link w-100">
+                    <x-frontend.image-preview src="{{ asset($product->preview_image) }}" class="cover-img" />
+                </a>
+            @elseif($product->preview_type == 'video')
+                <video class="player" playsinline controls data-poster="">
+                    <source src="{{ asset($product->preview_video) }}" type="video/mp4" />
+                </video>
+            @elseif($product->preview_type == 'audio')
+                <audio class="audio-player" controls>
+                    <source src="{{ asset($product->preview_audio) }}" type="audio/mp3" />
+                </audio>
+            @endif
+
             <button type="button" class="product-item__wishlist"><i class="fas fa-heart"></i></button>
         </div>
         <div class="product-item__content">
@@ -61,3 +68,25 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        const player = new Plyr('.player', {
+            controls: []
+        });
+        const audioPlayer = new Plyr('.audio-player', {
+            controls: ['play', 'progress', 'mute']
+        });
+
+        $(function() {
+            $('.product-video').on('mouseover', function() {
+                player.muted = true;
+                player.play();
+            })
+
+            $('.product-video').on('mouseout', function() {
+                player.pause();
+            })
+        });
+    </script>
+@endpush
