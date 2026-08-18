@@ -10543,7 +10543,7 @@ header .nav-menu .nav-menu__item:last-child .nav-menu__link:hover {
 }
 
 .product_item_footer .product_cart {
-    width: 38px;
+    width: 100%;
     height: 38px;
     display: block;
     line-height: 38px;

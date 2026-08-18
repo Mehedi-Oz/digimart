@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ItemController;
@@ -23,6 +24,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     /* KYC Settings Management Routes */
     Route::get('/kyc', [KycVerificationController::class, 'index'])->name('kyc.index')->middleware('kyc');
     Route::post('/kyc', [KycVerificationController::class, 'store'])->name('kyc.store')->middleware('kyc');
+
+    /* Cart Management Routes */
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/add-to-cart/{id}', [CartController::class, 'store'])->name('cart.store');
 });
 
 /* Author Management Routes */

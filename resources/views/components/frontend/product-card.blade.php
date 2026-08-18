@@ -59,11 +59,9 @@
                 </div>
             </div>
             <div class="product_item_footer">
-                <a class="product_cart" href="#">
-                    <i class="ti ti-shopping-cart-plus"></i>
+                <a class="product_cart add-to-cart" href="javascript:;" data-id="{{ $product->id }}">
+                    <i class="ti ti-shopping-cart-plus"></i> {{ __('Add to cart') }}
                 </a>
-                <a href="product-details.html" class="btn btn-outline-light btn-sm">Live
-                    Demo</a>
             </div>
         </div>
     </div>
