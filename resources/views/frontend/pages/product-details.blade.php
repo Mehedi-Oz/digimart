@@ -9,7 +9,7 @@
     <section class="breadcrumb border-bottom p-0 d-block section-bg position-relative z-index-1"
         style="background-image: url({{ asset('assets/frontend/images/thumbs/breadcrumb_bg.jpg') }});">
         <div class="breadcrumb-two">
-            <img src="assets/images/gradients/breadcrumb-gradient-bg.png" alt="" class="bg--gradient">
+            <img src="{{ asset('assets/frontend/images/gradients/breadcrumb-gradient-bg.png') }}" alt="" class="bg--gradient">
             <div class="container container-two">
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
@@ -97,7 +97,7 @@
                                     <div class="wsus__single_comment">
                                         <div class="comment_footer d-flex flex-wrap">
                                             <div class="img">
-                                                <img src="assets/images/thumbs/comment_img_1.png" alt="useer"
+                                                <img src="{{ asset('assets/frontend/images/thumbs/comment_img_1.png') }}" alt="useer"
                                                     class="img-fluid w-100">
                                             </div>
                                             <div class="text">
@@ -116,7 +116,7 @@
                                         <div class="wsus__single_comment reply">
                                             <div class="comment_footer d-flex flex-wrap">
                                                 <div class="img">
-                                                    <img src="assets/images/thumbs/comment_img_3.png" alt="useer"
+                                                    <img src="{{ asset('assets/frontend/images/thumbs/comment_img_3.png') }}" alt="useer"
                                                         class="img-fluid w-100">
                                                 </div>
                                                 <div class="text">
@@ -139,7 +139,7 @@
                                     <div class="wsus__single_comment">
                                         <div class="comment_footer d-flex flex-wrap">
                                             <div class="img">
-                                                <img src="assets/images/thumbs/comment_img_2.png" alt="useer"
+                                                <img src="{{ asset('assets/frontend/images/thumbs/comment_img_2.png') }}" alt="useer"
                                                     class="img-fluid w-100">
                                             </div>
                                             <div class="text">
@@ -160,7 +160,7 @@
                                     <div class="wsus__single_comment">
                                         <div class="comment_footer d-flex flex-wrap">
                                             <div class="img">
-                                                <img src="assets/images/thumbs/comment_img_1.png" alt="useer"
+                                                <img src="{{ asset('assets/frontend/images/thumbs/comment_img_1.png') }}" alt="useer"
                                                     class="img-fluid w-100">
                                             </div>
                                             <div class="text">
@@ -234,7 +234,7 @@
                                     <div class="wsus__single_comment">
                                         <div class="comment_footer d-flex flex-wrap">
                                             <div class="img">
-                                                <img src="assets/images/thumbs/comment_img_1.png" alt="useer"
+                                                <img src="{{ asset('assets/frontend/images/thumbs/comment_img_1.png') }}" alt="useer"
                                                     class="img-fluid w-100">
                                             </div>
                                             <div class="text">
@@ -261,7 +261,7 @@
                                         <div class="wsus__single_comment reply">
                                             <div class="comment_footer d-flex flex-wrap">
                                                 <div class="img">
-                                                    <img src="assets/images/thumbs/comment_img_2.png" alt="useer"
+                                                    <img src="{{ asset('assets/frontend/images/thumbs/comment_img_2.png') }}" alt="useer"
                                                         class="img-fluid w-100">
                                                 </div>
                                                 <div class="text">
@@ -292,7 +292,7 @@
                                     <div class="wsus__single_comment">
                                         <div class="comment_footer d-flex flex-wrap">
                                             <div class="img">
-                                                <img src="assets/images/thumbs/comment_img_3.png" alt="useer"
+                                                <img src="{{ asset('assets/frontend/images/thumbs/comment_img_3.png') }}" alt="useer"
                                                     class="img-fluid w-100">
                                             </div>
                                             <div class="text">
@@ -321,7 +321,7 @@
                                     <div class="wsus__single_comment">
                                         <div class="comment_footer d-flex flex-wrap">
                                             <div class="img">
-                                                <img src="assets/images/thumbs/comment_img_1.png" alt="useer"
+                                                <img src="{{ asset('assets/frontend/images/thumbs/comment_img_1.png') }}" alt="useer"
                                                     class="img-fluid w-100">
                                             </div>
                                             <div class="text">

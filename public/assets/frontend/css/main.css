@@ -10658,7 +10658,7 @@ header .nav-menu .nav-menu__item:last-child .nav-menu__link:hover {
     left: 20px;
     width: 30px;
     height: 30px;
-    background: url(../images/mail.png);
+    background: url(../images/icons/envelope-icon.svg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

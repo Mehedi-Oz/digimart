@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\CartItem;
 use App\Models\Item;
 use App\Models\KycVerification;
 use Illuminate\Support\Facades\Auth;
@@ -142,5 +143,30 @@ if (! function_exists('getFileSize')) {
         $publicPath = public_path($path);
 
         return File::exists($publicPath) ? formatSize(File::size($publicPath)) : 'N/A';
+    }
+}
+
+/* get cart count */
+if (! function_exists('getCartCount')) {
+    function getCartCount(): int
+    {
+        return CartItem::where('user_id', user()->id)->count();
+    }
+}
+
+/* get cart total */
+if (! function_exists('getCartTotal')) {
+    function getCartTotal(): int | float
+    {
+        $total = 0;
+        $cartItems = CartItem::where('user_id', user()->id)->get();
+        foreach($cartItems as $cartItem){
+            if($cartItem->item->discount_price > 0) {
+                $total += $cartItem->item->discount_price;
+            }else{
+                $total += $cartItem->item->price;
+            }
+        }
+        return $total;
     }
 }

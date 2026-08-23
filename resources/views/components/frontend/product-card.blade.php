@@ -60,7 +60,7 @@
             </div>
             <div class="product_item_footer">
                 <a class="product_cart add-to-cart" href="javascript:;" data-id="{{ $product->id }}">
-                    <i class="ti ti-shopping-cart-plus"></i> {{ __('Add to cart') }}
+                    <i class="ti ti-shopping-cart-plus"></i> <span id="cart-btn-{{ $product->id }}">{{ __('Add to cart') }}</span>
                 </a>
             </div>
         </div>
@@ -69,22 +69,27 @@
 
 @push('scripts')
     <script>
-        const player = new Plyr('.player', {
-            controls: []
-        });
-        const audioPlayer = new Plyr('.audio-player', {
-            controls: ['play', 'progress', 'mute']
-        });
+        (function () {
+            if (window.productCardPlayersInitialized) return;
+            window.productCardPlayersInitialized = true;
 
-        $(function() {
-            $('.product-video').on('mouseover', function() {
-                player.muted = true;
-                player.play();
-            })
+            const player = new Plyr('.player', {
+                controls: []
+            });
+            const audioPlayer = new Plyr('.audio-player', {
+                controls: ['play', 'progress', 'mute']
+            });
 
-            $('.product-video').on('mouseout', function() {
-                player.pause();
-            })
-        });
+            $(function() {
+                $('.product-video').on('mouseover', function() {
+                    player.muted = true;
+                    player.play();
+                })
+
+                $('.product-video').on('mouseout', function() {
+                    player.pause();
+                })
+            });
+        })();
     </script>
 @endpush

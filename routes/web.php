@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ItemController;
@@ -28,6 +29,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     /* Cart Management Routes */
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/add-to-cart/{id}', [CartController::class, 'store'])->name('cart.store');
+    Route::delete('/add-to-cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+
+    /* Checkout Management Routes */
+    Route::get('/checkout', CheckoutController::class)->name('checkout');
 });
 
 /* Author Management Routes */
@@ -47,4 +52,4 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     });
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

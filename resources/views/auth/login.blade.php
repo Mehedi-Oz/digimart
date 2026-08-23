@@ -9,7 +9,7 @@
     <section class="breadcrumb border-bottom p-0 d-block section-bg position-relative z-index-1"
         style="background: url({{ asset('assets/frontend/images/thumbs/breadcrumb_bg.jpg') }});">
         <div class="breadcrumb-two">
-            <img src="assets/images/gradients/breadcrumb-gradient-bg.png" alt="" class="bg--gradient">
+            <img src="{{ asset('assets/frontend/images/gradients/breadcrumb-gradient-bg.png') }}" alt="" class="bg--gradient">
             <div class="container container-two">
                 <div class="row justify-content-center">
                     <div class="col-lg-12">

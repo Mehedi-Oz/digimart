@@ -9,7 +9,7 @@
     <section class="breadcrumb border-bottom p-0 d-block section-bg position-relative z-index-1"
         style="background-image: url({{ asset('assets/frontend/images/thumbs/breadcrumb_bg.jpg') }});">
         <div class="breadcrumb-two">
-            <img src="assets/images/gradients/breadcrumb-gradient-bg.png" alt="" class="bg--gradient">
+            <img src="{{ asset('assets/frontend/images/gradients/breadcrumb-gradient-bg.png') }}" alt="" class="bg--gradient">
             <div class="container container-two">
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
@@ -93,7 +93,7 @@
                                     <input type="text" class="common-input border-gray-five common-input--withLeftIcon"
                                         id="tag" placeholder="Search By Tag...">
                                     <span class="input-icon input-icon--left"><img
-                                            src="assets/images/icons/search-two.svg" alt=""></span>
+                                            src="{{ asset('assets/frontend/images/icons/search-two.svg') }}" alt=""></span>
                                 </div>
                             </div>
                             <div class="col-sm-4 col-xs-6">
@@ -373,7 +373,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img1.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img1.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -438,7 +438,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img2.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img2.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -503,7 +503,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img3.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img3.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -568,7 +568,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img4.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img4.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -633,7 +633,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img5.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img5.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -699,7 +699,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img6.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img6.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -765,7 +765,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img7.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img7.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -830,7 +830,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img8.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img8.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -896,7 +896,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img3.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img3.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -985,7 +985,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img1.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img1.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -1050,7 +1050,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img2.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img2.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -1115,7 +1115,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img3.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img3.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -1180,7 +1180,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img4.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img4.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -1246,7 +1246,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img5.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img5.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -1312,7 +1312,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img6.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img6.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -1378,7 +1378,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img7.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img7.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -1443,7 +1443,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img8.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img8.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -1509,7 +1509,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img3.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img3.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -1598,7 +1598,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img1.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img1.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -1663,7 +1663,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img2.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img2.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -1728,7 +1728,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img3.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img3.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -1793,7 +1793,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img4.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img4.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -1859,7 +1859,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img5.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img5.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -1925,7 +1925,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img6.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img6.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -1991,7 +1991,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img7.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img7.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -2056,7 +2056,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img8.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img8.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -2122,7 +2122,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img3.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img3.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -2211,7 +2211,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img1.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img1.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -2276,7 +2276,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img2.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img2.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -2341,7 +2341,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img3.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img3.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -2406,7 +2406,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img4.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img4.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -2472,7 +2472,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img5.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img5.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -2538,7 +2538,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img6.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img6.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -2604,7 +2604,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img7.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img7.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -2669,7 +2669,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img8.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img8.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -2735,7 +2735,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img3.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img3.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -2824,7 +2824,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img1.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img1.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -2889,7 +2889,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img2.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img2.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -2954,7 +2954,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img3.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img3.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -3019,7 +3019,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img4.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img4.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -3085,7 +3085,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img5.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img5.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -3151,7 +3151,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img6.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img6.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -3217,7 +3217,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img7.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img7.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -3282,7 +3282,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img8.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img8.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i
@@ -3348,7 +3348,7 @@
                                     <div class="product-item ">
                                         <div class="product-item__thumb d-flex">
                                             <a href="product-details.html" class="link w-100">
-                                                <img src="assets/images/thumbs/product-img3.png" alt=""
+                                                <img src="{{ asset('assets/frontend/images/thumbs/product-img3.png') }}" alt=""
                                                     class="cover-img">
                                             </a>
                                             <button type="button" class="product-item__wishlist"><i

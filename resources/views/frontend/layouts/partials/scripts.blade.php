@@ -29,9 +29,12 @@
 <!-- Plyr CDN -->
 <script src="https://cdn.plyr.io/3.8.4/plyr.polyfilled.js"></script>
 
+<!-- main js -->
+<script src="{{ asset('assets/frontend/js/main.js') }}"></script>
+
+<!-- Custom default-variables js -->
+<script src="{{ asset('assets/frontend/js/custom/default-variables.js') }}"></script>
 <!-- Custom cart js -->
 <script src="{{ asset('assets/frontend/js/custom/cart.js') }}"></script>
 <!-- Custom dashboard js -->
 <script src="{{ asset('assets/frontend/js/custom/dashboard.js') }}"></script>
-<!-- main js -->
-<script src="{{ asset('assets/frontend/js/main.js') }}"></script>

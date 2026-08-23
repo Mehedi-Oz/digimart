@@ -1,5 +1,8 @@
 @php
     $categories = App\Models\Category::with('subcategories')->get();
+    $cartCount = auth()->check()
+        ? App\Models\CartItem::where('user_id', auth()->id())->count()
+        : 0;
 @endphp
 
 
@@ -92,9 +95,9 @@
 
             <!-- Header Right start -->
             <div class="header-right flx-align">
-                <a href="cart.html" class="header-right__button cart-btn position-relative">
+                <a href="{{ route('cart.index') }}" class="header-right__button cart-btn position-relative">
                     <i class="ti ti-basket"></i>
-                    <span class="qty-badge font-12">0</span>
+                    <span class="qty-badge font-12" id="cart-count">{{ $cartCount }}</span>
                 </a>
 
                 <div class="header-right__inner gap-3 flx-align d-lg-flex d-none">
