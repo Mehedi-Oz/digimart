@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ItemReviewController;
 use App\Http\Controllers\Admin\KycController;
 use App\Http\Controllers\Admin\KYCSettingController;
+use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\RoleUserController;
@@ -70,10 +71,6 @@ Route::middleware('auth:admin')
         Route::put('/kyc/kyc-status/{kyc}', [KycController::class, 'updateStatus'])->name('kyc.status');
         Route::resource('kyc', KycController::class);
 
-        /* Settings Management Routes */
-        Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
-        Route::put('general-setting', [SettingController::class, 'updateGeneralSetting'])->name('setting.general-setting.update');
-
         /* Category Management Routes */
         Route::resource('categories', CategoryController::class);
 
@@ -90,4 +87,10 @@ Route::middleware('auth:admin')
         Route::get('item-reviews/{id}/show', [ItemReviewController::class, 'show'])->name('item-reviews.show');
         Route::post('item-reviews/{id}/status', [ItemReviewController::class, 'updateStatus'])->name('item-reviews.status');
         Route::post('item/{id}/change-log', [ItemReviewController::class, 'changeLogStore'])->name('item.change-log.store');
+
+        /* Settings Management Routes */
+        Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
+        Route::put('general-setting', [SettingController::class, 'updateGeneralSetting'])->name('setting.general-setting.update');
+        Route::get('payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
+        Route::post('paypal-settings', [PaymentSettingController::class, 'updatePaypalSettings'])->name('paypal-settings.update');
     });

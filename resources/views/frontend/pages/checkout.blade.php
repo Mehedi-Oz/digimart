@@ -45,75 +45,9 @@
                     <div class="payment_area">
                         <div class="row">
                             <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
-                                <a href="#" class="payment_mathod" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    <img src="assets/images/thumbs/payment_1.png" alt="payment" class="img-fluid w-100">
-                                </a>
-                            </div>
-                            <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
-                                <a href="#" class="payment_mathod" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    <img src="assets/images/thumbs/payment_2.png" alt="payment" class="img-fluid w-100">
-                                </a>
-                            </div>
-                            <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
-                                <a href="#" class="payment_mathod" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    <img src="assets/images/thumbs/payment_3.png" alt="payment" class="img-fluid w-100">
-                                </a>
-                            </div>
-                            <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
-                                <a href="#" class="payment_mathod" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    <img src="assets/images/thumbs/payment_4.png" alt="payment" class="img-fluid w-100">
-                                </a>
-                            </div>
-                            <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
-                                <a href="#" class="payment_mathod" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    <img src="assets/images/thumbs/payment_5.png" alt="payment" class="img-fluid w-100">
-                                </a>
-                            </div>
-                            <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
-                                <a href="#" class="payment_mathod" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    <img src="assets/images/thumbs/payment_6.png" alt="payment" class="img-fluid w-100">
-                                </a>
-                            </div>
-                            <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
-                                <a href="#" class="payment_mathod" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    <img src="assets/images/thumbs/payment_7.png" alt="payment" class="img-fluid w-100">
-                                </a>
-                            </div>
-                            <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
-                                <a href="#" class="payment_mathod" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    <img src="assets/images/thumbs/payment_8.png" alt="payment" class="img-fluid w-100">
-                                </a>
-                            </div>
-                            <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
-                                <a href="#" class="payment_mathod" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    <img src="assets/images/thumbs/payment_1.png" alt="payment" class="img-fluid w-100">
-                                </a>
-                            </div>
-                            <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
-                                <a href="#" class="payment_mathod" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    <img src="assets/images/thumbs/payment_2.png" alt="payment" class="img-fluid w-100">
-                                </a>
-                            </div>
-                            <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
-                                <a href="#" class="payment_mathod" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    <img src="assets/images/thumbs/payment_3.png" alt="payment" class="img-fluid w-100">
-                                </a>
-                            </div>
-                            <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
-                                <a href="#" class="payment_mathod" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    <img src="assets/images/thumbs/payment_4.png" alt="payment" class="img-fluid w-100">
+                                <a href="{{ route('payment.paypal') }}" class="payment_mathod">
+                                    <img src="{{ asset('assets/frontend/images/thumbs/payment_2.png') }}" alt="payment"
+                                        class="img-fluid w-100">
                                 </a>
                             </div>
                         </div>

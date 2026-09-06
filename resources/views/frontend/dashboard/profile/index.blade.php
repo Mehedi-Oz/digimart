@@ -130,7 +130,7 @@
                                             <div class="col-sm-6 col-xs-6">
                                                 <x-frontend.input-select name="country" :label="__('Country')"
                                                     class="select_2">
-                                                    @foreach (config('countries.countries') as $key => $value)
+                                                    @foreach (config('localization.countries') as $key => $value)
                                                         <option @selected($user->country == $value) value="{{ $value }}">
                                                             {{ $value }}
                                                         </option>

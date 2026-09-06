@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ItemController;
 use App\Http\Controllers\Frontend\KycVerificationController;
+use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Frontend\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     /* Checkout Management Routes */
     Route::get('/checkout', CheckoutController::class)->name('checkout');
+
+    /* Payment Management Routes */
+    Route::get('payment/paypal', [PaymentController::class, 'payWithPaypal'])->name('payment.paypal');
+    Route::get('payment/paypal/success', [PaymentController::class, 'paypalSuccess'])->name('payment.payment.success');
+    Route::get('payment/paypal/cancel', [PaymentController::class, 'paypalCancel'])->name('payment.payment.cancel');
 });
 
 /* Author Management Routes */
@@ -52,4 +58,4 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     });
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
