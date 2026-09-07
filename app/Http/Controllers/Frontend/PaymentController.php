@@ -3,12 +3,24 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Services\OrderService;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PaymentController extends Controller
 {
+    public function completed()
+    {
+        return view('frontend.pages.order-completed');
+    }
+
+    public function canceled()
+    {
+        return view('frontend.pages.order-canceled');
+    }
+
     public function setPaypalConfig(): array
     {
         return [
@@ -54,8 +66,8 @@ class PaymentController extends Controller
                 ],
             ],
             "application_context" => [
-                "cancel_url" => route('payment.payment.cancel'),
-                "return_url" => route('payment.payment.success'),
+                "cancel_url" => route('payment.paypal.cancel'),
+                "return_url" => route('payment.paypal.success'),
             ],
         ]);
 
@@ -72,25 +84,32 @@ class PaymentController extends Controller
         }
 
         return redirect()
-            ->route('payment.payment.cancel')
+            ->route('payment.paypal.cancel')
             ->with('error', 'Unable to create PayPal payment.');
     }
 
-    public function paypalSuccess(Request $request)
+    public function paypalSuccess(Request $request): RedirectResponse
     {
         $config = $this->setPaypalConfig();
         $provider = new PayPalClient($config);
         $provider->getAccessToken();
 
         $response = $provider->capturePaymentOrder($request->token);
-
+        $order = $response['purchase_units'][0]['payments']['captures'][0];
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
-            dd('PayPal payment successful');
+            OrderService::storeOrder(
+                paymentId: $order['id'],
+                paidInAmount: $order['amount']['value'],
+                paidInCurrencyIcon: $order['amount']['currency_code'],
+                exchangeRate: 1,
+            );
         }
+
+        return redirect()->route('payment.completed');
     }
 
-    public function paypalCancel()
+    public function paypalCancel(Request $request): RedirectResponse
     {
-        dd('PayPal payment cancelled');
+        return redirect()->route('payment.canceled');
     }
 }

@@ -106,7 +106,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5">{{ __('No items found!') }}</td>
+                                    <td colspan="5" class="text-center">{{ __('No items found!') }}</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -118,10 +118,12 @@
                         <span class="icon line-height-1 font-20"><i class="las la-arrow-left"></i></span>
                         {{ __('Continue Shopping') }}
                     </a>
-                    <a href="{{ route('checkout') }}" class="btn btn-main flx-align gap-2 btn-lg">
-                        {{ __('Next') }}
-                        <span class="icon line-height-1 font-20"><i class="las la-arrow-right"></i></span>
-                    </a>
+                    @if (getCartCount() > 0)
+                        <a href="{{ route('checkout') }}" class="btn btn-main flx-align gap-2 btn-lg">
+                            {{ __('Next') }}
+                            <span class="icon line-height-1 font-20"><i class="las la-arrow-right"></i></span>
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

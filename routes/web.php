@@ -36,9 +36,12 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/checkout', CheckoutController::class)->name('checkout');
 
     /* Payment Management Routes */
+    Route::get('payment/completed', [PaymentController::class, 'completed'])->name('payment.completed');
+    Route::get('payment/canceled', [PaymentController::class, 'canceled'])->name('payment.canceled');
+
     Route::get('payment/paypal', [PaymentController::class, 'payWithPaypal'])->name('payment.paypal');
-    Route::get('payment/paypal/success', [PaymentController::class, 'paypalSuccess'])->name('payment.payment.success');
-    Route::get('payment/paypal/cancel', [PaymentController::class, 'paypalCancel'])->name('payment.payment.cancel');
+    Route::get('payment/paypal/success', [PaymentController::class, 'paypalSuccess'])->name('payment.paypal.success');
+    Route::get('payment/paypal/cancel', [PaymentController::class, 'paypalCancel'])->name('payment.paypal.cancel');
 });
 
 /* Author Management Routes */
