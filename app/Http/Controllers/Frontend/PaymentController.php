@@ -8,6 +8,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
+use Stripe\Stripe;
+use Stripe\Checkout\Session as StripeSession;
 
 class PaymentController extends Controller
 {
@@ -101,14 +103,67 @@ class PaymentController extends Controller
                 paymentId: $order['id'],
                 paidInAmount: $order['amount']['value'],
                 paidInCurrencyIcon: $order['amount']['currency_code'],
+                paymentGateway: 'PayPal',
                 exchangeRate: 1,
             );
+            return redirect()->route('payment.completed');
         }
-
-        return redirect()->route('payment.completed');
     }
 
     public function paypalCancel(Request $request): RedirectResponse
+    {
+        return redirect()->route('payment.canceled');
+    }
+
+    public function payWithStripe(): RedirectResponse
+    {
+        $payableAmount = (getCartTotal() * 100);
+
+        Stripe::setApiKey(config('settings.stripe_secret_key'));
+
+        $response = StripeSession::create([
+            'line_items' => [
+                [
+                    'price_data' => [
+                        'currency' => config('settings.default_currency'),
+                        'product_data' => [
+                            'name' => 'Product Purchase',
+                        ],
+                        'unit_amount' => $payableAmount,
+                    ],
+                    'quantity' => 1,
+                ],
+            ],
+            'mode' => 'payment',
+            'success_url' => route('payment.stripe.success') . '?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => route('payment.stripe.cancel'),
+        ]);
+
+        return redirect($response->url);
+    }
+
+
+    public function stripeSuccess(Request $request): RedirectResponse
+    {
+
+        abort_if(!$request->has('session_id'), 400, 'Session ID is required.');
+
+        Stripe::setApiKey(config('settings.stripe_secret_key'));
+
+        $response = StripeSession::retrieve($request->session_id);
+        if ($response->payment_status === 'paid') {
+            OrderService::storeOrder(
+                paymentId: $response->payment_intent,
+                paidInAmount: $response->amount_total / 100,
+                paidInCurrencyIcon: $response->currency,
+                paymentGateway: 'Stripe',
+                exchangeRate: 1,
+            );
+            return redirect()->route('payment.completed');
+        }
+    }
+
+    public function stripeCancel(Request $request): RedirectResponse
     {
         return redirect()->route('payment.canceled');
     }

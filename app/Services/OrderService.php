@@ -13,7 +13,8 @@ class OrderService
     string $paymentId,
     string $paidInAmount,
     string $paidInCurrencyIcon,
-    string $exchangeRate
+    string $exchangeRate,
+    string $paymentGateway
   ) {
     /* store order */
     $purchase = new Purchase();
@@ -39,6 +40,7 @@ class OrderService
     $transaction->user_id = user()->id;
     $transaction->purchase_id = $purchase->id;
     $transaction->payment_id = $paymentId;
+    $transaction->payment_gateway = $paymentGateway;
     $transaction->paid_amount = getCartTotal();
     $transaction->paid_in_amount = $paidInAmount;
     $transaction->paid_in_currency_icon = $paidInCurrencyIcon;

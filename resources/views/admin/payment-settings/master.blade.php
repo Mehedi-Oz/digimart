@@ -26,23 +26,10 @@
                             <div class="card-body">
                                 <h4 class="subheader">{{ __('Settings') }}</h4>
                                 <div class="list-group list-group-transparent">
-                                    <a href="{{ route('admin.setting.index') }}"
+                                    <a href="{{ route('admin.payment-settings.index') }}"
                                         class="list-group-item list-group-item-action d-flex align-items-center">{{ __('Paypal Settings') }}</a>
-                                    <a href="#"
-                                        class="list-group-item list-group-item-action d-flex align-items-center">My
-                                        Notifications</a>
-                                    <a href="#"
-                                        class="list-group-item list-group-item-action d-flex align-items-center">Connected
-                                        Apps</a>
-                                    <a href="./settings-plan.html"
-                                        class="list-group-item list-group-item-action d-flex align-items-center">Plans</a>
-                                    <a href="#"
-                                        class="list-group-item list-group-item-action d-flex align-items-center">Billing
-                                        &amp; Invoices</a>
-                                </div>
-                                <h4 class="subheader mt-4">Experience</h4>
-                                <div class="list-group list-group-transparent">
-                                    <a href="#" class="list-group-item list-group-item-action">Give Feedback</a>
+                                    <a href="{{ route('admin.stripe-settings.index') }}"
+                                        class="list-group-item list-group-item-action d-flex align-items-center">{{ __('Stripe Settings') }}</a>
                                 </div>
                             </div>
                         </div>

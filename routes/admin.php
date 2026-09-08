@@ -90,7 +90,10 @@ Route::middleware('auth:admin')
 
         /* Settings Management Routes */
         Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
-        Route::put('general-setting', [SettingController::class, 'updateGeneralSetting'])->name('setting.general-setting.update');
+        Route::post('general-setting', [SettingController::class, 'updateGeneralSetting'])->name('setting.general-setting.update');
         Route::get('payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
         Route::post('paypal-settings', [PaymentSettingController::class, 'updatePaypalSettings'])->name('paypal-settings.update');
+        Route::get('stripe-settings', [PaymentSettingController::class, 'stripeSetting'])->name('stripe-settings.index');
+        Route::post('stripe-settings', [PaymentSettingController::class, 'updateStripeSetting'])->name('stripe-settings.update');
+        Route::post('stripe-settings', [PaymentSettingController::class, 'updateStripeSetting'])->name('stripe-settings.update');
     });

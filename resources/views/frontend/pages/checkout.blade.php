@@ -50,9 +50,16 @@
                                         class="img-fluid w-100">
                                 </a>
                             </div>
+                            <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
+                                <a href="{{ route('payment.stripe') }}" class="payment_mathod">
+                                    <img src="{{ asset('assets/frontend/images/thumbs/payment_4.png') }}" alt="payment"
+                                        class="img-fluid w-100">
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-xl-4 col-lg-5">
                     <div class="total_payment_price">
                         <h4>Total Cart <span>{{ getCartCount() }}</span></h4>
