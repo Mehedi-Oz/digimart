@@ -48,6 +48,13 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('payment/stripe', [PaymentController::class, 'payWithStripe'])->name('payment.stripe');
     Route::get('payment/stripe/success', [PaymentController::class, 'stripeSuccess'])->name('payment.stripe.success');
     Route::get('payment/stripe/cancel', [PaymentController::class, 'stripeCancel'])->name('payment.stripe.cancel');
+
+    /* Razorpay Routes */
+    Route::get('payment/razorpay', [PaymentController::class, 'payWithRazorpay'])->name('payment.razorpay');
+    Route::get('payment/razorpay/success', [PaymentController::class, 'razorpaySuccess'])->name('payment.razorpay.success');
+    Route::get('payment/razorpay/cancel', [PaymentController::class, 'razorpayCancel'])->name('payment.razorpay.cancel');
+    Route::get('payment/razorpay/redirect', [PaymentController::class, 'razorpayRedirect'])->name('payment.razorpay.redirect');
+
 });
 
 /* Author Management Routes */
@@ -67,4 +74,4 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     });
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

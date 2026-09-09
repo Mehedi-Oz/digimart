@@ -30,6 +30,8 @@
                                         class="list-group-item list-group-item-action d-flex align-items-center">{{ __('Paypal Settings') }}</a>
                                     <a href="{{ route('admin.stripe-settings.index') }}"
                                         class="list-group-item list-group-item-action d-flex align-items-center">{{ __('Stripe Settings') }}</a>
+                                    <a href="{{ route('admin.razorpay-settings.index') }}"
+                                        class="list-group-item list-group-item-action d-flex align-items-center">{{ __('Razorpay Settings') }}</a>
                                 </div>
                             </div>
                         </div>

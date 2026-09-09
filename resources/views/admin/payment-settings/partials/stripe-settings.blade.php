@@ -1,9 +1,5 @@
 @extends('admin.payment-settings.master')
 
-@section("title")
-    {{ __("Stripe Settings") }}
-@endsection
-
 @section('setting_content')
     <div class="col-12 col-md-9 d-flex flex-column">
         <div class="card-body">

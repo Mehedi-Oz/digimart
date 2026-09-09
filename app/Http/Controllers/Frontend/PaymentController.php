@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Transaction;
 use App\Services\OrderService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Razorpay\Api\Api as RazorpayApi;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
-use Stripe\Stripe;
 use Stripe\Checkout\Session as StripeSession;
+use Stripe\Stripe;
 
 class PaymentController extends Controller
 {
@@ -26,25 +28,22 @@ class PaymentController extends Controller
     public function setPaypalConfig(): array
     {
         return [
-            'mode'    => config('settings.paypal_mode'),
+            'mode' => config('settings.paypal_mode'),
             'sandbox' => [
-                'client_id'     => config('settings.paypal_client_id'),
+                'client_id' => config('settings.paypal_client_id'),
                 'client_secret' => config('settings.paypal_secret_key'),
-                'app_id'        => 'APP-80W284485P519543T',
+                'app_id' => 'APP-80W284485P519543T',
             ],
             'live' => [
-                'client_id'     => config('settings.paypal_client_id'),
+                'client_id' => config('settings.paypal_client_id'),
                 'client_secret' => config('settings.paypal_secret_key'),
-                'app_id'        => config('settings.paypal_app_id'),
+                'app_id' => config('settings.paypal_app_id'),
             ],
-            'payment_action'  => 'sale',
-            'currency'        => config('settings.default_currency'),
-            'notify_url'      => '',
-            'locale'          => 'en_US',
-            'validate_ssl'    => true,
-            // 'timeout'         => env('PAYPAL_TIMEOUT', 30),
-            // 'connect_timeout' => env('PAYPAL_CONNECT_TIMEOUT', 10),
-            // 'max_retries'     => env('PAYPAL_MAX_RETRIES', 2),
+            'payment_action' => 'sale',
+            'currency' => config('settings.default_currency'),
+            'notify_url' => '',
+            'locale' => 'en_US',
+            'validate_ssl' => true,
         ];
     }
 
@@ -58,18 +57,18 @@ class PaymentController extends Controller
         $provider->getAccessToken();
 
         $response = $provider->createOrder([
-            "intent" => "CAPTURE",
-            "purchase_units" => [
+            'intent' => 'CAPTURE',
+            'purchase_units' => [
                 [
-                    "amount" => [
-                        "currency_code" => config('settings.default_currency'),
-                        "value" => $payableAmount,
+                    'amount' => [
+                        'currency_code' => config('settings.default_currency'),
+                        'value' => $payableAmount,
                     ],
                 ],
             ],
-            "application_context" => [
-                "cancel_url" => route('payment.paypal.cancel'),
-                "return_url" => route('payment.paypal.success'),
+            'application_context' => [
+                'cancel_url' => route('payment.paypal.cancel'),
+                'return_url' => route('payment.paypal.success'),
             ],
         ]);
 
@@ -92,13 +91,22 @@ class PaymentController extends Controller
 
     public function paypalSuccess(Request $request): RedirectResponse
     {
+        abort_if(! $request->has('token'), 400, 'Payment token is required.');
+
         $config = $this->setPaypalConfig();
         $provider = new PayPalClient($config);
         $provider->getAccessToken();
 
         $response = $provider->capturePaymentOrder($request->token);
-        $order = $response['purchase_units'][0]['payments']['captures'][0];
+
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
+            $order = $response['purchase_units'][0]['payments']['captures'][0];
+
+            $alreadyProcessed = Transaction::where('payment_id', $order['id'])->exists();
+            if ($alreadyProcessed) {
+                return redirect()->route('payment.completed');
+            }
+
             OrderService::storeOrder(
                 paymentId: $order['id'],
                 paidInAmount: $order['amount']['value'],
@@ -106,8 +114,11 @@ class PaymentController extends Controller
                 paymentGateway: 'PayPal',
                 exchangeRate: 1,
             );
+
             return redirect()->route('payment.completed');
         }
+
+        return redirect()->route('payment.canceled');
     }
 
     public function paypalCancel(Request $request): RedirectResponse
@@ -135,23 +146,27 @@ class PaymentController extends Controller
                 ],
             ],
             'mode' => 'payment',
-            'success_url' => route('payment.stripe.success') . '?session_id={CHECKOUT_SESSION_ID}',
+            'success_url' => route('payment.stripe.success').'?session_id={CHECKOUT_SESSION_ID}',
             'cancel_url' => route('payment.stripe.cancel'),
         ]);
 
         return redirect($response->url);
     }
 
-
     public function stripeSuccess(Request $request): RedirectResponse
     {
-
-        abort_if(!$request->has('session_id'), 400, 'Session ID is required.');
+        abort_if(! $request->has('session_id'), 400, 'Session ID is required.');
 
         Stripe::setApiKey(config('settings.stripe_secret_key'));
 
         $response = StripeSession::retrieve($request->session_id);
+
         if ($response->payment_status === 'paid') {
+            $alreadyProcessed = Transaction::where('payment_id', $response->payment_intent)->exists();
+            if ($alreadyProcessed) {
+                return redirect()->route('payment.completed');
+            }
+
             OrderService::storeOrder(
                 paymentId: $response->payment_intent,
                 paidInAmount: $response->amount_total / 100,
@@ -159,11 +174,71 @@ class PaymentController extends Controller
                 paymentGateway: 'Stripe',
                 exchangeRate: 1,
             );
+
             return redirect()->route('payment.completed');
         }
+
+        return redirect()->route('payment.canceled');
     }
 
     public function stripeCancel(Request $request): RedirectResponse
+    {
+        return redirect()->route('payment.canceled');
+    }
+
+    public function razorpayRedirect(): View
+    {
+        return view('frontend.pages.razorpay-redirect');
+    }
+
+    public function payWithRazorpay(Request $request): RedirectResponse
+    {
+        if (! $request->filled('razorpay_payment_id')) {
+            return redirect()->route('payment.canceled');
+        }
+
+        try {
+            $api = new RazorpayApi(
+                config('settings.razorpay_key'),
+                config('settings.razorpay_secret_key')
+            );
+
+            $payableAmount = round(getCartTotal() * config('settings.razorpay_currency_rate') * 100);
+
+            $payment = $api->payment->fetch($request->razorpay_payment_id);
+            $response = $payment->capture([
+                'amount' => $payableAmount,
+            ]);
+
+            if ($response->status === 'captured') {
+                $alreadyProcessed = Transaction::where('payment_id', $response->id)->exists();
+                if ($alreadyProcessed) {
+                    return redirect()->route('payment.completed');
+                }
+
+                OrderService::storeOrder(
+                    paymentId: $response->id,
+                    paidInAmount: $response->amount / 100,
+                    paidInCurrencyIcon: $response->currency,
+                    paymentGateway: 'Razorpay',
+                    exchangeRate: config('settings.razorpay_currency_rate'),
+                );
+
+                return redirect()->route('payment.completed');
+            }
+
+            return redirect()->route('payment.canceled');
+        } catch (\Exception $e) {
+            return redirect()->route('payment.canceled');
+        }
+    }
+
+    public function razorpaySuccess(Request $request): RedirectResponse
+    {
+        return redirect()->route('payment.completed');
+    }
+
+    public function razorpayCancel(): RedirectResponse
     {
         return redirect()->route('payment.canceled');
     }
