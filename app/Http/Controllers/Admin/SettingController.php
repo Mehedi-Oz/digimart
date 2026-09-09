@@ -9,6 +9,7 @@ use App\Services\NotificationService;
 use App\Services\SettingService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
@@ -23,11 +24,36 @@ class SettingController extends Controller
             Setting::updateOrCreate(['key' => $key], ['value' => $value]);
         }
 
-        //clears previously cached data an caches new data
+        // clears previously cached data an caches new data
         $setting = app()->make(SettingService::class);
         $setting->clearCachedSettings();
 
         NotificationService::UPDATED();
+
+        return redirect()->back();
+    }
+
+    public function commissionSetting(): View
+    {
+        return view('admin.setting.partials.commission-setting');
+    }
+
+    public function updateCommissionSetting(Request $request): RedirectResponse
+    {
+        $validatedData = $request->validate([
+            'author_commission' => ['required', 'numeric'],
+        ]);
+
+        foreach ($validatedData as $key => $value) {
+            Setting::updateOrCreate(['key' => $key], ['value' => $value]);
+        }
+
+        // clears previously cached data an caches new data
+        $setting = app()->make(SettingService::class);
+        $setting->clearCachedSettings();
+
+        NotificationService::UPDATED();
+
         return redirect()->back();
     }
 }

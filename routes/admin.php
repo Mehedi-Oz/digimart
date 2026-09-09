@@ -88,10 +88,7 @@ Route::middleware('auth:admin')
         Route::post('item-reviews/{id}/status', [ItemReviewController::class, 'updateStatus'])->name('item-reviews.status');
         Route::post('item/{id}/change-log', [ItemReviewController::class, 'changeLogStore'])->name('item.change-log.store');
 
-        /* Settings Management Routes */
-        Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
-        Route::post('general-setting', [SettingController::class, 'updateGeneralSetting'])->name('setting.general-setting.update');
-
+        /* Payment Management Routes */
         Route::get('payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
         Route::post('paypal-settings', [PaymentSettingController::class, 'updatePaypalSettings'])->name('paypal-settings.update');
 
@@ -100,4 +97,10 @@ Route::middleware('auth:admin')
 
         Route::get('razorpay-settings', [PaymentSettingController::class, 'razorpaySetting'])->name('razorpay-settings.index');
         Route::post('razorpay-settings', [PaymentSettingController::class, 'updateRazorpaySetting'])->name('razorpay-settings.update');
+
+        /* Settings Management Routes */
+        Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
+        Route::post('general-setting', [SettingController::class, 'updateGeneralSetting'])->name('setting.general-setting.update');
+        Route::get('commission-setting', [SettingController::class, 'commissionSetting'])->name('setting.commission-setting.index');
+        Route::post('commission-setting', [SettingController::class, 'updateCommissionSetting'])->name('setting.commission-setting.update');
     });
