@@ -1,7 +1,7 @@
 "use strict"
 
 //notyf init
-let notyf = new Notyf();
+let cartNotyf = new Notyf();
 
 $(function () {
   $('.add-to-cart').on('click', function (e) {
@@ -20,14 +20,14 @@ $(function () {
       success: function (data) {
         if (data.status == 'success') {
           $('#cart-count').text(data.cartCount);
-          notyf.success(data.message);
+          cartNotyf.success(data.message);
           $(`#cart-btn-${id}`).text('Added to cart');
         }
       },
       error: function (xhr, status, error) {
         let errorMessage = xhr.responseJSON?.message || 'Something went wrong!';
         $(`#cart-btn-${id}`).text('Add to cart');
-        notyf.error(errorMessage);
+        cartNotyf.error(errorMessage);
       }
     })
   })

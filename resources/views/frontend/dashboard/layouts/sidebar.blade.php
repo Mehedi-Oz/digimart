@@ -35,7 +35,31 @@
                         <span class="text">Items</span>
                     </a>
                 </li>
+                <li class="sidebar-list__item">
+                    <a href="{{ route('sales.index') }}" class="sidebar-list__link">
+                        <span class="sidebar-list__icon">
+                            <i class="ti ti-chart-bar"></i>
+                        </span>
+                        <span class="text">Sales</span>
+                    </a>
+                </li>
             @endif
+            <li class="sidebar-list__item">
+                <a href="{{ route('orders.index') }}" class="sidebar-list__link">
+                    <span class="sidebar-list__icon">
+                        <i class="ti ti-user"></i>
+                    </span>
+                    <span class="text">Purchases</span>
+                </a>
+            </li>
+            <li class="sidebar-list__item">
+                <a href="{{ route('transactions.index') }}" class="sidebar-list__link">
+                    <span class="sidebar-list__icon">
+                        <i class="ti ti-receipt"></i>
+                    </span>
+                    <span class="text">Transactions</span>
+                </a>
+            </li>
             <li class="sidebar-list__item">
                 <a href="setting.html" class="sidebar-list__link">
                     <span class="sidebar-list__icon">

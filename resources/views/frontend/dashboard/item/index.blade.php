@@ -103,6 +103,14 @@
                             </td>
                         </tr>
                     @empty
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                <div class="py-4">
+                                    <h5>{{ __('No Items Found') }}</h5>
+                                    <p class="text-secondary">{{ __('You have not created any items yet.') }}</p>
+                                </div>
+                            </td>
+                        </tr>
                     @endforelse
                 </tbody>
             </table>

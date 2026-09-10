@@ -299,7 +299,6 @@
             duration: 3000
         });
 
-        const csrfToken = "{{ csrf_token() }}";
         // Initialize Dropzone
         Dropzone.autoDiscover = false;
         const dropzone = new Dropzone("#fileUpload", {

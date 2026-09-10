@@ -6,7 +6,6 @@
             <h2 class="mb-4">{{ __('General Settings') }}</h2>
             <form action="{{ route('admin.setting.general-setting.update') }}" method="POST" id="x-form">
                 @csrf
-                @method('PUT')
                 <div class="row">
                     <div class="col-md-6">
                         <x-admin.input-text name="site_name" :label="__('Site Name')" :value="config('settings.site_name')" />

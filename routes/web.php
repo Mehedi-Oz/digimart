@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ItemController;
 use App\Http\Controllers\Frontend\KycVerificationController;
+use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Frontend\ProfileController;
@@ -54,6 +55,14 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('payment/razorpay/success', [PaymentController::class, 'razorpaySuccess'])->name('payment.razorpay.success');
     Route::get('payment/razorpay/cancel', [PaymentController::class, 'razorpayCancel'])->name('payment.razorpay.cancel');
     Route::get('payment/razorpay/redirect', [PaymentController::class, 'razorpayRedirect'])->name('payment.razorpay.redirect');
+
+    /* Order Management Routes */
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/show/{id}', [OrderController::class, 'show'])->name('orders.show');
+    Route::get('/orders/download/{id}', [OrderController::class, 'download'])->name('orders.download');
+    Route::get('/transactions', [OrderController::class, 'transactions'])->name('transactions.index');
+    Route::get('/sales', [OrderController::class, 'sales'])->name('sales.index');
+    Route::get('/sales', [OrderController::class, 'sales'])->name('sales.index');
 
 });
 

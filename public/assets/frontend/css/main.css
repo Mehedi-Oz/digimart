@@ -13845,3 +13845,9 @@ select {
 .product-item:hover .product-item__thumb::before {
     height: 0% !important;
 }
+
+.cover-image{
+    object-fit: cover !important;
+    height: 150px !important;
+    width: 150px !important;
+}
