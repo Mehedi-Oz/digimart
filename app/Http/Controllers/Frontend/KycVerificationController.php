@@ -18,7 +18,12 @@ class KycVerificationController extends Controller
 
     public function index(): View
     {
-        $kycSetting = KycSetting::first();
+        $kycSetting = KycSetting::firstOrCreate([], [
+            'instructions' => 'Please upload a clear photo of your NID or passport for verification.',
+            'nid_verification' => 1,
+            'passport_verification' => 1,
+        ]);
+
         return view('frontend.pages.kyc', compact('kycSetting'));
     }
 
@@ -30,13 +35,14 @@ class KycVerificationController extends Controller
         }
 
         KycVerification::create([
-            'user_id'         => Auth::id(),
-            'document_type'   => $request->document_type,
+            'user_id' => Auth::id(),
+            'document_type' => $request->document_type,
             'document_number' => $request->document_number,
-            'documents'       => json_encode($paths),
+            'documents' => json_encode($paths),
         ]);
 
         NotificationService::CREATED('KYC documents submitted successfully. Pending admin review.');
+
         return to_route('dashboard');
     }
 }

@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\RoleUserController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\WithdrawMethodController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')
@@ -89,9 +90,12 @@ Route::middleware('auth:admin')
         Route::post('item-reviews/{id}/status', [ItemReviewController::class, 'updateStatus'])->name('item-reviews.status');
         Route::post('item/{id}/change-log', [ItemReviewController::class, 'changeLogStore'])->name('item.change-log.store');
 
-        /* Item Review Routes */
+        /* Order Routes */
         Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
         Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
+
+        /* Withdraw Method Routes */
+        Route::resource('/withdrawal-methods', WithdrawMethodController::class);
 
         /* Payment Management Routes */
         Route::get('payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
