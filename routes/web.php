@@ -63,7 +63,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/transactions', [OrderController::class, 'transactions'])->name('transactions.index');
     Route::get('/sales', [OrderController::class, 'sales'])->name('sales.index');
     Route::get('/sales', [OrderController::class, 'sales'])->name('sales.index');
-
 });
 
 /* Author Management Routes */
@@ -80,6 +79,8 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
         Route::get('/items/changelog/{id}', [ItemController::class, 'itemChangelog'])->name('items.changelog');
         Route::post('/items/changelog/{id}', [ItemController::class, 'storeChangelog'])->name('items.changelog.store');
         Route::get('/items/history/{id}', [ItemController::class, 'itemHistory'])->name('items.history');
+
+        Route::post('/withdraw-info', [ProfileController::class, 'withdrawInfo'])->name('withdraw.info');
     });
 });
 

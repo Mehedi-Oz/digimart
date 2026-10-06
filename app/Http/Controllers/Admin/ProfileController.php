@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PasswordUpdateRequest;
 use App\Http\Requests\Admin\ProfileUpdateRequest;
 use App\Models\Admin;
+use App\Models\WithdrawMethod;
 use App\Services\NotificationService;
 use App\Traits\FileUpload;
 use Illuminate\Contracts\View\View;
@@ -19,7 +20,9 @@ class ProfileController extends Controller
     public function index(): View
     {
         $user = Auth::guard('admin')->user();
-        return view('admin.profile.index', compact('user'));
+        $withdrawMethods = WithdrawMethod::whereStatus(1)->get();
+
+        return view('admin.profile.index', compact('user', 'withdrawMethods'));
     }
 
     public function update(ProfileUpdateRequest $request): RedirectResponse
@@ -41,7 +44,7 @@ class ProfileController extends Controller
         }
 
         // Skip save and notification if nothing has changed
-        if (!$user->isDirty()) {
+        if (! $user->isDirty()) {
             return redirect()->back();
         }
 
@@ -58,6 +61,7 @@ class ProfileController extends Controller
         $user->save();
 
         NotificationService::UPDATED();
+
         return redirect()->back();
     }
 }

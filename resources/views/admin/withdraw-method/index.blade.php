@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    {{ __('Withdrawal Methods') }}
+    {{ __('All Withdrawal Methods') }}
 @endsection
 
 @section('content')
@@ -28,7 +28,6 @@
                                             <th>{{ __('Name') }}</th>
                                             <th>{{ __('Minimum Amount') }}</th>
                                             <th>{{ __('Maximum Amount') }}</th>
-                                            <th>{{ __('Description') }}</th>
                                             <th>{{ __('Status') }}</th>
                                             <th>{{ __('Date') }}</th>
                                             <th class="w-1">{{ __('Action') }}</th>
@@ -40,23 +39,25 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td class="text-secondary">{{ $withdrawMethod->name }}</td>
                                                 <td class="text-secondary">
-                                                    {{ number_format($withdrawMethod->minimum_amount, 2) }}
+                                                    {{ currencyPosition($withdrawMethod->minimum_amount) }}
                                                 </td>
                                                 <td class="text-secondary">
-                                                    {{ number_format($withdrawMethod->maximum_amount, 2) }}
+                                                    {{ currencyPosition($withdrawMethod->maximum_amount) }}
                                                 </td>
-                                                <td class="text-secondary">{{ $withdrawMethod->description }}</td>
                                                 <td>
-                                                    @if($withdrawMethod->status)
-                                                        <span class="badge bg-green text-green-fg">{{ __('Active') }}</span>
+                                                    @if ($withdrawMethod->status)
+                                                        <span
+                                                            class="badge bg-green text-green-fg">{{ __('Active') }}</span>
                                                     @else
                                                         <span class="badge bg-red text-red-fg">{{ __('Inactive') }}</span>
                                                     @endif
                                                 </td>
-                                                <td class="text-secondary">{{ formatDate($withdrawMethod->created_at) }}</td>
+                                                <td class="text-secondary">{{ formatDate($withdrawMethod->created_at) }}
+                                                </td>
                                                 <td>
                                                     <div class="d-flex align-items-center gap-2">
-                                                        <a href="{{ route('admin.withdrawal-methods.edit', $withdrawMethod->id) }}">
+                                                        <a
+                                                            href="{{ route('admin.withdrawal-methods.edit', $withdrawMethod->id) }}">
                                                             <i class="ti ti-edit"></i></a>
                                                         <a class="delete-item text-danger"
                                                             href="{{ route('admin.withdrawal-methods.destroy', $withdrawMethod->id) }}">

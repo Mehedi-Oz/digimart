@@ -8,7 +8,6 @@ use App\Models\WithdrawMethod;
 use App\Services\NotificationService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class WithdrawMethodController extends Controller
 {
@@ -43,34 +42,38 @@ class WithdrawMethodController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(WithdrawMethod $withdrawal_method): View
     {
-        //
+        return view('admin.withdraw-method.edit', compact('withdrawal_method'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(WithdrawMethodStoreRequest $request, WithdrawMethod $withdrawal_method): RedirectResponse
     {
-        //
+        $withdrawal_method->update($request->validated());
+
+        NotificationService::UPDATED();
+
+        return to_route('admin.withdrawal-methods.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(WithdrawMethod $withdrawal_method)
     {
-        //
+        try {
+            $withdrawal_method->delete();
+
+            NotificationService::DELETED();
+
+            return response()->json(['status' => 'success', 'message' => __('Deleted Successful')], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 'error', 'message' => $th->getMessage()], 400);
+        }
     }
 }

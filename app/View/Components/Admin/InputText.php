@@ -8,20 +8,31 @@ use Illuminate\View\Component;
 
 class InputText extends Component
 {
-    public string $name, $label, $type;
-    public ?string  $id, $value, $placeholder, $hint;
+    public string $name;
+
+    public string $label;
+
+    public string $type;
+
+    public ?string $id;
+
+    public ?string $value;
+
+    public ?string $placeholder;
+
+    public ?string $hint;
 
     /**
      * Create a new component instance.
      */
     public function __construct(
         string $name,
-        string $label = null,
+        ?string $label = null,
         string $type = 'text',
-        string $id = null,
-        string $value = null,
-        string $placeholder = null,
-        string $hint = null,
+        ?string $id = null,
+        ?string $value = null,
+        ?string $placeholder = null,
+        ?string $hint = null,
     ) {
         $this->name = $name;
         $this->label = $label ?? \Str::title(str_replace('_', ' ', $name));

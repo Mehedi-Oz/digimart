@@ -82,7 +82,7 @@ if (! function_exists('formatSize')) {
             count($sizes) - 1
         );
 
-        return round($bytes / pow(1024, $factor), $decimalPlaces) . ' ' . $sizes[$factor];
+        return round($bytes / pow(1024, $factor), $decimalPlaces).' '.$sizes[$factor];
     }
 }
 
@@ -119,6 +119,7 @@ if (! function_exists('authorProductStatus')) {
         if ($item) {
             return $item->status;
         }
+
         return false;
     }
 }
@@ -135,7 +136,7 @@ if (! function_exists('getItemStatusCount')) {
 if (! function_exists('getFileSize')) {
     function getFileSize(string $path): string
     {
-        $fullPath = storage_path('app/private/' . $path);
+        $fullPath = storage_path('app/private/'.$path);
 
         if (File::exists($fullPath)) {
             return formatSize(File::size($fullPath));
@@ -165,17 +166,26 @@ if (! function_exists('getCartItems')) {
 
 /* get cart total */
 if (! function_exists('getCartTotal')) {
-    function getCartTotal(): int | float
+    function getCartTotal(): int|float
     {
         $total = 0;
         $cartItems = CartItem::where('user_id', user()->id)->get();
-        foreach($cartItems as $cartItem){
-            if($cartItem->item->discount_price > 0) {
+        foreach ($cartItems as $cartItem) {
+            if ($cartItem->item->discount_price > 0) {
                 $total += $cartItem->item->discount_price;
-            }else{
+            } else {
                 $total += $cartItem->item->price;
             }
         }
+
         return $total;
+    }
+}
+
+/* currency icon position */
+if (! function_exists('currencyPosition')) {
+    function currencyPosition($amount): string
+    {
+        return config('settings.currency_position') == 'left' ? config('settings.currency_icon').$amount : $amount.config('settings.currency_icon');
     }
 }

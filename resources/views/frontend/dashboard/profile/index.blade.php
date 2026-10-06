@@ -56,7 +56,7 @@
                                     <i class="ti ti-currency-dollar"></i>
                                     <span class="text text-heading fw-500">{{ __('Balance') }}</span>
                                 </span>
-                                <span class="profile-info-list__info">${{ number_format($user->balance, 2) }}
+                                <span class="profile-info-list__info">${{ number_format($user->balance ?? 0, 2) }}
                                     {{ __('BDT') }}</span>
                             </li>
                             <li class="profile-info-list__item">
@@ -88,12 +88,14 @@
                                         aria-controls="pills-personalInfo"
                                         aria-selected="true">{{ __('Personal Info') }}</button>
                                 </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link font-18 font-heading" id="pills-payouts-tab"
-                                        data-bs-toggle="pill" data-bs-target="#pills-payouts" type="button" role="tab"
-                                        aria-controls="pills-payouts" aria-selected="false"
-                                        tabindex="-1">{{ __('Payouts') }}</button>
-                                </li>
+                                @if (isAuthor())
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link font-18 font-heading" id="pills-payouts-tab"
+                                            data-bs-toggle="pill" data-bs-target="#pills-payouts" type="button" role="tab"
+                                            aria-controls="pills-payouts" aria-selected="false"
+                                            tabindex="-1">{{ __('Payouts') }}</button>
+                                    </li>
+                                @endif
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link font-18 font-heading {{ $showPasswordTab ? 'active' : '' }}"
                                         id="pills-changePassword-tab" data-bs-toggle="pill"
@@ -152,42 +154,32 @@
                                     </form>
                                 </div>
 
-                                <div class="tab-pane fade" id="pills-payouts" role="tabpanel"
-                                    aria-labelledby="pills-payouts-tab" tabindex="0">
-                                    <form action="#" autocomplete="off">
+                                @if (isAuthor())
+                                    <div class="tab-pane fade" id="pills-payouts" role="tabpanel"
+                                        aria-labelledby="pills-payouts-tab" tabindex="0">
+                                    <form action="{{ route('user.withdraw.info') }}" autocomplete="off" method="POST">
+                                        @csrf
                                         <div class="row">
-                                            <div class="col-sm-6 col-xs-6">
-                                                <div class="form_box">
-                                                    <label for="name"
-                                                        class="form-label mb-2 font-18 font-heading fw-600">{{ __('Full Name') }}</label>
-                                                    <input type="text" class="common-input border" id="name"
-                                                        value="Michel" placeholder="{{ __('enter full name') }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-xs-6">
-                                                <div class="form_box">
-                                                    <label for="phone"
-                                                        class="form-label mb-2 font-18 font-heading fw-600">{{ __('Full Name') }}</label>
-                                                    <input type="tel" class="common-input border" id="phone"
-                                                        value="+880 15589 236 45"
-                                                        placeholder="{{ __('enter phone number') }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-xs-6">
-                                                <div class="form_box">
-                                                    <label for="emailAdd"
-                                                        class="form-label mb-2 font-18 font-heading fw-600">{{ __('Email') }}</label>
-                                                    <input type="email" class="common-input border" id="emailAdd"
-                                                        value="michel15@gmail.com"
-                                                        placeholder="{{ __('Enter your email') }}">
-                                                </div>
+                                            <x-frontend.input-select name="payout_method" :label="__('Payout Method')"
+                                                class="select_2">
+                                                @foreach ($withdrawMethods as $withdrawMethod)
+                                                    <option @selected($user?->withdrawInformation?->withdraw_method_id == $withdrawMethod->id) value="{{ $withdrawMethod->id }}"
+                                                        data-description="{{ $withdrawMethod->description }}">
+                                                        {{ $withdrawMethod->name }}</option>
+                                                @endforeach
+                                            </x-frontend.input-select>
+                                            <x-frontend.text-area name="information" :label="__('Information')" :value="$user?->withdrawInformation?->information" />
+                                            @php($selectedWithdrawMethod = $withdrawMethods->firstWhere('id', $user?->withdrawInformation?->withdraw_method_id))
+                                            <div class="col-sm-12">
+                                                <div id="payout-method-description" class="alert alert-info" style="white-space: pre-line;">{{ $selectedWithdrawMethod?->description ?? __('Select a payout method to see its description.') }}</div>
                                             </div>
                                             <div class="col-sm-12">
-                                                <button class="btn btn-main btn-lg">{{ __('Pay Now') }}</button>
+                                                <button class="btn btn-main btn-lg">{{ __('Update Payout') }}</button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
+                                @endif
 
                                 <div class="tab-pane fade {{ $showPasswordTab ? 'show active' : '' }}"
                                     id="pills-changePassword" role="tabpanel" aria-labelledby="pills-changePassword-tab"
@@ -228,3 +220,16 @@
         <!-- Profile Content End -->
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#payout_method').on('change', function() {
+                $('#payout-method-description').text(
+                    $(this).find(':selected').data('description') ||
+                    "{{ __('No description available.') }}"
+                );
+            });
+        });
+    </script>
+@endpush

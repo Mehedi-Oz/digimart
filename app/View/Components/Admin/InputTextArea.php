@@ -8,18 +8,25 @@ use Illuminate\View\Component;
 
 class InputTextArea extends Component
 {
-    public string $name, $label;
-    public ?string  $id, $value, $placeholder;
+    public string $name;
+
+    public string $label;
+
+    public ?string $id;
+
+    public ?string $value;
+
+    public ?string $placeholder;
 
     /**
      * Create a new component instance.
      */
     public function __construct(
         string $name,
-        string $label = null,
-        string $id = null,
-        string $value = null,
-        string $placeholder = null
+        ?string $label = null,
+        ?string $id = null,
+        ?string $value = null,
+        ?string $placeholder = null
     ) {
         $this->name = $name;
         $this->label = $label ?? \Str::title(str_replace('_', ' ', $name));

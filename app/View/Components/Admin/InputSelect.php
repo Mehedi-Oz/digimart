@@ -9,13 +9,15 @@ use Illuminate\View\Component;
 class InputSelect extends Component
 {
     public string $name;
+
     public string $label;
+
     /**
      * Create a new component instance.
      */
     public function __construct(
         string $name,
-        string $label = null,
+        ?string $label = null,
     ) {
         $this->name = $name;
         $this->label = $label ?? \Str::title(str_replace('_', ' ', $name));

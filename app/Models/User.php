@@ -6,6 +6,7 @@ namespace App\Models;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -30,7 +31,7 @@ class User extends Authenticatable
         'city',
         'address',
         'kyc_status',
-        'user_type'
+        'user_type',
     ];
 
     /**
@@ -61,8 +62,13 @@ class User extends Authenticatable
         return $this->hasMany(KycVerification::class, 'user_id', 'id')->orderBy('created_at', 'desc');
     }
 
-    public function products():HasMany
+    public function products(): HasMany
     {
         return $this->hasMany(Item::class, 'author_id', 'id')->where('status', 'approved');
+    }
+
+    public function withdrawInformation(): HasOne
+    {
+        return $this->hasOne(AuthorWithdrawInformation::class, 'author_id', 'id');
     }
 }
