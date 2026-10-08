@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\AuthorWithdrawController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\DashboardController;
@@ -81,6 +82,9 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
         Route::get('/items/history/{id}', [ItemController::class, 'itemHistory'])->name('items.history');
 
         Route::post('/withdraw-info', [ProfileController::class, 'withdrawInfo'])->name('withdraw.info');
+        Route::get('/withdraws', [AuthorWithdrawController::class, 'index'])->name('withdraws.index');
+        Route::get('/withdraws/create', [AuthorWithdrawController::class, 'create'])->name('withdraws.create');
+        Route::post('/withdraws', [AuthorWithdrawController::class, 'store'])->name('withdraws.store');
     });
 });
 

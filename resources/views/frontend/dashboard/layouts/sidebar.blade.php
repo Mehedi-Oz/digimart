@@ -43,6 +43,14 @@
                         <span class="text">Sales</span>
                     </a>
                 </li>
+                <li class="sidebar-list__item">
+                    <a href="{{ route('user.withdraws.index') }}" class="sidebar-list__link">
+                        <span class="sidebar-list__icon">
+                            <i class="ti ti-chart-bar"></i>
+                        </span>
+                        <span class="text">Withdraws</span>
+                    </a>
+                </li>
             @endif
             <li class="sidebar-list__item">
                 <a href="{{ route('orders.index') }}" class="sidebar-list__link">
