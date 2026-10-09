@@ -13,14 +13,17 @@ class AuthorWithdrawController extends Controller
 {
     public function index(): View
     {
-        return view('frontend.dashboard.withdraws.index');
+        $withdraws = user()->withdraws()->latest()->paginate(25);
+
+        return view('frontend.dashboard.withdraws.index', compact('withdraws'));
     }
 
     public function create(): View
     {
         $withdrawInformation = user()->withdrawInformation()->with('withdrawGateway')->first();
+        $pendingWithdraw = user()->withdraws()->whereStatus('pending')->latest()->first();
 
-        return view('frontend.dashboard.withdraws.create', compact('withdrawInformation'));
+        return view('frontend.dashboard.withdraws.create', compact('withdrawInformation', 'pendingWithdraw'));
     }
 
     public function store(Request $request): RedirectResponse
@@ -33,17 +36,26 @@ class AuthorWithdrawController extends Controller
             return to_route('profile.index');
         }
 
+        if (user()->withdraws()->whereStatus('pending')->exists()) {
+            NotificationService::ERROR(__('You already have a pending withdraw request.'));
+
+            return to_route('user.withdraws.index');
+        }
+
         $gateway = $withdrawInformation->withdrawGateway;
 
         $validated = $request->validate([
-            'amount' => ['required', 'numeric', 'min:'.$gateway->minimum_amount, 'max:'.$gateway->maximum_amount],
+            'amount' => ['required', 'numeric', 'min:'.$gateway->minimum_amount, 'max:'.min($gateway->maximum_amount, user()->balance)],
+        ], [
+            'amount.max' => __('Insufficient balance.'),
         ]);
 
         Withdraw::create([
-            'user_id' => user()->id,
+            'author_id' => user()->id,
             'amount' => $validated['amount'],
             'method' => $gateway->name,
             'account' => $withdrawInformation->information,
+            'status' => 'pending',
         ]);
 
         NotificationService::CREATED(__('Withdraw request submitted successfully.'));

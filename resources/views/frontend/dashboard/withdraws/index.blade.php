@@ -35,14 +35,38 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                    @forelse ($withdraws as $withdraw)
+                        <tr>
+                            <td>{{ $withdraws->firstItem() + $loop->index }}</td>
+                            <td>{{ currencyPosition($withdraw->amount) }}</td>
+                            <td>
+                                @if ($withdraw->status == 'paid')
+                                    <div class="badge bg-success">{{ __('Paid') }}</div>
+                                @elseif($withdraw->status == 'pending')
+                                    <div class="badge bg-warning">{{ __('Pending') }}</div>
+                                @elseif($withdraw->status == 'rejected')
+                                    <div class="badge bg-danger">{{ __('Rejected') }}</div>
+                                @endif
+                            </td>
+                            <td>{{ formatDate($withdraw->created_at) }}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="text-center">
+                                <div class="py-4">
+                                    <h5>{{ __('No Withdraws Found') }}</h5>
+                                    <p class="text-secondary">{{ __('You have not made any withdraw requests yet.') }}</p>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
-        {{-- @if ($withdraws->hasPages())
+        @if ($withdraws->hasPages())
             <div class="mt-4">
                 {{ $withdraws->links() }}
             </div>
-        @endif --}}
+        @endif
     </div>
 @endsection

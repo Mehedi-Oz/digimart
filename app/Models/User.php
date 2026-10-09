@@ -71,4 +71,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(AuthorWithdrawInformation::class, 'author_id', 'id');
     }
+
+    public function withdraws(): HasMany
+    {
+        return $this->hasMany(Withdraw::class, 'author_id', 'id');
+    }
+
+    public function authorSales(): HasMany
+    {
+        return $this->hasMany(AuthorSale::class, 'author_id', 'id');
+    }
 }
