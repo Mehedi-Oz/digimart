@@ -144,10 +144,20 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.withdrawal-methods.index') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
-                            <i class="ti ti-home"></i>
+                            <i class="ti ti-credit-card"></i>
                         </span>
                         <span class="nav-link-title">
                             {{ __('Withdraw Methods') }}
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.withdraw.requests.index') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <i class="ti ti-cash"></i>
+                        </span>
+                        <span class="nav-link-title">
+                            {{ __('Withdraw Requests') }}
                         </span>
                     </a>
                 </li>

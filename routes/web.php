@@ -63,7 +63,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/orders/download/{id}', [OrderController::class, 'download'])->name('orders.download');
     Route::get('/transactions', [OrderController::class, 'transactions'])->name('transactions.index');
     Route::get('/sales', [OrderController::class, 'sales'])->name('sales.index');
-    Route::get('/sales', [OrderController::class, 'sales'])->name('sales.index');
 });
 
 /* Author Management Routes */
@@ -81,6 +80,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
         Route::post('/items/changelog/{id}', [ItemController::class, 'storeChangelog'])->name('items.changelog.store');
         Route::get('/items/history/{id}', [ItemController::class, 'itemHistory'])->name('items.history');
 
+        /* withdraw Management Routes */
         Route::post('/withdraw-info', [ProfileController::class, 'withdrawInfo'])->name('withdraw.info');
         Route::get('/withdraws', [AuthorWithdrawController::class, 'index'])->name('withdraws.index');
         Route::get('/withdraws/create', [AuthorWithdrawController::class, 'create'])->name('withdraws.create');

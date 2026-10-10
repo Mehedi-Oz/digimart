@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\RoleUserController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\WithdrawMethodController;
+use App\Http\Controllers\Admin\WithdrawRequestController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')
@@ -95,21 +96,26 @@ Route::middleware('auth:admin')
         Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
 
         /* Withdraw Method Routes */
-        Route::resource('/withdrawal-methods', WithdrawMethodController::class);
+        Route::resource('withdrawal-methods', WithdrawMethodController::class);
+
+        /* Withdraw Request Routes */
+        Route::get('/withdraw-requests', [WithdrawRequestController::class, 'index'])->name('withdraw.requests.index');
+        Route::get('/withdraw-requests/{withdraw}', [WithdrawRequestController::class, 'show'])->name('withdraw.requests.show');
+        Route::put('/withdraw-requests/{withdraw}', [WithdrawRequestController::class, 'update'])->name('withdraw.requests.update');
 
         /* Payment Management Routes */
-        Route::get('payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
-        Route::post('paypal-settings', [PaymentSettingController::class, 'updatePaypalSettings'])->name('paypal-settings.update');
+        Route::get('/payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
+        Route::post('/paypal-settings', [PaymentSettingController::class, 'updatePaypalSettings'])->name('paypal-settings.update');
 
-        Route::get('stripe-settings', [PaymentSettingController::class, 'stripeSetting'])->name('stripe-settings.index');
-        Route::post('stripe-settings', [PaymentSettingController::class, 'updateStripeSetting'])->name('stripe-settings.update');
+        Route::get('/stripe-settings', [PaymentSettingController::class, 'stripeSetting'])->name('stripe-settings.index');
+        Route::post('/stripe-settings', [PaymentSettingController::class, 'updateStripeSetting'])->name('stripe-settings.update');
 
-        Route::get('razorpay-settings', [PaymentSettingController::class, 'razorpaySetting'])->name('razorpay-settings.index');
-        Route::post('razorpay-settings', [PaymentSettingController::class, 'updateRazorpaySetting'])->name('razorpay-settings.update');
+        Route::get('/razorpay-settings', [PaymentSettingController::class, 'razorpaySetting'])->name('razorpay-settings.index');
+        Route::post('/razorpay-settings', [PaymentSettingController::class, 'updateRazorpaySetting'])->name('razorpay-settings.update');
 
         /* Settings Management Routes */
-        Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
-        Route::post('general-setting', [SettingController::class, 'updateGeneralSetting'])->name('setting.general-setting.update');
-        Route::get('commission-setting', [SettingController::class, 'commissionSetting'])->name('setting.commission-setting.index');
-        Route::post('commission-setting', [SettingController::class, 'updateCommissionSetting'])->name('setting.commission-setting.update');
+        Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
+        Route::post('/general-setting', [SettingController::class, 'updateGeneralSetting'])->name('setting.general-setting.update');
+        Route::get('/commission-setting', [SettingController::class, 'commissionSetting'])->name('setting.commission-setting.index');
+        Route::post('/commission-setting', [SettingController::class, 'updateCommissionSetting'])->name('setting.commission-setting.update');
     });
