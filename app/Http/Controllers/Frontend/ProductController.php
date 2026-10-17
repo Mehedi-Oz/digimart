@@ -20,6 +20,8 @@ class ProductController extends Controller
     public function show(string $slug): View
     {
         $product = Item::where('slug', $slug)->whereStatus('approved')->firstOrFail();
-        return view('frontend.pages.product-details', compact('product'));
+        $comments = $product->comments()->with('user')->paginate();
+
+        return view('frontend.pages.product-details', compact('product', 'comments'));
     }
 }

@@ -9,7 +9,8 @@
     <section class="breadcrumb border-bottom p-0 d-block section-bg position-relative z-index-1"
         style="background-image: url({{ asset('assets/frontend/images/thumbs/breadcrumb_bg.jpg') }});">
         <div class="breadcrumb-two">
-            <img src="{{ asset('assets/frontend/images/gradients/breadcrumb-gradient-bg.png') }}" alt="" class="bg--gradient">
+            <img src="{{ asset('assets/frontend/images/gradients/breadcrumb-gradient-bg.png') }}" alt=""
+                class="bg--gradient">
             <div class="container container-two">
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
@@ -92,96 +93,38 @@
                             </div>
                             <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                                 aria-labelledby="pills-profile-tab" tabindex="0">
+
+
                                 <div class="wsus__pro_det_comment">
                                     <h4>Comments All</h4>
-                                    <div class="wsus__single_comment">
-                                        <div class="comment_footer d-flex flex-wrap">
-                                            <div class="img">
-                                                <img src="{{ asset('assets/frontend/images/thumbs/comment_img_1.png') }}" alt="useer"
-                                                    class="img-fluid w-100">
-                                            </div>
-                                            <div class="text">
-                                                <h3>Abdur Rohman</h3>
-                                                <p>London,UK</p>
-                                            </div>
-                                        </div>
-                                        <p class="comment_des">Lorem Ipsum is simply dummy text of the printing and
-                                            typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                                            text ever since the redi 1500s,</p>
-                                        <p class="comment_date"> <span class="date"><i class="far fa-calendar-alt"></i>
-                                                Octobor
-                                                28,2018 At
-                                                9.00am </span> <a href="#"><i class="fas fa-reply"></i>Reply</a>
-                                        </p>
-                                        <div class="wsus__single_comment reply">
+                                    @forelse($comments as $comment)
+                                        <div class="wsus__single_comment">
                                             <div class="comment_footer d-flex flex-wrap">
                                                 <div class="img">
-                                                    <img src="{{ asset('assets/frontend/images/thumbs/comment_img_3.png') }}" alt="useer"
-                                                        class="img-fluid w-100">
+                                                    <img src="{{ asset($comment->user->avatar) }}"
+                                                        alt="useer" class="img-fluid w-100">
                                                 </div>
                                                 <div class="text">
-                                                    <h3>Shinzing Pang</h3>
+                                                    <h3>{{ $comment->user->name }}</h3>
                                                     <p>London,UK</p>
                                                 </div>
                                             </div>
-                                            <p class="comment_des">Lorem Ipsum is simply dummy text of the printing and
-                                                typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                                                text ever since the redi 1500s,</p>
+                                            <p class="comment_des">{{ $comment->comment }}</p>
                                             <p class="comment_date"> <span class="date"><i
                                                         class="far fa-calendar-alt"></i>
-                                                    Octobor
-                                                    28,2018 At
-                                                    9.00am </span> <a href="#"><i class="fas fa-reply"></i>
-                                                    Reply</a>
+                                                    {{ formatDate($comment->created_at) }}
+                                                    </span>
                                             </p>
                                         </div>
-                                    </div>
-                                    <div class="wsus__single_comment">
-                                        <div class="comment_footer d-flex flex-wrap">
-                                            <div class="img">
-                                                <img src="{{ asset('assets/frontend/images/thumbs/comment_img_2.png') }}" alt="useer"
-                                                    class="img-fluid w-100">
-                                            </div>
-                                            <div class="text">
-                                                <h3>Gurtokh Jhon</h3>
-                                                <p>London,UK</p>
-                                            </div>
+                                    @empty
+                                        <div class="alert alert-info ">
+                                            {{ __('No comments found for this product.') }}
                                         </div>
-                                        <p class="comment_des">Lorem Ipsum is simply dummy text of the printing and
-                                            typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                                            text ever since the redi 1500s,</p>
-                                        <p class="comment_date"> <span class="date"><i class="far fa-calendar-alt"></i>
-                                                Octobor
-                                                28,2018 At
-                                                9.00am </span> <a href="#"><i class="fas fa-reply"></i>
-                                                Reply</a>
-                                        </p>
-                                    </div>
-                                    <div class="wsus__single_comment">
-                                        <div class="comment_footer d-flex flex-wrap">
-                                            <div class="img">
-                                                <img src="{{ asset('assets/frontend/images/thumbs/comment_img_1.png') }}" alt="useer"
-                                                    class="img-fluid w-100">
-                                            </div>
-                                            <div class="text">
-                                                <h3>noyon bond</h3>
-                                                <p>London,UK</p>
-                                            </div>
-                                        </div>
-                                        <p class="comment_des">Lorem Ipsum is simply dummy text of the printing and
-                                            typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                                            text ever since the redi 1500s,</p>
-                                        <p class="comment_date"> <span class="date"><i class="far fa-calendar-alt"></i>
-                                                Octobor
-                                                28,2018 At
-                                                9.00am </span> <a href="#"><i class="fas fa-reply"></i>
-                                                Reply</a>
-                                        </p>
-                                    </div>
+                                    @endforelse
                                 </div>
 
                                 <nav aria-label="Page navigation example">
-                                    <ul class="pagination common-pagination mt-0">
+                                    {{-- <ul class="pagination common-pagination mt-0">
                                         <li class="page-item"><a class="page-link" href="#">1</a></li>
                                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                                         <li class="page-item"><a class="page-link" href="#">3</a></li>
@@ -193,39 +136,34 @@
                                                         class="las la-arrow-right"></i></span>
                                             </a>
                                         </li>
-                                    </ul>
+                                    </ul> --}}
+                                    {{ comment->links() }}
                                 </nav>
 
-                                <form class="wsus__comment_input_area">
-                                    <h3>Leave a Comment</h3>
-                                    <div class="row">
-                                        <div class="col-xl-6">
-                                            <div class="wsus__comment_single_input">
-                                                <fieldset>
-                                                    <legend>name*</legend>
-                                                    <input type="text" placeholder="Name">
-                                                </fieldset>
+                                @if (auth()->check())
+                                    <form action="{{ route('item.comment.store', $product->id) }}" method="POST"
+                                        class="wsus__comment_input_area">
+                                        @csrf
+                                        <h3>{{ __('Comment') }}</h3>
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="wsus__comment_single_input">
+                                                    <fieldset>
+                                                        <textarea rows="7" placeholder="Leave a comment here.." name="comment"></textarea>
+                                                    </fieldset>
+                                                </div>
+                                                <button class="btn btn-main btn-lg" type="submit">Submit Comment</button>
                                             </div>
                                         </div>
-                                        <div class="col-xl-6">
-                                            <div class="wsus__comment_single_input">
-                                                <fieldset>
-                                                    <legend>email*</legend>
-                                                    <input type="email" placeholder="Email">
-                                                </fieldset>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-12">
-                                            <div class="wsus__comment_single_input">
-                                                <fieldset>
-                                                    <legend>message*</legend>
-                                                    <textarea rows="7" placeholder="Type here.."></textarea>
-                                                </fieldset>
-                                            </div>
-                                            <button class="btn btn-main btn-lg" type="submit">Submit Comment</button>
+                                    </form>
+                                @else
+                                    <div class="wsus__comment_input_area">
+                                        <div class="alert alert-info text-center">
+                                            {{ __('Please login to leave a comment.') }}
                                         </div>
                                     </div>
-                                </form>
+                                @endif
+
                             </div>
                             <div class="tab-pane fade" id="pills-contact" role="tabpanel"
                                 aria-labelledby="pills-contact-tab" tabindex="0">
@@ -234,8 +172,8 @@
                                     <div class="wsus__single_comment">
                                         <div class="comment_footer d-flex flex-wrap">
                                             <div class="img">
-                                                <img src="{{ asset('assets/frontend/images/thumbs/comment_img_1.png') }}" alt="useer"
-                                                    class="img-fluid w-100">
+                                                <img src="{{ asset('assets/frontend/images/thumbs/comment_img_1.png') }}"
+                                                    alt="useer" class="img-fluid w-100">
                                             </div>
                                             <div class="text">
                                                 <h3>Abdur Rohman
@@ -261,8 +199,8 @@
                                         <div class="wsus__single_comment reply">
                                             <div class="comment_footer d-flex flex-wrap">
                                                 <div class="img">
-                                                    <img src="{{ asset('assets/frontend/images/thumbs/comment_img_2.png') }}" alt="useer"
-                                                        class="img-fluid w-100">
+                                                    <img src="{{ asset('assets/frontend/images/thumbs/comment_img_2.png') }}"
+                                                        alt="useer" class="img-fluid w-100">
                                                 </div>
                                                 <div class="text">
                                                     <h3>Shinzing Pang
@@ -292,8 +230,8 @@
                                     <div class="wsus__single_comment">
                                         <div class="comment_footer d-flex flex-wrap">
                                             <div class="img">
-                                                <img src="{{ asset('assets/frontend/images/thumbs/comment_img_3.png') }}" alt="useer"
-                                                    class="img-fluid w-100">
+                                                <img src="{{ asset('assets/frontend/images/thumbs/comment_img_3.png') }}"
+                                                    alt="useer" class="img-fluid w-100">
                                             </div>
                                             <div class="text">
                                                 <h3>Gurtokh Jhon
@@ -321,8 +259,8 @@
                                     <div class="wsus__single_comment">
                                         <div class="comment_footer d-flex flex-wrap">
                                             <div class="img">
-                                                <img src="{{ asset('assets/frontend/images/thumbs/comment_img_1.png') }}" alt="useer"
-                                                    class="img-fluid w-100">
+                                                <img src="{{ asset('assets/frontend/images/thumbs/comment_img_1.png') }}"
+                                                    alt="useer" class="img-fluid w-100">
                                             </div>
                                             <div class="text">
                                                 <h3>noyon bond

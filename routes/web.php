@@ -5,6 +5,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\ItemCommentController;
 use App\Http\Controllers\Frontend\ItemController;
 use App\Http\Controllers\Frontend\KycVerificationController;
 use App\Http\Controllers\Frontend\OrderController;
@@ -40,6 +41,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     /* Payment Management Routes */
     Route::get('payment/completed', [PaymentController::class, 'completed'])->name('payment.completed');
     Route::get('payment/canceled', [PaymentController::class, 'canceled'])->name('payment.canceled');
+
+    /* Item Comment Routes */
+    Route::post('/item/{id}/comment', [ItemCommentController::class, 'store'])->name('item.comment.store');
 
     /* Paypal Routes */
     Route::get('payment/paypal', [PaymentController::class, 'payWithPaypal'])->name('payment.paypal');

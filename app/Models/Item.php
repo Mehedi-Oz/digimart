@@ -74,4 +74,9 @@ class Item extends Model
     {
         return $this->HasMany(ItemChangeLog::class)->latest();
     }
+
+    public function comments(): HasMany
+    {
+        return $this->HasMany(ItemComment::class)->latest();
+    }
 }
