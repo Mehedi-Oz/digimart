@@ -79,4 +79,14 @@ class Item extends Model
     {
         return $this->HasMany(ItemComment::class)->latest();
     }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(ItemReview::class)->latest();
+    }
+
+    public function sales(): HasMany
+    {
+        return $this->hasMany(PurchaseItem::class, 'item_id', 'id');
+    }
 }

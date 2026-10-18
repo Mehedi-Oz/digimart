@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ItemCommentController;
 use App\Http\Controllers\Frontend\ItemController;
+use App\Http\Controllers\Frontend\ItemReviewController;
 use App\Http\Controllers\Frontend\KycVerificationController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\PaymentController;
@@ -44,6 +45,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     /* Item Comment Routes */
     Route::post('/item/{id}/comment', [ItemCommentController::class, 'store'])->name('item.comment.store');
+
+    /* Item Review Routes */
+    Route::post('/item/{id}/review', [ItemReviewController::class, 'store'])->name('item.review.store');
 
     /* Paypal Routes */
     Route::get('payment/paypal', [PaymentController::class, 'payWithPaypal'])->name('payment.paypal');
