@@ -88,6 +88,14 @@
                                     </button>
                                     <ul class="user-profile-dropdown">
                                         <li class="sidebar-list__item">
+                                            <a href="{{ route('home') }}" class="sidebar-list__link">
+                                                <span class="sidebar-list__icon">
+                                                    <i class="ti ti-building-store"></i>
+                                                </span>
+                                                <span class="text">{{ __('Marketplace') }}</span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-list__item">
                                             <a href="{{ route('profile.index') }}" class="sidebar-list__link">
                                                 <span class="sidebar-list__icon">
                                                     <img src="{{ asset('assets/frontend/images') }}/icons/sidebar-icon2.svg"

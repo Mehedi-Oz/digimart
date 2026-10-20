@@ -43,11 +43,14 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('payment/completed', [PaymentController::class, 'completed'])->name('payment.completed');
     Route::get('payment/canceled', [PaymentController::class, 'canceled'])->name('payment.canceled');
 
-    /* Item Comment Routes */
+    /* Item Comment Route */
     Route::post('/item/{id}/comment', [ItemCommentController::class, 'store'])->name('item.comment.store');
 
-    /* Item Review Routes */
+    /* Item Review Route */
     Route::post('/item/{id}/review', [ItemReviewController::class, 'store'])->name('item.review.store');
+
+    /* Dashboard Review Routes */
+    Route::get('/reviews', [DashboardController::class, 'reviews'])->name('reviews.index');
 
     /* Paypal Routes */
     Route::get('payment/paypal', [PaymentController::class, 'payWithPaypal'])->name('payment.paypal');

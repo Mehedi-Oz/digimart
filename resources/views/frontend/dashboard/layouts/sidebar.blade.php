@@ -19,6 +19,14 @@
                 </a>
             </li>
             <li class="sidebar-list__item">
+                <a href="{{ route('home') }}" class="sidebar-list__link">
+                    <span class="sidebar-list__icon">
+                        <i class="ti ti-building-store"></i>
+                    </span>
+                    <span class="text">{{ __('Marketplace') }}</span>
+                </a>
+            </li>
+            <li class="sidebar-list__item">
                 <a href="{{ route('profile.index') }}" class="sidebar-list__link">
                     <span class="sidebar-list__icon">
                         <i class="ti ti-user"></i>
@@ -52,6 +60,14 @@
                     </a>
                 </li>
             @endif
+            <li class="sidebar-list__item">
+                <a href="{{ route('reviews.index') }}" class="sidebar-list__link">
+                    <span class="sidebar-list__icon">
+                        <i class="ti ti-user"></i>
+                    </span>
+                    <span class="text">Reviews</span>
+                </a>
+            </li>
             <li class="sidebar-list__item">
                 <a href="{{ route('orders.index') }}" class="sidebar-list__link">
                     <span class="sidebar-list__icon">

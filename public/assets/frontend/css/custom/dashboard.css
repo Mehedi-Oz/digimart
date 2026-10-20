@@ -5,3 +5,18 @@ span.form-hint {
   font-size: 12px;
   margin-top: 3px !important;
 }
+
+/* Reviews table column widths */
+.wsus__dash_order_table table tr .rating {
+    min-width: 120px;
+}
+
+.wsus__dash_order_table table tr .review {
+    min-width: 200px;
+}
+
+/* Reviews table thumbnail size */
+.wsus__dash_order_table table tr .details .cover-image {
+    width: 60px !important;
+    height: 60px !important;
+}
