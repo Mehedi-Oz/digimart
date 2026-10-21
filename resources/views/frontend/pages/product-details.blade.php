@@ -215,7 +215,8 @@
                                                     <legend>{{ __('Rating') }}*</legend>
                                                     <select name="rating" class="form-select">
                                                         @for ($star = 5; $star >= 1; $star--)
-                                                            <option value="{{ $star }}">{{ $star }}</option>
+                                                            <option value="{{ $star }}">{{ $star }}
+                                                            </option>
                                                         @endfor
                                                     </select>
                                                     @error('rating')
@@ -239,7 +240,8 @@
                                         </div>
                                     </form>
                                 @else
-                                    <div class="text-center alert alert-info">{{ __('You need to login to review') }}</div>
+                                    <div class="text-center alert alert-info">{{ __('You need to login to review') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -248,22 +250,35 @@
                 <div class="col-xl-4 col-lg-5">
                     <div class="wsus__sidebar pl_30 xs_pl_0" id="sticky_sidebar">
                         <div class="wsus__sidebar_licence">
-                            <h2><span>$</span> 56</h2>
+                            <h2><span>{{ config('settings.currency_icon') }}</span>
+                                {{ $product->discount_price > 0 ? $product->discount_price : $product->price }}
+                            </h2>
                             <ul class="feature">
                                 <li>{{ __('Life time access') }}</li>
                                 <li>{{ __('Quality checked by ') }}{{ config('settings.site_name') }}</li>
                                 @if ($product->is_supported)
-                                    <li>{{ __('Support available') }}</li>
+                                    <li><a class="live"
+                                            href="{{ $product->demo_link }}"></a>{{ __('Support available') }}</li>
                                 @endif
                             </ul>
                             <ul class="button_area d-flex flex-wrap">
-                                <li><a class="live" href="#">Live Proview</a></li>
-                                <li><a class="add_cart" href="#">add to cart</a></li>
+                                @if ($product->demo_link)
+                                    <li><a class="live" href="#">{{ __('Live Preview') }}</a></li>
+                                @endif
+                                <li class="text-center w-100"><a class="add_cart product_cart add-to-cart mb-3" id="cart-btn-{{ $product->id }}"
+                                        data-id="{{ $product->id }}" href="javascript:;">{{ __('Add to cart') }}</a>
+                                </li>
                             </ul>
                             <ul class="sell_rating mt_20 d-flex flex-wrap justify-content-between">
-                                <li><i class="fas fa-shopping-basket"></i> 8541</li>
-                                <li><i class="far fa-comments"></i> {{ $product->comments_count }}</li>
-                                <li><i class="far fa-star"></i> {{ $product->reviews_count }}</li>
+                                <li class="stat-tooltip" data-tooltip="{{ __('Total sales') }}" tabindex="0">
+                                    <i class="fas fa-shopping-basket"></i> {{ $product->sales_count }}
+                                </li>
+                                <li class="stat-tooltip" data-tooltip="{{ __('Comments') }}" tabindex="0">
+                                    <i class="far fa-comments"></i> {{ $product->comments_count }}
+                                </li>
+                                <li class="stat-tooltip" data-tooltip="{{ __('Reviews') }}" tabindex="0">
+                                    <i class="far fa-star"></i> {{ $product->reviews_count }}
+                                </li>
                             </ul>
                         </div>
 
@@ -284,11 +299,11 @@
                                     <p>products</p>
                                 </li>
                                 <li>
-                                    <h4>255</h4>
+                                    <h4>{{ $product->author->total_sales }}</h4>
                                     <p>sales</p>
                                 </li>
                             </ul>
-                            <button class="btn btn-main btn-lg"><i class="fal fa-stars"></i> Level 3</button>
+                            {{-- <button class="btn btn-main btn-lg"><i class="fal fa-stars"></i> Level 3</button> --}}
                         </div>
 
                         <div class="wsus__sidebar_pro_info mt-4">
@@ -322,6 +337,67 @@
     </section>
     <!-- ======================= Product Details Section End ==================== -->
 @endsection
+
+@push('styles')
+    <style>
+        /* Icon stat tooltip (sales / comments / reviews) */
+        .sell_rating .stat-tooltip {
+            position: relative;
+            cursor: help;
+        }
+
+        .sell_rating .stat-tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: calc(100% + 9px);
+            left: 50%;
+            transform: translate(-50%, 6px);
+            padding: 5px 10px;
+            border-radius: 4px;
+            background: var(--colorBlack);
+            color: var(--colorWhite);
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.4;
+            letter-spacing: normal;
+            text-transform: none;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        .sell_rating .stat-tooltip::before {
+            content: "";
+            position: absolute;
+            bottom: calc(100% + 1px);
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: var(--colorBlack);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        .sell_rating .stat-tooltip:hover::after,
+        .sell_rating .stat-tooltip:focus-visible::after {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, 0);
+        }
+
+        .sell_rating .stat-tooltip:hover::before,
+        .sell_rating .stat-tooltip:focus-visible::before {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+@endpush
 
 @push('scripts')
     <script>

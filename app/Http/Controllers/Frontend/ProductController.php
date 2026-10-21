@@ -12,7 +12,10 @@ class ProductController extends Controller
 {
     public function index(): View
     {
-        $query = Item::Query();
+        $query = Item::query();
+        $query->with('author');
+        $query->withCount(['sales', 'reviews']);
+        $query->withAvg('reviews', 'stars');
         $query->where('status', 'approved');
         $products = $query->get();
 
@@ -22,10 +25,8 @@ class ProductController extends Controller
     public function show(string $slug): View
     {
         $product = Item::withCount(['comments', 'reviews', 'sales'])->where('slug', $slug)->whereStatus('approved')->firstOrFail();
-
         $comments = ItemComment::where('item_id', $product->id)->paginate();
         $reviews = ItemReview::where('item_id', $product->id)->paginate();
-
         $hasReviewed = auth()->check() && ItemReview::where('item_id', $product->id)->where('user_id', user()->id)->exists();
 
         return view('frontend.pages.product-details', compact('product', 'comments', 'reviews', 'hasReviewed'));
