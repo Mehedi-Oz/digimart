@@ -13,7 +13,7 @@ class Category extends Model
         'slug',
         'file_types',
         'show_at_nav',
-        'show_at_featured'
+        'show_at_featured',
     ];
 
     protected function casts(): array
@@ -26,5 +26,10 @@ class Category extends Model
     public function subcategories(): HasMany
     {
         return $this->hasMany(SubCategory::class);
+    }
+
+    public function items(): HasMany
+    {
+        return $this->hasMany(Item::class, 'category_id', 'id');
     }
 }
