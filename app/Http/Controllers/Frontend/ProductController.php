@@ -24,7 +24,22 @@ class ProductController extends Controller
                 $query->whereSlug($request->category);
             });
         });
-        $products = $query->get();
+        $query->when($request->filled('search'), function ($query) use ($request) {
+            $search = '%'.$request->string('search')->trim().'%';
+            $query->where(function ($query) use ($search) {
+                $query->where('name', 'LIKE', $search)
+                    ->orWhere('description', 'LIKE', $search);
+            });
+        });
+        $query->when($request->filled('rating'), function ($query) use ($request) {
+            $query->whereIn('id', ItemReview::query()
+                ->select('item_id')
+                ->groupBy('item_id')
+                ->havingRaw('AVG(stars) >= ?', [(int) $request->input('rating')]));
+        });
+
+        $products = $query->paginate(12);
+
         $categories = Category::withCount(['items' => function ($query) {
             return $query->where('status', 'approved');
         }])->get();

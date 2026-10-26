@@ -15,7 +15,6 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="breadcrumb-two-content text-center">
-
                             <ul class="breadcrumb-list flx-align gap-2 mb-2 justify-content-center">
                                 <li class="breadcrumb-list__item font-14 text-body">
                                     <a href="index.html"
@@ -104,8 +103,19 @@
                     <!-- ===================== Filter Sidebar Start ============================= -->
                     <div class="filter-sidebar">
                         <!-- <button type="button"
-                                                    class="filter-sidebar__close p-2 position-absolute end-0 top-0 z-index-1 text-body hover-text-main font-20 d-lg-none d-block"><i
-                                                        class="las la-times"></i></button> -->
+                                                                                class="filter-sidebar__close p-2 position-absolute end-0 top-0 z-index-1 text-body hover-text-main font-20 d-lg-none d-block"><i
+                                                                                    class="las la-times"></i></button> -->
+                        <div class="filter-sidebar__item">
+                            <button type="button"
+                                class="filter-sidebar__button font-16 text-capitalize fw-500">Search</button>
+                            <div class="filter-sidebar__content">
+                                <form action="{{ route('products') }}" method="GET">
+                                    <input type="text" class="form-control" placeholder="search" name="search"
+                                        value="{{ request()?->search }}">
+                                    <button type="submit" class="btn btn-main w-100 mt-3">Search</button>
+                                </form>
+                            </div>
+                        </div>
                         <div class="filter-sidebar__item">
                             <button type="button"
                                 class="filter-sidebar__button font-16 text-capitalize fw-500">Category</button>
@@ -128,84 +138,103 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="filter-sidebar__item">
-                            <button type="button"
-                                class="filter-sidebar__button font-16 text-capitalize fw-500">Rating</button>
-                            <div class="filter-sidebar__content">
-                                <ul class="filter-sidebar-list">
-                                    <li class="filter-sidebar-list__item">
-                                        <div class="filter-sidebar-list__text">
-                                            <div class="common-check common-radio">
-                                                <input class="form-check-input" type="radio" name="rating"
-                                                    value="5" id="fiveStar">
-                                                <label class="form-check-label" for="fiveStar">
-                                                    <i class="ti ti-star"></i>
-                                                    <i class="ti ti-star"></i>
-                                                    <i class="ti ti-star"></i>
-                                                    <i class="ti ti-star"></i>
-                                                    <i class="ti ti-star"></i>
-                                                </label>
+
+                        <form action="{{ route('products') }}" method="GET">
+                            @if (request('search'))
+                                <input type="hidden" name="search" value="{{ request('search') }}">
+                            @endif
+                            @if (request('category'))
+                                <input type="hidden" name="category" value="{{ request('category') }}">
+                            @endif
+                            <div class="filter-sidebar__item">
+                                <button type="button"
+                                    class="filter-sidebar__button font-16 text-capitalize fw-500">Rating</button>
+                                <div class="filter-sidebar__content">
+                                    <ul class="filter-sidebar-list">
+                                        <li class="filter-sidebar-list__item">
+                                            <div class="filter-sidebar-list__text">
+                                                <div class="common-check common-radio">
+                                                    <input class="form-check-input" type="radio" name="rating"
+                                                        value="5" id="fiveStar" @checked(request('rating') == 5)>
+                                                    <label class="form-check-label" for="fiveStar">
+                                                        <i class="ti ti-star"></i>
+                                                        <i class="ti ti-star"></i>
+                                                        <i class="ti ti-star"></i>
+                                                        <i class="ti ti-star"></i>
+                                                        <i class="ti ti-star"></i>
+                                                    </label>
+                                                </div>
+                                                <span
+                                                    class="qty">({{ number_format($productCountByRating[5] ?? 0) }})</span>
                                             </div>
-                                            <span class="qty">({{ number_format($productCountByRating[5] ?? 0) }})</span>
-                                        </div>
-                                    </li>
-                                    <li class="filter-sidebar-list__item">
-                                        <div class="filter-sidebar-list__text">
-                                            <div class="common-check common-radio">
-                                                <input class="form-check-input" type="radio" name="rating"
-                                                    value="4" id="fourStar">
-                                                <label class="form-check-label" for="fourStar">
-                                                    <i class="ti ti-star"></i>
-                                                    <i class="ti ti-star"></i>
-                                                    <i class="ti ti-star"></i>
-                                                    <i class="ti ti-star"></i>
-                                                </label>
+                                        </li>
+                                        <li class="filter-sidebar-list__item">
+                                            <div class="filter-sidebar-list__text">
+                                                <div class="common-check common-radio">
+                                                    <input class="form-check-input" type="radio" name="rating"
+                                                        value="4" id="fourStar" @checked(request('rating') == 4)>
+                                                    <label class="form-check-label" for="fourStar">
+                                                        <i class="ti ti-star"></i>
+                                                        <i class="ti ti-star"></i>
+                                                        <i class="ti ti-star"></i>
+                                                        <i class="ti ti-star"></i>
+                                                    </label>
+                                                </div>
+                                                <span
+                                                    class="qty">({{ number_format($productCountByRating[4] ?? 0) }})</span>
                                             </div>
-                                            <span class="qty">({{ number_format($productCountByRating[4] ?? 0) }})</span>
-                                        </div>
-                                    </li>
-                                    <li class="filter-sidebar-list__item">
-                                        <div class="filter-sidebar-list__text">
-                                            <div class="common-check common-radio">
-                                                <input class="form-check-input" type="radio" name="rating"
-                                                    value="3" id="threeStar">
-                                                <label class="form-check-label" for="threeStar">
-                                                    <i class="ti ti-star"></i>
-                                                    <i class="ti ti-star"></i>
-                                                    <i class="ti ti-star"></i>
-                                                </label>
+                                        </li>
+                                        <li class="filter-sidebar-list__item">
+                                            <div class="filter-sidebar-list__text">
+                                                <div class="common-check common-radio">
+                                                    <input class="form-check-input" type="radio" name="rating"
+                                                        value="3" id="threeStar" @checked(request('rating') == 3)>
+                                                    <label class="form-check-label" for="threeStar">
+                                                        <i class="ti ti-star"></i>
+                                                        <i class="ti ti-star"></i>
+                                                        <i class="ti ti-star"></i>
+                                                    </label>
+                                                </div>
+                                                <span
+                                                    class="qty">({{ number_format($productCountByRating[3] ?? 0) }})</span>
                                             </div>
-                                            <span class="qty">({{ number_format($productCountByRating[3] ?? 0) }})</span>
-                                        </div>
-                                    </li>
-                                    <li class="filter-sidebar-list__item">
-                                        <div class="filter-sidebar-list__text">
-                                            <div class="common-check common-radio">
-                                                <input class="form-check-input" type="radio" name="rating"
-                                                    value="2" id="twoStar">
-                                                <label class="form-check-label" for="twoStar">
-                                                    <i class="ti ti-star"></i>
-                                                    <i class="ti ti-star"></i>
-                                                </label>
+                                        </li>
+                                        <li class="filter-sidebar-list__item">
+                                            <div class="filter-sidebar-list__text">
+                                                <div class="common-check common-radio">
+                                                    <input class="form-check-input" type="radio" name="rating"
+                                                        value="2" id="twoStar" @checked(request('rating') == 2)>
+                                                    <label class="form-check-label" for="twoStar">
+                                                        <i class="ti ti-star"></i>
+                                                        <i class="ti ti-star"></i>
+                                                    </label>
+                                                </div>
+                                                <span
+                                                    class="qty">({{ number_format($productCountByRating[2] ?? 0) }})</span>
                                             </div>
-                                            <span class="qty">({{ number_format($productCountByRating[2] ?? 0) }})</span>
-                                        </div>
-                                    </li>
-                                    <li class="filter-sidebar-list__item">
-                                        <div class="filter-sidebar-list__text">
-                                            <div class="common-check common-radio">
-                                                <input class="form-check-input" type="radio" name="rating"
-                                                    value="1" id="oneStar">
-                                                <label class="form-check-label" for="oneStar">
-                                                    <i class="ti ti-star"></i>
-                                                </label>
+                                        </li>
+                                        <li class="filter-sidebar-list__item">
+                                            <div class="filter-sidebar-list__text">
+                                                <div class="common-check common-radio">
+                                                    <input class="form-check-input" type="radio" name="rating"
+                                                        value="1" id="oneStar" @checked(request('rating') == 1)>
+                                                    <label class="form-check-label" for="oneStar">
+                                                        <i class="ti ti-star"></i>
+                                                    </label>
+                                                </div>
+                                                <span
+                                                    class="qty">({{ number_format($productCountByRating[1] ?? 0) }})</span>
                                             </div>
-                                            <span class="qty">({{ number_format($productCountByRating[1] ?? 0) }})</span>
-                                        </div>
-                                    </li>
-                                </ul>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
+
+                            <div>
+                                <button type="submit" class="btn btn-main w-100 mt-3">Filter</button>
+                            </div>
+                        </form>
+
                     </div>
                     <!-- ===================== Filter Sidebar End ============================= -->
                 </div>
@@ -221,21 +250,7 @@
                                 @endforelse
                             </div>
                             <!-- Pagination Start -->
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination common-pagination">
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link flx-align gap-2 flex-nowrap" href="#">Next
-                                            <span class="icon line-height-1 font-20"><i
-                                                    class="las la-arrow-right"></i></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
+                            <x-frontend.pagination :paginator="$products" />
                             <!-- Pagination End -->
                         </div>
                     </div>
