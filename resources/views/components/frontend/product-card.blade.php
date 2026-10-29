@@ -4,7 +4,7 @@
 
             @if ($product->preview_type == 'image')
                 <a href="{{ route('products.show', $product->slug) }}" class="link w-100">
-                    <x-frontend.image-preview src="{{ asset($product->preview_image) }}" class="cover-img" />
+                    <x-frontend.image-preview src="{{ asset($product->preview_image) }}" class="" />
                 </a>
             @elseif($product->preview_type == 'video')
                 <video class="player" playsinline controls data-poster="">

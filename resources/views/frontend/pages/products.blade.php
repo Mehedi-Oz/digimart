@@ -57,46 +57,6 @@
                             </li>
                         </ul>
                     </div>
-                    <form action="#" class="filter-form pb-4 ">
-                        <div class="row gy-3">
-                            <div class="col-sm-4 col-xs-6">
-                                <div class="flx-between gap-1">
-                                    <label for="tag" class="form-label font-16">Tag</label>
-                                    <button type="reset" class="text-body font-14">Clear</button>
-                                </div>
-                                <div class="position-relative">
-                                    <input type="text" class="common-input border-gray-five common-input--withLeftIcon"
-                                        id="tag" placeholder="Search By Tag...">
-                                    <span class="input-icon input-icon--left"><img
-                                            src="{{ asset('assets/frontend/images/icons/search-two.svg') }}"
-                                            alt=""></span>
-                                </div>
-                            </div>
-                            <div class="col-sm-4 col-xs-6">
-                                <div class="flx-between gap-1">
-                                    <label for="Price" class="form-label font-16">Price</label>
-                                    <button type="reset" class="text-body font-14">Clear</button>
-                                </div>
-                                <div class="position-relative">
-                                    <input type="text" class="common-input border-gray-five" id="Price"
-                                        placeholder="$7 - $29">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="flx-between gap-1">
-                                    <label for="time" class="form-label font-16">Time Frame</label>
-                                    <button type="reset" class="text-body font-14">Clear</button>
-                                </div>
-                                <div class="position-relative select-has-icon">
-                                    <select id="time" class="common-input border-gray-five">
-                                        <option value="1">Now</option>
-                                        <option value="2">Yesterday</option>
-                                        <option value="2">1 Month Ago</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
                 </div>
 
                 <div class="col-xl-3 col-lg-4">
@@ -246,7 +206,7 @@
                                 @forelse($products as $product)
                                     <x-frontend.product-card :product="$product" />
                                 @empty
-                                    <p>No data Found!</p>
+                                    <p class="text-center">No data Found!</p>
                                 @endforelse
                             </div>
                             <!-- Pagination Start -->

@@ -23,7 +23,9 @@ class CartController extends Controller
 
     public function store(string $id): JsonResponse
     {
-        if (Item::where('id', $id)->where('status', 'approved')->doesntExist()) {
+        $item = Item::where('id', $id)->where('status', 'approved')->first();
+
+        if (! $item) {
             return response()->json([
                 'status' => 'error',
                 'message' => __('Item not found or not approved.'),
@@ -32,6 +34,11 @@ class CartController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => __('Item already in cart.'),
+            ], 400);
+        } elseif ($item->author_id == user()->id) {
+            return response()->json([
+                'status' => 'error',
+                'message' => __('You cannot add your own item to cart.'),
             ], 400);
         }
 
