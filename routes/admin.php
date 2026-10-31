@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\Admin\ItemReviewController;
 use App\Http\Controllers\Admin\KycController;
 use App\Http\Controllers\Admin\KYCSettingController;
@@ -102,6 +103,10 @@ Route::middleware('auth:admin')
         Route::get('/withdraw-requests', [WithdrawRequestController::class, 'index'])->name('withdraw.requests.index');
         Route::get('/withdraw-requests/{withdraw}', [WithdrawRequestController::class, 'show'])->name('withdraw.requests.show');
         Route::put('/withdraw-requests/{withdraw}', [WithdrawRequestController::class, 'update'])->name('withdraw.requests.update');
+
+        /* Hero Section Management Routes */
+        Route::get('ajax/product-search', [HeroSectionController::class, 'productSearch'])->name('ajax.product-search');
+        Route::resource('/hero-section', HeroSectionController::class);
 
         /* Payment Management Routes */
         Route::get('/payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
